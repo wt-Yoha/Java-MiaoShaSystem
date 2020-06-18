@@ -1,0 +1,41 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /bazewind
+spring:
+  datasource:
+    username: root
+    password: 996895
+    url: jdbc:mysql://www.wtyoha.cn:3306/miaosha_system?serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    cache: false
+
+  resources:
+    static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/, classpath:/templates/, classpath:/static/assets/
+
+
+# redis
+redis:
+  host: www.wtyoha.cn
+  port: 6379
+  timeout: 3
+  password: 996895
+  poolMaxTotal: 10
+  poolMaxIdle: 10
+  poolMaxWait: 3
+
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    root: info

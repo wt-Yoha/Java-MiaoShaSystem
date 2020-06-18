@@ -22,7 +22,7 @@ public class GoodsController {
             goods.remove(goods.size() - 1);
         }
         model.addAttribute("goodsList", goods);
-        return "shop";
+        return "goodsList";
     }
 
 }

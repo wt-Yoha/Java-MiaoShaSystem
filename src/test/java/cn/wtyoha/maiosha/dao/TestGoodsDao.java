@@ -16,8 +16,13 @@ public class TestGoodsDao {
     GoodsDao goodsDao;
 
     @Test
-    public void TestQueryOne() {
+    public void testQueryOne() {
         Goods goods = goodsDao.selectByPrimaryKey(1);
         System.out.println(goods);
+    }
+
+    @Test
+    public void testUnioQuery(){
+        System.out.println(goodsDao.selectById(1));
     }
 }

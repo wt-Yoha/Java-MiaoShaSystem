@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.math.BigDecimal;
 
 
@@ -20,4 +21,7 @@ public class Goods {
     private String smallImg;
     private String middleImg;
     private String largeImg;
+
+    @Transient
+    private MiaoShaGoods miaoShaGoods;
 }

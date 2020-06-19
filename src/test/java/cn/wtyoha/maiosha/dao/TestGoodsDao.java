@@ -22,7 +22,13 @@ public class TestGoodsDao {
     }
 
     @Test
-    public void testUnioQuery(){
+    public void testUnionQuery(){
         System.out.println(goodsDao.selectById(1));
     }
+
+    @Test
+    public void testUnionQuerySelectAll() {
+        System.out.println(goodsDao.selectAll());
+    }
+
 }

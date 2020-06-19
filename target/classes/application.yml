@@ -20,7 +20,6 @@ spring:
   resources:
     static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/, classpath:/templates/, classpath:/static/assets/, classpath:/templates/assets/
 
-
 # redis
 redis:
   host: www.wtyoha.cn
@@ -30,7 +29,6 @@ redis:
   poolMaxTotal: 10
   poolMaxIdle: 10
   poolMaxWait: 3
-
 
 mybatis:
   configuration:

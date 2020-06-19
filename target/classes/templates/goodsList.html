@@ -536,7 +536,13 @@
             </div>
             <span class="review">(0)</span>
            </div>
-           <span class="price"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span><span th:text="${goodsList.get(i*4).price}">45.00</span></span></span>
+           <!--           商品价格-->
+           <span class="price">
+            <del th:if="${goodsList.get(i*4+0).miaoShaGoods!=null}"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span><span th:text="${goodsList.get(i*4+0).price}">138.00</span></span></del>
+            <!--               秒杀商品不为null则说明该商品有秒杀价-->
+            <ins th:if="${goodsList.get(i*4+0).miaoShaGoods!=null}"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">秒杀价：$</span><span th:text="${goodsList.get(i*4+0).miaoShaGoods.miaoshaPrice}">138.00</span></span></ins>
+            <ins th:if="${goodsList.get(i*4+0).miaoShaGoods==null}"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span><span th:text="${goodsList.get(i*4+0).price}">138.00</span></span></ins>
+           </span>
           </div>
          </div> </li>
         <li class="product-item wow fadeInUp product-item rows-space-30 col-bg-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-ts-6 style-01 post-28 product type-product status-publish has-post-thumbnail product_cat-light product_cat-chair product_cat-sofas product_tag-light product_tag-sock  instock sale featured shipping-taxable purchasable product-type-simple" data-wow-duration="1s" data-wow-delay="0ms" data-wow="fadeInUp">
@@ -570,7 +576,15 @@
             </div>
             <span class="review">(1)</span>
            </div>
-           <span class="price"><del><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span><span th:text="${goodsList.get(i*4+1).price}">138.00</span></span></del> <ins><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>119.00</span></ins></span>
+
+<!--           商品价格-->
+           <span class="price">
+            <del th:if="${goodsList.get(i*4+1).miaoShaGoods!=null}"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span><span th:text="${goodsList.get(i*4+1).price}">138.00</span></span></del>
+<!--               秒杀商品不为null则说明该商品有秒杀价-->
+            <ins th:if="${goodsList.get(i*4+1).miaoShaGoods!=null}"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span><span th:text="${goodsList.get(i*4+1).miaoShaGoods.miaoshaPrice}">138.00</span></span></ins>
+            <ins th:if="${goodsList.get(i*4+1).miaoShaGoods==null}"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span><span th:text="${goodsList.get(i*4+1).price}">138.00</span></span></ins>
+           </span>
+
           </div>
          </div> </li>
         <li class="product-item wow fadeInUp product-item rows-space-30 col-bg-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-ts-6 style-01 post-30 product type-product status-publish has-post-thumbnail product_cat-light product_cat-bed product_cat-specials product_tag-light product_tag-table product_tag-sock last instock featured downloadable shipping-taxable purchasable product-type-simple" data-wow-duration="1s" data-wow-delay="0ms" data-wow="fadeInUp">
@@ -603,7 +617,12 @@
             </div>
             <span class="review">(0)</span>
            </div>
-           <span class="price"><span class="kobolg-Price-amount amount"> <span class="kobolg-Price-currencySymbol">$</span><span th:text="${goodsList.get(i*4+2).price}">60.00</span></span></span>
+           <span class="price">
+            <del th:if="${goodsList.get(i*4+2).miaoShaGoods!=null}"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span><span th:text="${goodsList.get(i*4+2).price}">138.00</span></span></del>
+            <!--               秒杀商品不为null则说明该商品有秒杀价-->
+            <ins th:if="${goodsList.get(i*4+2).miaoShaGoods!=null}"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span><span th:text="${goodsList.get(i*4+2).miaoShaGoods.miaoshaPrice}">138.00</span></span></ins>
+            <ins th:if="${goodsList.get(i*4+2).miaoShaGoods==null}"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span><span th:text="${goodsList.get(i*4+2).price}">138.00</span></span></ins>
+           </span>
           </div>
          </div> </li>
         <li class="product-item wow fadeInUp product-item rows-space-30 col-bg-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-ts-6 style-01 post-23 product type-product status-publish has-post-thumbnail product_cat-chair product_cat-lamp product_cat-sofas product_tag-hat first instock shipping-taxable purchasable product-type-variable has-default-attributes" data-wow-duration="1s" data-wow-delay="0ms" data-wow="fadeInUp">
@@ -650,7 +669,12 @@
             </div>
             <span class="review">(0)</span>
            </div>
-           <span class="price"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span><span th:text="${goodsList.get(i*4+3).price}">105.00</span></span> – <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>110.00</span></span>
+           <span class="price">
+            <del th:if="${goodsList.get(i*4+3).miaoShaGoods!=null}"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span><span th:text="${goodsList.get(i*4+3).price}">138.00</span></span></del>
+            <!--               秒杀商品不为null则说明该商品有秒杀价-->
+            <ins th:if="${goodsList.get(i*4+3).miaoShaGoods!=null}"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span><span th:text="${goodsList.get(i*4+3).miaoShaGoods.miaoshaPrice}">138.00</span></span></ins>
+            <ins th:if="${goodsList.get(i*4+3).miaoShaGoods==null}"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span><span th:text="${goodsList.get(i*4+3).price}">138.00</span></span></ins>
+           </span>
           </div>
          </div> </li>
        </ul>

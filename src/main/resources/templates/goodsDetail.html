@@ -499,33 +499,14 @@
           <div class="flash"> 
            <span class="onnew"><span class="text">New</span></span>
           </div> 
-          <h1 class="product_title entry-title">T-shirt with skirt</h1> 
-          <p class="price"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>146.00</span> – <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>185.00</span></p> 
-          <p class="stock in-stock"> Availability: <span> In stock</span> </p> 
+          <h1 class="product_title entry-title" th:text="${goodsItem.title}">T-shirt with skirt</h1>
+          <p class="price"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span><span th:text="${goodsItem.price}">146.00</span></span></p>
+          <p class="stock in-stock"> 商品状态: <span>销售中</span> </p>
           <div class="kobolg-product-details__short-description"> 
-           <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p> 
-           <ul> 
-            <li>Water-resistant fabric with soft lycra detailing inside</li> 
-            <li>CLean zip-front, and three piece hood</li> 
-            <li>Subtle branding and diagonal panel detail</li> 
-           </ul> 
-          </div> 
+           <p th:text="${goodsItem.detail}">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.</p>
+          </div>
           <form class="variations_form cart"> 
-           <table class="variations"> 
-            <tbody> 
-             <tr> 
-              <td class="label"><label>Color</label></td> 
-              <td class="value"> <select title="box_style" data-attributetype="box_style" data-id="pa_color" class="attribute-select " name="attribute_pa_color" data-attribute_name="attribute_pa_color" data-show_option_none="yes"> <option data-type="" data-pa_color="" value="">Choose an option </option> <option data-width="30" data-height="30" data-type="color" data-pa_color="#3155e2" value="blue" class="attached enabled">Blue </option> <option data-width="30" data-height="30" data-type="color" data-pa_color="#ff63cb" value="pink" class="attached enabled">Pink </option> <option data-width="30" data-height="30" data-type="color" data-pa_color="#db2b00" value="red" class="attached enabled">Red </option> <option data-width="30" data-height="30" data-type="color" data-pa_color="#e8e120" value="yellow" class="attached enabled">Yellow </option> </select> 
-               <div class="data-val attribute-pa_color" data-attributetype="box_style"> 
-                <a class="change-value color" href="#" style="background: #3155e2;" data-value="blue"></a>
-                <a class="change-value color" href="#" style="background: #ff63cb;" data-value="pink"></a>
-                <a class="change-value color" href="#" style="background: #db2b00;" data-value="red"></a>
-                <a class="change-value color" href="#" style="background: #e8e120;" data-value="yellow"></a>
-               </div> <a class="reset_variations" href="#" style="visibility: hidden;">Clear</a></td> 
-             </tr> 
-            </tbody> 
-           </table> 
-           <div class="single_variation_wrap"> 
+           <div class="single_variation_wrap">
             <div class="kobolg-variation single_variation"></div> 
             <div class="kobolg-variation-add-to-cart variations_button"> 
              <div class="quantity"> 
@@ -536,7 +517,7 @@
                <a class="btn-number qtyplus quantity-plus" href="#">+</a> 
               </div> 
              </div> 
-             <button type="submit" class="single_add_to_cart_button button alt kobolg-variation-selection-needed"> Add to cart </button> 
+             <button type="submit" class="single_add_to_cart_button button alt kobolg-variation-selection-needed"> <a style="color: white" th:href="@{'/order'+${goodsItem.id}}">Add to cart</a> </button>
              <input name="add-to-cart" value="27" type="hidden"> 
              <input name="product_id" value="27" type="hidden"> 
              <input name="variation_id" class="variation_id" value="0" type="hidden"> 

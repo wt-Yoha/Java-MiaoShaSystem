@@ -32,7 +32,7 @@ public class GoodsController {
 
     @RequestMapping("/detail{id}")
     public String goodsDetail(@PathVariable("id") Integer id, Model model) {
-        Goods goods = goodsDao.findById(id);
+        Goods goods = goodsDao.selectByPrimaryKey(id);
         model.addAttribute("goodsItem", goods);
         return "goodsDetail";
     }

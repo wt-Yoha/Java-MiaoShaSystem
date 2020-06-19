@@ -4,6 +4,8 @@ import cn.wtyoha.miaosha.validator.annotations.IsMobile;
 import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.stereotype.Component;
+
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 import javax.persistence.Table;
@@ -13,6 +15,7 @@ import java.util.Date;
 @Component
 @Table(name = "miaosha_user")
 public class MiaoShaUser {
+    @Id
     @NotNull
     @IsMobile(required = false)
     Long id;

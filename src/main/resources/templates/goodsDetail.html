@@ -1,5 +1,26 @@
 <!DOCTYPE html>
-<html
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+ <head>
+  <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" th:href="@{/assets/images/favicon.png}">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/animate.css" th:href="@{/assets/css/animate.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/chosen.min.css" th:href="@{/assets/css/chosen.min.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" th:href="@{/assets/css/font-awesome.min.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/jquery.scrollbar.css" th:href="@{/assets/css/jquery.scrollbar.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/lightbox.min.css" th:href="@{/assets/css/lightbox.min.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css" th:href="@{/assets/css/magnific-popup.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/slick.min.css" th:href="@{/assets/css/slick.min.css}">
+  <link rel="stylesheet" type="text/css" href="assets/fonts/flaticon.css" th:href="@{/assets/fonts/flaticon.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/megamenu.css" th:href="@{/assets/css/megamenu.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/dreaming-attribute.css" th:href="@{/assets/css/dreaming-attribute.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css" th:href="@{/assets/css/style.css}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kobolg - HTML Template </title>
+ </head>
+ <body class="single single-product">
 <header id="header" class="header style-04 header-dark"> 
    <div class="header-top"> 
     <div class="container"> 
@@ -202,7 +223,7 @@
                <div class="listitem-inner"> 
                 <h4 class="title">Product Layouts </h4> 
                 <ul class="listitem-list"> 
-                 <li> <a href="single-product.html" target="_self" th:href="@{/single-product.html}">Vertical Thumbnails </a> </li> 
+                 <li> <a href="goodsDetail.html" target="_self" th:href="@{/templates/goodsDetail.html}">Vertical Thumbnails </a> </li>
                  <li> <a href="single-product-policy.html" target="_self" th:href="@{/single-product-policy.html}"> <span class="image"> <img src="assets/images/label-new.jpg" class="attachment-full size-full" alt="img" th:src="@{/assets/images/label-new.jpg}"> </span> Extra Sidebar </a> </li> 
                  <li> <a href="single-product-rightsidebar.html" target="_self" th:href="@{/single-product-rightsidebar.html}"> Right Sidebar </a> </li> 
                  <li> <a href="single-product-leftsidebar.html" target="_self" th:href="@{/single-product-leftsidebar.html}"> Left Sidebar </a> </li> 
@@ -240,7 +261,7 @@
                 <h4 class="title"> Product Types </h4> 
                 <ul class="listitem-list"> 
                  <li> <a href="single-product-simple.html" target="_self" th:href="@{/single-product-simple.html}"> Simple </a> </li> 
-                 <li> <a href="single-product.html" target="_self" th:href="@{/single-product.html}"> <span class="image"><img src="assets/images/label-hot.jpg" class="attachment-full size-full" alt="img" th:src="@{/assets/images/label-hot.jpg}"></span> Variable </a> </li> 
+                 <li> <a href="goodsDetail.html" target="_self" th:href="@{/templates/goodsDetail.html}"> <span class="image"><img src="assets/images/label-hot.jpg" class="attachment-full size-full" alt="img" th:src="@{/assets/images/label-hot.jpg}"></span> Variable </a> </li>
                  <li> <a href="single-product-external.html" target="_self" th:href="@{/single-product-external.html}"> External / Affiliate </a> </li> 
                  <li> <a href="single-product-group.html" target="_self" th:href="@{/single-product-group.html}"> Grouped </a> </li> 
                  <li> <a href="single-product-outofstock.html" target="_self" th:href="@{/single-product-outofstock.html}"> Out Of Stock </a> </li> 
@@ -342,7 +363,7 @@
            <ul role="menu" class="submenu"> 
             <li id="menu-item-987" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-987"> <a class="kobolg-menu-item-title" title="About" href="about.html" th:href="@{/about.html}">About</a></li> 
             <li id="menu-item-988" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-988"> <a class="kobolg-menu-item-title" title="Contact" href="contact.html" th:href="@{/contact.html}">Contact</a></li> 
-            <li id="menu-item-990" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-990"> <a class="kobolg-menu-item-title" title="Page 404" href="404.html" th:href="@{/404.html}">Page 404</a></li> 
+            <li id="menu-item-990" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-990"> <a class="kobolg-menu-item-title" title="Page 404" href="error/404.html" th:href="@{/templates/error/404.html}">Page 404</a></li>
            </ul> </li> 
           <li id="menu-item-238" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-238"> <a class="kobolg-menu-item-title" title="Free Shipping on Orders $100" href="#">Free Shipping on Orders $100</a> </li> 
          </ul> 
@@ -458,10 +479,10 @@
            <a href="#" class="kobolg-product-gallery__trigger"> <img draggable="false" class="emoji" alt="🔍" src="https://s.w.org/images/core/emoji/11/svg/1f50d.svg"></a> 
            <div class="flex-viewport"> 
             <figure class="kobolg-product-gallery__wrapper"> 
-             <div class="kobolg-product-gallery__image"> 
-              <img alt="img" src="assets/images/apro131-2.jpg" th:src="@{/assets/images/apro131-2.jpg}"> 
-             </div> 
-             <div class="kobolg-product-gallery__image"> 
+             <div class="kobolg-product-gallery__image">
+              <img alt="img" src="assets/images/apro131-2.jpg" th:src="@{'/assets/images/'+${goodsItem.largeImg}}">
+             </div>
+             <div class="kobolg-product-gallery__image">
               <img src="assets/images/apro134-1.jpg" alt="img" th:src="@{/assets/images/apro134-1.jpg}"> 
              </div> 
              <div class="kobolg-product-gallery__image"> 
@@ -472,13 +493,7 @@
              </div> 
             </figure> 
            </div> 
-           <ol class="flex-control-nav flex-control-thumbs"> 
-            <li><img src="assets/images/apro131-2-100x100.jpg" alt="img" th:src="@{/assets/images/apro131-2-100x100.jpg}"> </li> 
-            <li><img src="assets/images/apro134-1-100x100.jpg" alt="img" th:src="@{/assets/images/apro134-1-100x100.jpg}"> </li> 
-            <li><img src="assets/images/apro132-1-100x100.jpg" alt="img" th:src="@{/assets/images/apro132-1-100x100.jpg}"> </li> 
-            <li><img src="assets/images/apro133-1-100x100.jpg" alt="img" th:src="@{/assets/images/apro133-1-100x100.jpg}"> </li> 
-           </ol> 
-          </div> 
+          </div>
          </div> 
          <div class="summary entry-summary"> 
           <div class="flash"> 
@@ -559,37 +574,7 @@
         </div> 
        </div> 
        <div class="kobolg-tabs kobolg-tabs-wrapper"> 
-        <ul class="tabs dreaming-tabs" role="tablist"> 
-         <li class="description_tab active" id="tab-title-description" role="tab" aria-controls="tab-description"> <a href="#tab-description">Description</a> </li> 
-         <li class="additional_information_tab" id="tab-title-additional_information" role="tab" aria-controls="tab-additional_information"> <a href="#tab-additional_information">Additional information</a> </li> 
-         <li class="reviews_tab" id="tab-title-reviews" role="tab" aria-controls="tab-reviews"> <a href="#tab-reviews">Reviews (0)</a> </li> 
-        </ul> 
-        <div class="kobolg-Tabs-panel kobolg-Tabs-panel--description panel entry-content kobolg-tab" id="tab-description" role="tabpanel" aria-labelledby="tab-title-description"> 
-         <h2>Description</h2> 
-         <div class="container-table"> 
-          <div class="container-cell"> 
-           <h2 class="az_custom_heading">Platea viverra aenean<br>dictumst</h2> 
-           <p>Lorem ipsum dolor sit amet consectetur adipiscing elit scelerisque integer, quam dapibus per risus donec semper vulputate interdum, imperdiet mus rhoncus commodo ultricies class urna tincidunt. Imperdiet vitae lacus etiam metus ut nisl curae, conubia enim scelerisque quis facilisis torquent, ultricies orci faucibus dictumst mauris curabitur. Massa risus nec sociosqu fames montes accumsan iaculis justo turpis luctus</p> 
-          </div> 
-          <div class="container-cell"> 
-           <div class="az_single_image-wrapper az_box_border_grey"> 
-            <img src="assets/images/single-pro1.jpg" class="az_single_image-img attachment-full" alt="img" th:src="@{/assets/images/single-pro1.jpg}">
-           </div> 
-          </div> 
-         </div> 
-         <div class="container-table"> 
-          <div class="container-cell"> 
-           <div class="az_single_image-wrapper az_box_border_grey"> 
-            <img src="assets/images/single-pro2.jpg" class="az_single_image-img attachment-full" alt="img" th:src="@{/assets/images/single-pro2.jpg}">
-           </div> 
-          </div> 
-          <div class="container-cell"> 
-           <h2 class="az_custom_heading"> Potenti praesent molestie<br> at viverra</h2> 
-           <p>This generator uses a dictionary of Latin words to construct passages of Lorem Ipsum text that meet your desired length. The sentence and paragraph durations and punctuation dispersal are calculated using Gaussian distribution, based on statistical analysis of real world texts. This ensures that the generated Lorem Ipsum text is unique, free of repetition and also resembles readable text as much as possible.</p> 
-          </div> 
-         </div> 
-        </div> 
-        <div class="kobolg-Tabs-panel kobolg-Tabs-panel--additional_information panel entry-content kobolg-tab" id="tab-additional_information" role="tabpanel" aria-labelledby="tab-title-additional_information"> 
+        <div class="kobolg-Tabs-panel kobolg-Tabs-panel--additional_information panel entry-content kobolg-tab" id="tab-additional_information" role="tabpanel" aria-labelledby="tab-title-additional_information">
          <h2>Additional information</h2> 
          <table class="shop_attributes"> 
           <tbody> 
@@ -633,376 +618,7 @@
        </div> 
       </div> 
      </div> 
-     <div class="col-md-12 col-sm-12 dreaming_related-product"> 
-      <div class="block-title"> 
-       <h2 class="product-grid-title"> <span>Related Products</span> </h2> 
-      </div> 
-      <div class="owl-slick owl-products equal-container better-height" data-slick="{&quot;arrows&quot;:false,&quot;slidesMargin&quot;:30,&quot;dots&quot;:true,&quot;infinite&quot;:false,&quot;slidesToShow&quot;:4}" data-responsive="[{&quot;breakpoint&quot;:480,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:768,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:992,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1200,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1500,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;30&quot;}}]"> 
-       <div class="product-item style-01 post-27 product type-product status-publish has-post-thumbnail product_cat-table product_cat-new-arrivals product_cat-lamp product_tag-table product_tag-sock  instock shipping-taxable purchasable product-type-variable has-default-attributes "> 
-        <div class="product-inner tooltip-left"> 
-         <div class="product-thumb"> 
-          <a class="thumb-link" href="#" tabindex="0"> <img class="img-responsive" src="assets/images/apro101-1-600x778.jpg" alt="Mac 27 Inch" width="600" height="778" th:src="@{/assets/images/apro101-1-600x778.jpg}"> </a> 
-          <div class="flash">
-           <span class="onnew"><span class="text">New</span></span>
-          </div> 
-          <div class="group-button"> 
-           <div class="yith-wcwl-add-to-wishlist"> 
-            <div class="yith-wcwl-add-button show"> 
-             <a href="#" class="add_to_wishlist">Add to Wishlist</a> 
-            </div> 
-           </div> 
-           <div class="kobolg product compare-button"> 
-            <a href="#" class="compare button">Compare</a> 
-           </div> 
-           <a href="#" class="button yith-wcqv-button">Quick View</a> 
-           <div class="add-to-cart"> 
-            <a href="#" class="button product_type_variable add_to_cart_button">Add to cart</a> 
-           </div> 
-          </div> 
-         </div> 
-         <div class="product-info equal-elem"> 
-          <h3 class="product-name product_title"> <a href="#" tabindex="0">Mac 27 Inch</a> </h3> 
-          <div class="rating-wapper nostar"> 
-           <div class="star-rating">
-            <span style="width:0%">Rated <strong class="rating">0</strong> out of 5</span>
-           </div> 
-           <span class="review">(0)</span>
-          </div> 
-          <span class="price"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>60.00</span></span> 
-         </div> 
-        </div> 
-       </div> 
-       <div class="product-item style-01 post-30 product type-product status-publish has-post-thumbnail product_cat-light product_cat-bed product_cat-specials product_tag-light product_tag-table product_tag-sock last instock featured downloadable shipping-taxable purchasable product-type-simple  "> 
-        <div class="product-inner tooltip-left"> 
-         <div class="product-thumb"> 
-          <a class="thumb-link" href="#" tabindex="0"> <img class="img-responsive" src="assets/images/apro41-1-600x778.jpg" alt="White Watches" width="600" height="778" th:src="@{/assets/images/apro41-1-600x778.jpg}"> </a> 
-          <div class="flash"> 
-           <span class="onnew"><span class="text">New</span></span>
-          </div> 
-          <div class="group-button"> 
-           <div class="yith-wcwl-add-to-wishlist"> 
-            <div class="yith-wcwl-add-button show"> 
-             <a href="#" class="add_to_wishlist">Add to Wishlist</a> 
-            </div> 
-           </div> 
-           <div class="kobolg product compare-button"> 
-            <a href="#" class="compare button">Compare</a> 
-           </div> 
-           <a href="#" class="button yith-wcqv-button">Quick View</a> 
-           <div class="add-to-cart"> 
-            <a href="#" class="button product_type_variable add_to_cart_button">Add to cart</a> 
-           </div> 
-          </div> 
-         </div> 
-         <div class="product-info equal-elem"> 
-          <h3 class="product-name product_title"> <a href="#" tabindex="0">White Watches</a> </h3> 
-          <div class="rating-wapper nostar"> 
-           <div class="star-rating">
-            <span style="width:0%">Rated <strong class="rating">0</strong> out of 5</span>
-           </div> 
-           <span class="review">(0)</span>
-          </div> 
-          <span class="price"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>134.00</span></span> 
-         </div> 
-        </div> 
-       </div> 
-       <div class="product-item style-01 post-35 product type-product status-publish has-post-thumbnail product_cat-chair product_cat-new-arrivals product_cat-lamp product_tag-light product_tag-hat product_tag-sock first instock shipping-taxable purchasable product-type-simple  "> 
-        <div class="product-inner tooltip-left"> 
-         <div class="product-thumb"> 
-          <a class="thumb-link" href="#" tabindex="0"> <img class="img-responsive" src="assets/images/apro151-1-600x778.jpg" alt="Cellphone Factory" width="600" height="778" th:src="@{/assets/images/apro151-1-600x778.jpg}"> </a> 
-          <div class="flash"> 
-           <span class="onsale"><span class="number">-11%</span></span> 
-           <span class="onnew"><span class="text">New</span></span>
-          </div> 
-          <div class="group-button"> 
-           <div class="yith-wcwl-add-to-wishlist"> 
-            <div class="yith-wcwl-add-button show"> 
-             <a href="#" class="add_to_wishlist">Add to Wishlist</a> 
-            </div> 
-           </div> 
-           <div class="kobolg product compare-button"> 
-            <a href="#" class="compare button">Compare</a> 
-           </div> 
-           <a href="#" class="button yith-wcqv-button">Quick View</a> 
-           <div class="add-to-cart"> 
-            <a href="#" class="button product_type_variable add_to_cart_button">Add to cart</a> 
-           </div> 
-          </div> 
-         </div> 
-         <div class="product-info equal-elem"> 
-          <h3 class="product-name product_title"> <a href="#" tabindex="0">Cellphone Factory</a> </h3> 
-          <div class="rating-wapper nostar"> 
-           <div class="star-rating">
-            <span style="width:0%">Rated <strong class="rating">0</strong> out of 5</span>
-           </div> 
-           <span class="review">(0)</span>
-          </div> 
-          <span class="price"><del><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>89.00</span></del> <ins><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>79.00</span></ins></span> 
-         </div> 
-        </div> 
-       </div> 
-       <div class="product-item style-01 post-25 product type-product status-publish has-post-thumbnail product_cat-light product_cat-chair product_cat-specials product_tag-light product_tag-sock  instock sale featured shipping-taxable purchasable product-type-simple "> 
-        <div class="product-inner tooltip-left"> 
-         <div class="product-thumb"> 
-          <a class="thumb-link" href="#" tabindex="-1"> <img class="img-responsive" src="assets/images/apro13-1-600x778.jpg" alt="Meta Watches                                                " width="600" height="778" th:src="@{/assets/images/apro13-1-600x778.jpg}"> </a> 
-          <div class="flash"> 
-           <span class="onnew"><span class="text">New</span></span>
-          </div> 
-          <div class="group-button"> 
-           <div class="yith-wcwl-add-to-wishlist"> 
-            <div class="yith-wcwl-add-button show"> 
-             <a href="#" class="add_to_wishlist">Add to Wishlist</a> 
-            </div> 
-           </div> 
-           <div class="kobolg product compare-button"> 
-            <a href="#" class="compare button">Compare</a> 
-           </div> 
-           <a href="#" class="button yith-wcqv-button">Quick View</a> 
-           <div class="add-to-cart"> 
-            <a href="#" class="button product_type_variable add_to_cart_button">Add to cart</a> 
-           </div> 
-          </div> 
-         </div> 
-         <div class="product-info equal-elem"> 
-          <h3 class="product-name product_title"> <a href="#" tabindex="-1">Meta Watches </a> </h3> 
-          <div class="rating-wapper nostar"> 
-           <div class="star-rating">
-            <span style="width:0%">Rated <strong class="rating">0</strong> out of 5</span>
-           </div> 
-           <span class="review">(0)</span>
-          </div> 
-          <span class="price"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>109.00</span></span> 
-         </div> 
-        </div> 
-       </div> 
-       <div class="product-item style-01 post-93 product type-product status-publish has-post-thumbnail product_cat-light product_cat-table product_cat-new-arrivals product_tag-table product_tag-sock last instock shipping-taxable purchasable product-type-simple "> 
-        <div class="product-inner tooltip-left"> 
-         <div class="product-thumb"> 
-          <a class="thumb-link" href="#" tabindex="-1"> <img class="img-responsive" src="assets/images/apro181-2-600x778.jpg" alt="Red Mouse" width="600" height="778" th:src="@{/assets/images/apro181-2-600x778.jpg}"> </a> 
-          <div class="flash"> 
-           <span class="onnew"><span class="text">New</span></span>
-          </div> 
-          <div class="group-button"> 
-           <div class="yith-wcwl-add-to-wishlist"> 
-            <div class="yith-wcwl-add-button show"> 
-             <a href="#" class="add_to_wishlist">Add to Wishlist</a> 
-            </div> 
-           </div> 
-           <div class="kobolg product compare-button"> 
-            <a href="#" class="compare button">Compare</a> 
-           </div> 
-           <a href="#" class="button yith-wcqv-button">Quick View</a> 
-           <div class="add-to-cart"> 
-            <a href="#" class="button product_type_variable add_to_cart_button">Add to cart</a> 
-           </div> 
-          </div> 
-         </div> 
-         <div class="product-info equal-elem"> 
-          <h3 class="product-name product_title"> <a href="#" tabindex="-1">City life jumpers</a> </h3> 
-          <div class="rating-wapper nostar"> 
-           <div class="star-rating">
-            <span style="width:0%">Rated <strong class="rating">0</strong> out of 5</span>
-           </div> 
-           <span class="review">(0)</span>
-          </div> 
-          <span class="price"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>98.00</span></span> 
-         </div> 
-        </div> 
-       </div> 
-       <div class="product-item style-01 post-22 product type-product status-publish has-post-thumbnail product_cat-table product_cat-bed product_cat-lamp product_tag-table product_tag-hat product_tag-sock first instock featured downloadable shipping-taxable purchasable product-type-simple "> 
-        <div class="product-inner tooltip-left"> 
-         <div class="product-thumb"> 
-          <a class="thumb-link" href="#" tabindex="-1"> <img class="img-responsive" src="assets/images/apro171-1-600x778.jpg" alt="Photo Camera" width="600" height="778" th:src="@{/assets/images/apro171-1-600x778.jpg}"> </a> 
-          <div class="flash"> 
-           <span class="onnew"><span class="text">New</span></span>
-          </div> 
-          <form class="variations_form cart"> 
-           <table class="variations"> 
-            <tbody> 
-             <tr> 
-              <td class="value"> <select title="box_style" data-attributetype="box_style" data-id="pa_color" class="attribute-select " name="attribute_pa_color" data-attribute_name="attribute_pa_color" data-show_option_none="yes" tabindex="-1"> <option data-type="" data-pa_color="" value="">Choose an option </option> <option data-width="30" data-height="30" data-type="color" data-pa_color="#ff63cb" value="pink" class="attached enabled">Pink </option> <option data-width="30" data-height="30" data-type="color" data-pa_color="#a825ea" value="purple" class="attached enabled">Purple </option> <option data-width="30" data-height="30" data-type="color" data-pa_color="#db2b00" value="red" class="attached enabled">Red </option> </select> 
-               <div class="data-val attribute-pa_color" data-attributetype="box_style">
-                <a class="change-value color" href="#" style="background: #ff63cb;" data-value="pink"></a>
-                <a class="change-value color" href="#" style="background: #a825ea;" data-value="purple"></a>
-                <a class="change-value color" href="#" style="background: #db2b00;" data-value="red"></a>
-               </div> <a class="reset_variations" href="#" tabindex="-1" style="visibility: hidden;">Clear</a></td> 
-             </tr> 
-            </tbody> 
-           </table> 
-          </form> 
-          <div class="group-button"> 
-           <div class="yith-wcwl-add-to-wishlist"> 
-            <div class="yith-wcwl-add-button show"> 
-             <a href="#" class="add_to_wishlist">Add to Wishlist</a> 
-            </div> 
-           </div> 
-           <div class="kobolg product compare-button"> 
-            <a href="#" class="compare button">Compare</a> 
-           </div> 
-           <a href="#" class="button yith-wcqv-button">Quick View</a> 
-           <div class="add-to-cart"> 
-            <a href="#" class="button product_type_variable add_to_cart_button">Select options</a> 
-           </div> 
-          </div> 
-         </div> 
-         <div class="product-info equal-elem"> 
-          <h3 class="product-name product_title"> <a href="#" tabindex="-1">Photo Camera</a> </h3> 
-          <div class="rating-wapper nostar"> 
-           <div class="star-rating">
-            <span style="width:0%">Rated <strong class="rating">0</strong> out of 5</span>
-           </div> 
-           <span class="review">(0)</span>
-          </div> 
-          <span class="price"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>105.00</span> – <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>110.00</span></span> 
-         </div> 
-        </div> 
-       </div> 
-      </div> 
-     </div> 
-     <div class="col-md-12 col-sm-12 kobolg_dreaming_upsell-product"> 
-      <div class="block-title"> 
-       <h2 class="product-grid-title"> <span>Upsell Products</span> </h2> 
-      </div> 
-      <div class="owl-slick owl-products equal-container better-height" data-slick="{&quot;arrows&quot;:false,&quot;slidesMargin&quot;:30,&quot;dots&quot;:true,&quot;infinite&quot;:false,&quot;slidesToShow&quot;:4}" data-responsive="[{&quot;breakpoint&quot;:480,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:768,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;10&quot;}},{&quot;breakpoint&quot;:992,&quot;settings&quot;:{&quot;slidesToShow&quot;:2,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1200,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;20&quot;}},{&quot;breakpoint&quot;:1500,&quot;settings&quot;:{&quot;slidesToShow&quot;:3,&quot;slidesMargin&quot;:&quot;30&quot;}}]"> 
-       <div class="product-item style-01 post-27 product type-product status-publish has-post-thumbnail product_cat-table product_cat-new-arrivals product_cat-lamp product_tag-table product_tag-sock  instock shipping-taxable purchasable product-type-variable has-default-attributes "> 
-        <div class="product-inner tooltip-left"> 
-         <div class="product-thumb"> 
-          <a class="thumb-link" href="#" tabindex="0"> <img class="img-responsive" src="assets/images/apro141-1-600x778.jpg" alt="Smart Monitor" width="600" height="778" th:src="@{/assets/images/apro141-1-600x778.jpg}"> </a> 
-          <div class="flash"> 
-           <span class="onnew"><span class="text">New</span></span>
-          </div> 
-          <div class="group-button"> 
-           <div class="yith-wcwl-add-to-wishlist"> 
-            <div class="yith-wcwl-add-button show"> 
-             <a href="#" class="add_to_wishlist">Add to Wishlist</a> 
-            </div> 
-           </div> 
-           <div class="kobolg product compare-button"> 
-            <a href="#" class="compare button">Compare</a> 
-           </div> 
-           <a href="#" class="button yith-wcqv-button">Quick View</a> 
-           <div class="add-to-cart"> 
-            <a href="#" class="button product_type_external add_to_cart_button">Buy it on Amazon</a> 
-           </div> 
-          </div> 
-         </div> 
-         <div class="product-info equal-elem"> 
-          <h3 class="product-name product_title"> <a href="#" tabindex="0">Dining Accessories</a> </h3> 
-          <div class="rating-wapper "> 
-           <div class="star-rating">
-            <span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5</span>
-           </div> 
-           <span class="review">(1)</span>
-          </div> 
-          <span class="price"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>207.00</span></span> 
-         </div> 
-        </div> 
-       </div> 
-       <div class="product-item style-01 post-26 product type-product status-publish has-post-thumbnail product_cat-light product_cat-chair product_cat-sofas product_tag-light product_tag-hat last instock featured shipping-taxable product-type-external  "> 
-        <div class="product-inner tooltip-left"> 
-         <div class="product-thumb"> 
-          <a class="thumb-link" href="#" tabindex="0"> <img class="img-responsive" src="assets/images/apro31-1-600x778.jpg" alt="Blue Smartphone" width="600" height="778" th:src="@{/assets/images/apro31-1-600x778.jpg}"> </a> 
-          <div class="flash"> 
-           <span class="onnew"><span class="text">New</span></span>
-          </div> 
-          <div class="group-button"> 
-           <div class="yith-wcwl-add-to-wishlist"> 
-            <div class="yith-wcwl-add-button show"> 
-             <a href="#" class="add_to_wishlist">Add to Wishlist</a> 
-            </div> 
-           </div> 
-           <div class="kobolg product compare-button"> 
-            <a href="#" class="compare button">Compare</a> 
-           </div> 
-           <a href="#" class="button yith-wcqv-button">Quick View</a> 
-           <div class="add-to-cart"> 
-            <a href="#" class="button product_type_simple add_to_cart_button">Add to cart</a> 
-           </div> 
-          </div> 
-         </div> 
-         <div class="product-info equal-elem"> 
-          <h3 class="product-name product_title"> <a href="#" tabindex="0">Blue Smartphone</a> </h3> 
-          <div class="rating-wapper nostar"> 
-           <div class="star-rating">
-            <span style="width:0%">Rated <strong class="rating">0</strong> out of 5</span>
-           </div> 
-           <span class="review">(0)</span>
-          </div> 
-          <span class="price"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>120.00</span></span> 
-         </div> 
-        </div> 
-       </div> 
-       <div class="product-item style-01 post-37 product type-product status-publish has-post-thumbnail product_cat-chair product_cat-bed product_tag-light product_tag-hat product_tag-sock first instock shipping-taxable purchasable product-type-simple  "> 
-        <div class="product-inner tooltip-left"> 
-         <div class="product-thumb"> 
-          <a class="thumb-link kobolg-product-gallery__image" href="#" tabindex="0"> <img class="img-responsive wp-post-image" src="assets/images/apro83-1-600x778.jpg" alt="Glasses – Red" width="600" height="778" th:src="@{/assets/images/apro83-1-600x778.jpg}"> </a> 
-          <div class="flash"> 
-           <span class="onnew"><span class="text">New</span></span>
-          </div> 
-          <div class="group-button"> 
-           <div class="yith-wcwl-add-to-wishlist"> 
-            <div class="yith-wcwl-add-button show"> 
-             <a href="#" class="add_to_wishlist">Add to Wishlist</a> 
-            </div> 
-           </div> 
-           <div class="kobolg product compare-button"> 
-            <a href="#" class="compare button">Compare</a> 
-           </div> 
-           <a href="#" class="button yith-wcqv-button">Quick View</a> 
-           <div class="add-to-cart"> 
-            <a href="#" class="button product_type_simple add_to_cart_button">Add to cart</a> 
-           </div> 
-          </div> 
-         </div> 
-         <div class="product-info equal-elem"> 
-          <h3 class="product-name product_title"> <a href="#" tabindex="0">Glasses – Red</a> </h3> 
-          <div class="rating-wapper nostar"> 
-           <div class="star-rating">
-            <span style="width:0%">Rated <strong class="rating">0</strong> out of 5</span>
-           </div> 
-           <span class="review">(0)</span>
-          </div> 
-          <span class="price"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>56.00</span></span> 
-         </div> 
-        </div> 
-       </div> 
-       <div class="product-item style-01 post-1194 product_variation type-product_variation status-publish has-post-thumbnail product  instock shipping-taxable purchasable product-type-variation "> 
-        <div class="product-inner tooltip-left"> 
-         <div class="product-thumb"> 
-          <a class="thumb-link" href="#" tabindex="-1"> <img class="img-responsive" src="assets/images/apro302-600x778.jpg" alt="Circle Watches" width="600" height="778" th:src="@{/assets/images/apro302-600x778.jpg}"> </a> 
-          <div class="flash"> 
-           <span class="onnew"><span class="text">New</span></span>
-          </div> 
-          <div class="group-button"> 
-           <div class="yith-wcwl-add-to-wishlist"> 
-            <div class="yith-wcwl-add-button show"> 
-             <a href="#" class="add_to_wishlist">Add to Wishlist</a> 
-            </div> 
-           </div> 
-           <div class="kobolg product compare-button"> 
-            <a href="#" class="compare button">Compare</a> 
-           </div> 
-           <a href="#" class="button yith-wcqv-button">Quick View</a> 
-           <div class="add-to-cart"> 
-            <a href="#" class="button product_type_simple add_to_cart_button">Add to cart</a> 
-           </div> 
-          </div> 
-         </div> 
-         <div class="product-info equal-elem"> 
-          <h3 class="product-name product_title"> <a href="#" tabindex="-1">Circle Watches</a> </h3> 
-          <div class="rating-wapper nostar"> 
-           <div class="star-rating">
-            <span style="width:0%">Rated <strong class="rating">0</strong> out of 5</span>
-           </div> 
-           <span class="review">(0)</span>
-          </div> 
-          <span class="price"><span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>79.00</span></span> 
-         </div> 
-        </div> 
-       </div> 
-      </div> 
-     </div> 
-    </div> 
+    </div>
    </div> 
   </div> 
   <footer id="footer" class="footer style-01"> 

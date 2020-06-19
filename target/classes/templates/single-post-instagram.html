@@ -1,5 +1,26 @@
 <!DOCTYPE html>
-<html
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+ <head>
+  <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" th:href="@{/assets/images/favicon.png}">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/animate.css" th:href="@{/assets/css/animate.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/chosen.min.css" th:href="@{/assets/css/chosen.min.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" th:href="@{/assets/css/font-awesome.min.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/jquery.scrollbar.css" th:href="@{/assets/css/jquery.scrollbar.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/lightbox.min.css" th:href="@{/assets/css/lightbox.min.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css" th:href="@{/assets/css/magnific-popup.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/slick.min.css" th:href="@{/assets/css/slick.min.css}">
+  <link rel="stylesheet" type="text/css" href="assets/fonts/flaticon.css" th:href="@{/assets/fonts/flaticon.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/megamenu.css" th:href="@{/assets/css/megamenu.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/dreaming-attribute.css" th:href="@{/assets/css/dreaming-attribute.css}">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css" th:href="@{/assets/css/style.css}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kobolg - HTML Template </title>
+ </head>
+ <body class="single">
 <header id="header" class="header style-04 header-dark"> 
    <div class="header-top"> 
     <div class="container"> 
@@ -202,7 +223,7 @@
                <div class="listitem-inner"> 
                 <h4 class="title">Product Layouts </h4> 
                 <ul class="listitem-list"> 
-                 <li> <a href="single-product.html" target="_self" th:href="@{/single-product.html}">Vertical Thumbnails </a> </li> 
+                 <li> <a href="goodsDetail.html" target="_self" th:href="@{/templates/goodsDetail.html}">Vertical Thumbnails </a> </li>
                  <li> <a href="single-product-policy.html" target="_self" th:href="@{/single-product-policy.html}"> <span class="image"> <img src="assets/images/label-new.jpg" class="attachment-full size-full" alt="img" th:src="@{/assets/images/label-new.jpg}"> </span> Extra Sidebar </a> </li> 
                  <li> <a href="single-product-rightsidebar.html" target="_self" th:href="@{/single-product-rightsidebar.html}"> Right Sidebar </a> </li> 
                  <li> <a href="single-product-leftsidebar.html" target="_self" th:href="@{/single-product-leftsidebar.html}"> Left Sidebar </a> </li> 
@@ -240,7 +261,7 @@
                 <h4 class="title"> Product Types </h4> 
                 <ul class="listitem-list"> 
                  <li> <a href="single-product-simple.html" target="_self" th:href="@{/single-product-simple.html}"> Simple </a> </li> 
-                 <li> <a href="single-product.html" target="_self" th:href="@{/single-product.html}"> <span class="image"><img src="assets/images/label-hot.jpg" class="attachment-full size-full" alt="img" th:src="@{/assets/images/label-hot.jpg}"></span> Variable </a> </li> 
+                 <li> <a href="goodsDetail.html" target="_self" th:href="@{/templates/goodsDetail.html}"> <span class="image"><img src="assets/images/label-hot.jpg" class="attachment-full size-full" alt="img" th:src="@{/assets/images/label-hot.jpg}"></span> Variable </a> </li>
                  <li> <a href="single-product-external.html" target="_self" th:href="@{/single-product-external.html}"> External / Affiliate </a> </li> 
                  <li> <a href="single-product-group.html" target="_self" th:href="@{/single-product-group.html}"> Grouped </a> </li> 
                  <li> <a href="single-product-outofstock.html" target="_self" th:href="@{/single-product-outofstock.html}"> Out Of Stock </a> </li> 
@@ -342,7 +363,7 @@
            <ul role="menu" class="submenu"> 
             <li id="menu-item-987" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-987"> <a class="kobolg-menu-item-title" title="About" href="about.html" th:href="@{/about.html}">About</a></li> 
             <li id="menu-item-988" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-988"> <a class="kobolg-menu-item-title" title="Contact" href="contact.html" th:href="@{/contact.html}">Contact</a></li> 
-            <li id="menu-item-990" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-990"> <a class="kobolg-menu-item-title" title="Page 404" href="404.html" th:href="@{/404.html}">Page 404</a></li> 
+            <li id="menu-item-990" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-990"> <a class="kobolg-menu-item-title" title="Page 404" href="error/404.html" th:href="@{/templates/error/404.html}">Page 404</a></li>
            </ul> </li> 
           <li id="menu-item-238" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-238"> <a class="kobolg-menu-item-title" title="Free Shipping on Orders $100" href="#">Free Shipping on Orders $100</a> </li> 
          </ul> 

@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
  <head>
-  <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png" th:href="@{/assets/images/favicon.png}">
+  <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.png" th:href="@{/templates/assets/images/favicon.png}">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&amp;display=swap" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}">
-  <link rel="stylesheet" type="text/css" href="assets/css/animate.css" th:href="@{/assets/css/animate.css}">
-  <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" th:href="@{/assets/css/bootstrap.min.css}">
-  <link rel="stylesheet" type="text/css" href="assets/css/chosen.min.css" th:href="@{/assets/css/chosen.min.css}">
-  <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css" th:href="@{/assets/css/font-awesome.min.css}">
-  <link rel="stylesheet" type="text/css" href="assets/css/jquery.scrollbar.css" th:href="@{/assets/css/jquery.scrollbar.css}">
-  <link rel="stylesheet" type="text/css" href="assets/css/lightbox.min.css" th:href="@{/assets/css/lightbox.min.css}">
-  <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css" th:href="@{/assets/css/magnific-popup.css}">
-  <link rel="stylesheet" type="text/css" href="assets/css/slick.min.css" th:href="@{/assets/css/slick.min.css}">
-  <link rel="stylesheet" type="text/css" href="assets/fonts/flaticon.css" th:href="@{/assets/fonts/flaticon.css}">
-  <link rel="stylesheet" type="text/css" href="assets/css/megamenu.css" th:href="@{/assets/css/megamenu.css}">
-  <link rel="stylesheet" type="text/css" href="assets/css/dreaming-attribute.css" th:href="@{/assets/css/dreaming-attribute.css}">
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css" th:href="@{/assets/css/style.css}">
+  <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css" th:href="@{/templates/assets/css/bootstrap.min.css}">
+  <link rel="stylesheet" type="text/css" href="../assets/css/animate.css" th:href="@{/templates/assets/css/animate.css}">
+  <link rel="stylesheet" type="text/css" href="../assets/css/bootstrap.min.css" th:href="@{/templates/assets/css/bootstrap.min.css}">
+  <link rel="stylesheet" type="text/css" href="../../static/assets/css/chosen.min.css" th:href="@{/static/assets/css/chosen.min.css}">
+  <link rel="stylesheet" type="text/css" href="../../static/assets/css/font-awesome.min.css" th:href="@{/static/assets/css/font-awesome.min.css}">
+  <link rel="stylesheet" type="text/css" href="../assets/css/jquery.scrollbar.css" th:href="@{/templates/assets/css/jquery.scrollbar.css}">
+  <link rel="stylesheet" type="text/css" href="../../static/assets/css/lightbox.min.css" th:href="@{/static/assets/css/lightbox.min.css}">
+  <link rel="stylesheet" type="text/css" href="../assets/css/magnific-popup.css" th:href="@{/templates/assets/css/magnific-popup.css}">
+  <link rel="stylesheet" type="text/css" href="../assets/css/slick.min.css" th:href="@{/templates/assets/css/slick.min.css}">
+  <link rel="stylesheet" type="text/css" href="../assets/fonts/flaticon.css" th:href="@{/templates/assets/fonts/flaticon.css}">
+  <link rel="stylesheet" type="text/css" href="../assets/css/megamenu.css" th:href="@{/templates/assets/css/megamenu.css}">
+  <link rel="stylesheet" type="text/css" href="../../static/assets/css/dreaming-attribute.css" th:href="@{/static/assets/css/dreaming-attribute.css}">
+  <link rel="stylesheet" type="text/css" href="../assets/css/style.css" th:href="@{/templates/assets/css/style.css}">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kobolg - HTML Template </title>
@@ -31,14 +31,14 @@
       </ul> 
       <div class="kobolg-nav top-bar-menu right"> 
        <ul class="wpml-menu"> 
-        <li class="menu-item kobolg-dropdown block-language"> <a href="#" data-kobolg="kobolg-dropdown"> <img src="assets/images/en.png" alt="en" width="18" height="12" th:src="@{/assets/images/en.png}"> English </a> <span class="toggle-submenu"></span> 
+        <li class="menu-item kobolg-dropdown block-language"> <a href="#" data-kobolg="kobolg-dropdown"> <img src="../../static/assets/images/en.png" alt="en" width="18" height="12" th:src="@{/static/assets/images/en.png}"> English </a> <span class="toggle-submenu"></span>
          <ul class="sub-menu"> 
-          <li class="menu-item"> <a href="#"> <img src="assets/images/it.png" alt="it" width="18" height="12" th:src="@{/assets/images/it.png}"> Italiano </a> </li> 
+          <li class="menu-item"> <a href="#"> <img src="../../static/assets/images/it.png" alt="it" width="18" height="12" th:src="@{/static/assets/images/it.png}"> Italiano </a> </li>
          </ul> </li> 
         <li class="menu-item"> 
          <div class="wcml-dropdown product wcml_currency_switcher"> 
           <ul> 
-           <li class="wcml-cs-active-currency"> <a class="wcml-cs-item-toggle" th:href="@{/}">USD</a> 
+           <li class="wcml-cs-active-currency"> <a class="wcml-cs-item-toggle" th:href="@{/templates}">USD</a>
             <ul class="wcml-cs-submenu"> 
              <li> <a th:href="@{/}">EUR</a> </li> 
             </ul> </li> 
@@ -57,7 +57,7 @@
         <a class="menu-bar menu-toggle" href="#"> <span></span> <span></span> <span></span> </a> 
        </div> 
        <div class="header-logo"> 
-        <a href="index.html" th:href="@{/index.html}"><img alt="Kobolg" src="assets/images/logo.png" class="logo" th:src="@{/assets/images/logo.png}"></a>
+        <a href="../index.html" th:href="@{/templates/index.html}"><img alt="Kobolg" src="../../static/assets/images/logo.png" class="logo" th:src="@{/static/assets/images/logo.png}"></a>
        </div> 
       </div> 
       <div class="header-search-mid"> 
@@ -84,7 +84,7 @@
        <div class="header-control-inner"> 
         <div class="meta-dreaming"> 
          <div class="menu-item block-user block-dreaming kobolg-dropdown"> 
-          <a class="block-link" href="my-account.html" th:href="@{/my-account.html}"> <span class="flaticon-profile"></span> </a> 
+          <a class="block-link" href="../my-account.html" th:href="@{/templates/my-account.html}"> <span class="flaticon-profile"></span> </a>
           <ul class="sub-menu"> 
            <li class="menu-item kobolg-MyAccount-navigation-link kobolg-MyAccount-navigation-link--dashboard is-active"> <a href="#">Dashboard</a> </li> 
            <li class="menu-item kobolg-MyAccount-navigation-link kobolg-MyAccount-navigation-link--orders"> <a href="#">Orders</a> </li> 
@@ -96,18 +96,18 @@
          </div> 
          <div class="block-minicart block-dreaming kobolg-mini-cart kobolg-dropdown"> 
           <div class="shopcart-dropdown block-cart-link" data-kobolg="kobolg-dropdown"> 
-           <a class="block-link link-dropdown" href="cart.html" th:href="@{/cart.html}"> <span class="flaticon-online-shopping-cart"></span> <span class="count">3</span> </a> 
+           <a class="block-link link-dropdown" href="../cart.html" th:href="@{/templates/cart.html}"> <span class="flaticon-online-shopping-cart"></span> <span class="count">3</span> </a>
           </div> 
           <div class="widget kobolg widget_shopping_cart"> 
            <div class="widget_shopping_cart_content"> 
             <h3 class="minicart-title">Your Cart<span class="minicart-number-items">3</span> </h3> 
             <ul class="kobolg-mini-cart cart_list product_list_widget"> 
-             <li class="kobolg-mini-cart-item mini_cart_item"> <a href="#" class="remove remove_from_cart_button">×</a> <a href="#"> <img src="assets/images/apro134-1-600x778.jpg" class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img" width="600" height="778" th:src="@{/assets/images/apro134-1-600x778.jpg}">T-shirt with skirt – Pink&nbsp; </a> <span class="quantity">1 × <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>150.00</span></span> </li> 
-             <li class="kobolg-mini-cart-item mini_cart_item"> <a href="#" class="remove remove_from_cart_button">×</a> <a href="#"> <img src="assets/images/apro1113-600x778.jpg" class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img" width="600" height="778" th:src="@{/assets/images/apro1113-600x778.jpg}">Red Consoles&nbsp; </a> <span class="quantity">1 × <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>129.00</span></span> </li> 
-             <li class="kobolg-mini-cart-item mini_cart_item"> <a href="#" class="remove remove_from_cart_button">×</a> <a href="#"> <img src="assets/images/apro201-1-600x778.jpg" class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img" width="600" height="778" th:src="@{/assets/images/apro201-1-600x778.jpg}">Smart Monitor&nbsp; </a> <span class="quantity">1 × <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>139.00</span></span> </li> 
+             <li class="kobolg-mini-cart-item mini_cart_item"> <a href="#" class="remove remove_from_cart_button">×</a> <a href="#"> <img src="../../static/assets/images/apro134-1-600x778.jpg" class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img" width="600" height="778" th:src="@{/static/assets/images/apro134-1-600x778.jpg}">T-shirt with skirt – Pink&nbsp; </a> <span class="quantity">1 × <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>150.00</span></span> </li>
+             <li class="kobolg-mini-cart-item mini_cart_item"> <a href="#" class="remove remove_from_cart_button">×</a> <a href="#"> <img src="../assets/images/apro1113-600x778.jpg" class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img" width="600" height="778" th:src="@{/templates/assets/images/apro1113-600x778.jpg}">Red Consoles&nbsp; </a> <span class="quantity">1 × <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>129.00</span></span> </li>
+             <li class="kobolg-mini-cart-item mini_cart_item"> <a href="#" class="remove remove_from_cart_button">×</a> <a href="#"> <img src="../assets/images/apro201-1-600x778.jpg" class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img" width="600" height="778" th:src="@{/templates/assets/images/apro201-1-600x778.jpg}">Smart Monitor&nbsp; </a> <span class="quantity">1 × <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>139.00</span></span> </li>
             </ul> 
             <p class="kobolg-mini-cart__total total"><strong>Subtotal:</strong> <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>418.00</span> </p> 
-            <p class="kobolg-mini-cart__buttons buttons"> <a href="cart.html" class="button kobolg-forward" th:href="@{/cart.html}">Viewcart</a> <a href="checkout.html" class="button checkout kobolg-forward" th:href="@{/checkout.html}">Checkout</a> </p> 
+            <p class="kobolg-mini-cart__buttons buttons"> <a href="../cart.html" class="button kobolg-forward" th:href="@{/templates/cart.html}">Viewcart</a> <a href="../checkout.html" class="button checkout kobolg-forward" th:href="@{/templates/checkout.html}">Checkout</a> </p>
            </div> 
           </div> 
          </div> 
@@ -148,62 +148,62 @@
         <!-- block category --> 
         <div class="box-header-nav menu-nocenter"> 
          <ul id="menu-primary-menu" class="clone-main-menu kobolg-clone-mobile-menu kobolg-nav main-menu"> 
-          <li id="menu-item-230" class="menu-item menu-item-type-post_type menu-item-object-megamenu menu-item-230 parent parent-megamenu item-megamenu menu-item-has-children"> <a class="kobolg-menu-item-title" title="Home" href="index.html" th:href="@{/index.html}">Home</a> <span class="toggle-submenu"></span> 
+          <li id="menu-item-230" class="menu-item menu-item-type-post_type menu-item-object-megamenu menu-item-230 parent parent-megamenu item-megamenu menu-item-has-children"> <a class="kobolg-menu-item-title" title="Home" href="../index.html" th:href="@{/templates/index.html}">Home</a> <span class="toggle-submenu"></span>
            <div class="submenu megamenu megamenu-home"> 
             <div class="demo-item"> 
              <div class="row"> 
               <div class="col-md-6 col-lg-4 col-sm-6"> 
                <div class="dreaming_single_image dreaming_content_element az_align_left shadow-img"> 
                 <figure class="dreaming_wrapper az_figure"> 
-                 <a href="index.html" target="_self" class="az_single_image-wrapper az_box_border_grey effect normal-effect dark-bg" th:href="@{/index.html}"> <img src="assets/images/demo001.jpg" class="az_single_image-img attachment-full" alt="img" th:src="@{/assets/images/demo001.jpg}"> </a> 
+                 <a href="../index.html" target="_self" class="az_single_image-wrapper az_box_border_grey effect normal-effect dark-bg" th:href="@{/templates/index.html}"> <img src="../../static/assets/images/demo001.jpg" class="az_single_image-img attachment-full" alt="img" th:src="@{/static/assets/images/demo001.jpg}"> </a>
                 </figure> 
                </div> 
-               <h5 class="az_custom_heading"> <a href="index.html" th:href="@{/index.html}">Home 01</a> </h5> 
+               <h5 class="az_custom_heading"> <a href="../index.html" th:href="@{/templates/index.html}">Home 01</a> </h5>
               </div> 
               <div class="col-md-6 col-lg-4 col-sm-6"> 
                <div class="dreaming_single_image dreaming_content_element az_align_left shadow-img"> 
                 <figure class="dreaming_wrapper az_figure"> 
-                 <a href="home-02.html" target="_self" class="az_single_image-wrapper az_box_border_grey effect normal-effect dark-bg " th:href="@{/home-02.html}"> <img src="assets/images/demo002.jpg" class="az_single_image-img attachment-full" alt="img" th:src="@{/assets/images/demo002.jpg}"></a> 
+                 <a href="../home-02.html" target="_self" class="az_single_image-wrapper az_box_border_grey effect normal-effect dark-bg " th:href="@{/templates/home-02.html}"> <img src="../../static/assets/images/demo002.jpg" class="az_single_image-img attachment-full" alt="img" th:src="@{/static/assets/images/demo002.jpg}"></a>
                 </figure> 
                </div> 
-               <h5 class="az_custom_heading"> <a href="home-02.html" th:href="@{/home-02.html}">Home 02</a> </h5> 
+               <h5 class="az_custom_heading"> <a href="../home-02.html" th:href="@{/templates/home-02.html}">Home 02</a> </h5>
               </div> 
               <div class="col-md-6 col-lg-4 col-sm-6"> 
                <div class="dreaming_single_image dreaming_content_element az_align_left shadow-img"> 
                 <figure class="dreaming_wrapper az_figure"> 
-                 <a href="home-03.html" target="_self" class="az_single_image-wrapper az_box_border_grey effect normal-effect dark-bg" th:href="@{/home-03.html}"> <img src="assets/images/demo003.jpg" class="az_single_image-img attachment-full" alt="img" th:src="@{/assets/images/demo003.jpg}"> </a> 
+                 <a href="../home-03.html" target="_self" class="az_single_image-wrapper az_box_border_grey effect normal-effect dark-bg" th:href="@{/templates/home-03.html}"> <img src="../../static/assets/images/demo003.jpg" class="az_single_image-img attachment-full" alt="img" th:src="@{/static/assets/images/demo003.jpg}"> </a>
                 </figure> 
                </div> 
-               <h5 class="az_custom_heading"> <a href="home-03.html" th:href="@{/home-03.html}">Home 03</a> </h5> 
+               <h5 class="az_custom_heading"> <a href="../home-03.html" th:href="@{/templates/home-03.html}">Home 03</a> </h5>
               </div> 
               <div class="col-md-6 col-lg-4 col-sm-6"> 
                <div class="dreaming_single_image dreaming_content_element az_align_left shadow-img"> 
                 <figure class="dreaming_wrapper az_figure"> 
-                 <a href="home-04.html" target="_self" class="az_single_image-wrapper az_box_border_grey effect normal-effect dark-bg " th:href="@{/home-04.html}"> <img src="assets/images/demo004.jpg" class="az_single_image-img attachment-full" alt="img" th:src="@{/assets/images/demo004.jpg}"> </a> 
+                 <a href="../home-04.html" target="_self" class="az_single_image-wrapper az_box_border_grey effect normal-effect dark-bg " th:href="@{/templates/home-04.html}"> <img src="../assets/images/demo004.jpg" class="az_single_image-img attachment-full" alt="img" th:src="@{/templates/assets/images/demo004.jpg}"> </a>
                 </figure> 
                </div> 
-               <h5 class="az_custom_heading"> <a href="home-04.html" th:href="@{/home-04.html}">Home 04</a></h5> 
+               <h5 class="az_custom_heading"> <a href="../home-04.html" th:href="@{/templates/home-04.html}">Home 04</a></h5>
               </div> 
               <div class="col-md-6 col-lg-4 col-sm-6"> 
                <div class="dreaming_single_image dreaming_content_element az_align_left shadow-img"> 
                 <figure class="dreaming_wrapper az_figure"> 
-                 <a href="home-05.html" target="_self" class="az_single_image-wrapper az_box_border_grey effect normal-effect dark-bg" th:href="@{/home-05.html}"> <img src="assets/images/demo005.jpg" class="az_single_image-img attachment-full" alt="img" th:src="@{/assets/images/demo005.jpg}"> </a> 
+                 <a href="../home-05.html" target="_self" class="az_single_image-wrapper az_box_border_grey effect normal-effect dark-bg" th:href="@{/templates/home-05.html}"> <img src="../../static/assets/images/demo005.jpg" class="az_single_image-img attachment-full" alt="img" th:src="@{/static/assets/images/demo005.jpg}"> </a>
                 </figure> 
                </div> 
-               <h5 class="az_custom_heading"> <a href="home-05.html" th:href="@{/home-05.html}">Home 05</a> </h5> 
+               <h5 class="az_custom_heading"> <a href="../home-05.html" th:href="@{/templates/home-05.html}">Home 05</a> </h5>
               </div> 
               <div class="col-md-6 col-lg-4 col-sm-6"> 
                <div class="dreaming_single_image dreaming_content_element az_align_left shadow-img"> 
                 <figure class="dreaming_wrapper az_figure"> 
-                 <a href="home-06.html" target="_self" class="az_single_image-wrapper az_box_border_grey effect normal-effect dark-bg " th:href="@{/home-06.html}"> <img src="assets/images/demo006.jpg" class="az_single_image-img attachment-full" alt="img" th:src="@{/assets/images/demo006.jpg}"> </a> 
+                 <a href="../home-06.html" target="_self" class="az_single_image-wrapper az_box_border_grey effect normal-effect dark-bg " th:href="@{/templates/home-06.html}"> <img src="../../static/assets/images/demo006.jpg" class="az_single_image-img attachment-full" alt="img" th:src="@{/static/assets/images/demo006.jpg}"> </a>
                 </figure> 
                </div> 
-               <h5 class="az_custom_heading"> <a href="home-06.html" th:href="@{/home-06.html}">Home 06</a> </h5> 
+               <h5 class="az_custom_heading"> <a href="../home-06.html" th:href="@{/templates/home-06.html}">Home 06</a> </h5>
               </div> 
              </div> 
             </div> 
            </div> </li> 
-          <li id="menu-item-228" class="menu-item menu-item-type-post_type menu-item-object-megamenu menu-item-228 parent parent-megamenu item-megamenu menu-item-has-children"> <a class="kobolg-menu-item-title" title="Shop" href="shop.html" th:href="@{/shop.html}">Shop</a> <span class="toggle-submenu"></span> 
+          <li id="menu-item-228" class="menu-item menu-item-type-post_type menu-item-object-megamenu menu-item-228 parent parent-megamenu item-megamenu menu-item-has-children"> <a class="kobolg-menu-item-title" title="Shop" href="../shop.html" th:href="@{/templates/shop.html}">Shop</a> <span class="toggle-submenu"></span>
            <div class="submenu megamenu megamenu-shop"> 
             <div class="row"> 
              <div class="col-md-4"> 
@@ -211,11 +211,11 @@
                <div class="listitem-inner"> 
                 <h4 class="title">Shop Layouts </h4> 
                 <ul class="listitem-list"> 
-                 <li> <a href="shop.html" target="_self" th:href="@{/shop.html}">Shop Grid </a> </li> 
-                 <li> <a href="shop-list.html" target="_self" th:href="@{/shop-list.html}"> <span class="image"> <img src="assets/images/label-new.jpg" class="attachment-full size-full" alt="img" th:src="@{/assets/images/label-new.jpg}"> </span> Shop List </a> </li> 
-                 <li> <a href="shop.html" target="_self" th:href="@{/shop.html}">No Sidebar </a> </li> 
-                 <li> <a href="shop-leftsidebar.html" target="_self" th:href="@{/shop-leftsidebar.html}">Left Sidebar </a> </li> 
-                 <li> <a href="shop-rightsidebar.html" target="_self" th:href="@{/shop-rightsidebar.html}">Right Sidebar </a> </li> 
+                 <li> <a href="../shop.html" target="_self" th:href="@{/templates/shop.html}">Shop Grid </a> </li>
+                 <li> <a href="../shop-list.html" target="_self" th:href="@{/templates/shop-list.html}"> <span class="image"> <img src="../assets/images/label-new.jpg" class="attachment-full size-full" alt="img" th:src="@{/templates/assets/images/label-new.jpg}"> </span> Shop List </a> </li>
+                 <li> <a href="../shop.html" target="_self" th:href="@{/templates/shop.html}">No Sidebar </a> </li>
+                 <li> <a href="../shop-leftsidebar.html" target="_self" th:href="@{/templates/shop-leftsidebar.html}">Left Sidebar </a> </li>
+                 <li> <a href="../shop-rightsidebar.html" target="_self" th:href="@{/templates/shop-rightsidebar.html}">Right Sidebar </a> </li>
                 </ul> 
                </div> 
               </div> 
@@ -223,10 +223,10 @@
                <div class="listitem-inner"> 
                 <h4 class="title">Product Layouts </h4> 
                 <ul class="listitem-list"> 
-                 <li> <a href="single-product.html" target="_self" th:href="@{/single-product.html}">Vertical Thumbnails </a> </li> 
-                 <li> <a href="single-product-policy.html" target="_self" th:href="@{/single-product-policy.html}"> <span class="image"> <img src="assets/images/label-new.jpg" class="attachment-full size-full" alt="img" th:src="@{/assets/images/label-new.jpg}"> </span> Extra Sidebar </a> </li> 
-                 <li> <a href="single-product-rightsidebar.html" target="_self" th:href="@{/single-product-rightsidebar.html}"> Right Sidebar </a> </li> 
-                 <li> <a href="single-product-leftsidebar.html" target="_self" th:href="@{/single-product-leftsidebar.html}"> Left Sidebar </a> </li> 
+                 <li> <a href="../goodsDetail.html" target="_self" th:href="@{/templates/goodsDetail.html}">Vertical Thumbnails </a> </li>
+                 <li> <a href="../single-product-policy.html" target="_self" th:href="@{/templates/single-product-policy.html}"> <span class="image"> <img src="../assets/images/label-new.jpg" class="attachment-full size-full" alt="img" th:src="@{/templates/assets/images/label-new.jpg}"> </span> Extra Sidebar </a> </li>
+                 <li> <a href="../single-product-rightsidebar.html" target="_self" th:href="@{/templates/single-product-rightsidebar.html}"> Right Sidebar </a> </li>
+                 <li> <a href="../single-product-leftsidebar.html" target="_self" th:href="@{/templates/single-product-leftsidebar.html}"> Left Sidebar </a> </li>
                 </ul> 
                </div> 
               </div> 
@@ -236,9 +236,9 @@
                <div class="listitem-inner"> 
                 <h4 class="title"> Product Extends </h4> 
                 <ul class="listitem-list"> 
-                 <li> <a href="single-product-bundle.html" target="_self" th:href="@{/single-product-bundle.html}"> <span class="image"> <img src="assets/images/label-new.jpg" class="attachment-full size-full" alt="img" th:src="@{/assets/images/label-new.jpg}"> </span> Product Bundle </a> </li> 
-                 <li> <a href="single-product-360deg.html" target="_self" th:href="@{/single-product-360deg.html}"> <span class="image"> <img src="assets/images/label-hot.jpg" class="attachment-full size-full" alt="img" th:src="@{/assets/images/label-hot.jpg}"> </span> Product 360 Deg </a> </li> 
-                 <li> <a href="single-product-video.html" target="_self" th:href="@{/single-product-video.html}"> Video </a> </li> 
+                 <li> <a href="../single-product-bundle.html" target="_self" th:href="@{/templates/single-product-bundle.html}"> <span class="image"> <img src="../assets/images/label-new.jpg" class="attachment-full size-full" alt="img" th:src="@{/templates/assets/images/label-new.jpg}"> </span> Product Bundle </a> </li>
+                 <li> <a href="../single-product-360deg.html" target="_self" th:href="@{/templates/single-product-360deg.html}"> <span class="image"> <img src="../assets/images/label-hot.jpg" class="attachment-full size-full" alt="img" th:src="@{/templates/assets/images/label-hot.jpg}"> </span> Product 360 Deg </a> </li>
+                 <li> <a href="../single-product-video.html" target="_self" th:href="@{/templates/single-product-video.html}"> Video </a> </li>
                 </ul> 
                </div> 
               </div> 
@@ -246,11 +246,11 @@
                <div class="listitem-inner"> 
                 <h4 class="title"> Other Pages </h4> 
                 <ul class="listitem-list"> 
-                 <li> <a href="cart.html" th:href="@{/cart.html}">Cart </a> </li> 
-                 <li> <a href="wishlist.html" target="_self" th:href="@{/wishlist.html}">Wishlist </a> </li> 
-                 <li> <a href="checkout.html" target="_self" th:href="@{/checkout.html}">Checkout </a> </li> 
-                 <li> <a href="order-tracking.html" target="_self" th:href="@{/order-tracking.html}">Order Tracking </a> </li> 
-                 <li> <a href="my-account.html" target="_self" th:href="@{/my-account.html}">My Account </a> </li> 
+                 <li> <a href="../cart.html" th:href="@{/templates/cart.html}">Cart </a> </li>
+                 <li> <a href="../wishlist.html" target="_self" th:href="@{/templates/wishlist.html}">Wishlist </a> </li>
+                 <li> <a href="../checkout.html" target="_self" th:href="@{/templates/checkout.html}">Checkout </a> </li>
+                 <li> <a href="../order-tracking.html" target="_self" th:href="@{/templates/order-tracking.html}">Order Tracking </a> </li>
+                 <li> <a href="../my-account.html" target="_self" th:href="@{/templates/my-account.html}">My Account </a> </li>
                 </ul> 
                </div> 
               </div> 
@@ -260,12 +260,12 @@
                <div class="listitem-inner"> 
                 <h4 class="title"> Product Types </h4> 
                 <ul class="listitem-list"> 
-                 <li> <a href="single-product-simple.html" target="_self" th:href="@{/single-product-simple.html}"> Simple </a> </li> 
-                 <li> <a href="single-product.html" target="_self" th:href="@{/single-product.html}"> <span class="image"><img src="assets/images/label-hot.jpg" class="attachment-full size-full" alt="img" th:src="@{/assets/images/label-hot.jpg}"></span> Variable </a> </li> 
-                 <li> <a href="single-product-external.html" target="_self" th:href="@{/single-product-external.html}"> External / Affiliate </a> </li> 
-                 <li> <a href="single-product-group.html" target="_self" th:href="@{/single-product-group.html}"> Grouped </a> </li> 
-                 <li> <a href="single-product-outofstock.html" target="_self" th:href="@{/single-product-outofstock.html}"> Out Of Stock </a> </li> 
-                 <li> <a href="single-product-onsale.html" target="_self" th:href="@{/single-product-onsale.html}"> On Sale </a> </li> 
+                 <li> <a href="../single-product-simple.html" target="_self" th:href="@{/templates/single-product-simple.html}"> Simple </a> </li>
+                 <li> <a href="../goodsDetail.html" target="_self" th:href="@{/templates/goodsDetail.html}"> <span class="image"><img src="../assets/images/label-hot.jpg" class="attachment-full size-full" alt="img" th:src="@{/templates/assets/images/label-hot.jpg}"></span> Variable </a> </li>
+                 <li> <a href="../single-product-external.html" target="_self" th:href="@{/templates/single-product-external.html}"> External / Affiliate </a> </li>
+                 <li> <a href="../single-product-group.html" target="_self" th:href="@{/templates/single-product-group.html}"> Grouped </a> </li>
+                 <li> <a href="../single-product-outofstock.html" target="_self" th:href="@{/templates/single-product-outofstock.html}"> Out Of Stock </a> </li>
+                 <li> <a href="../single-product-onsale.html" target="_self" th:href="@{/templates/single-product-onsale.html}"> On Sale </a> </li>
                 </ul> 
                </div> 
               </div> 
@@ -280,10 +280,10 @@
                <div class="listitem-inner"> 
                 <h4 class="title">Element 1 </h4> 
                 <ul class="listitem-list"> 
-                 <li> <a href="banner.html" target="_self" th:href="@{/banner.html}">Banner </a> </li> 
-                 <li> <a href="blog-element.html" target="_self" th:href="@{/blog-element.html}">Blog Element </a> </li> 
-                 <li> <a href="categories-element.html" target="_self" th:href="@{/categories-element.html}"> Categories Element </a> </li> 
-                 <li> <a href="product-element.html" target="_self" th:href="@{/product-element.html}"> Product Element </a> </li> 
+                 <li> <a href="../banner.html" target="_self" th:href="@{/templates/banner.html}">Banner </a> </li>
+                 <li> <a href="../blog-element.html" target="_self" th:href="@{/templates/blog-element.html}">Blog Element </a> </li>
+                 <li> <a href="../categories-element.html" target="_self" th:href="@{/templates/categories-element.html}"> Categories Element </a> </li>
+                 <li> <a href="../product-element.html" target="_self" th:href="@{/templates/product-element.html}"> Product Element </a> </li>
                 </ul> 
                </div> 
               </div> 
@@ -293,11 +293,11 @@
                <div class="listitem-inner"> 
                 <h4 class="title"> Element 2 </h4> 
                 <ul class="listitem-list"> 
-                 <li> <a href="client.html" target="_self" th:href="@{/client.html}"> Client </a> </li> 
-                 <li> <a href="product-layout.html" target="_self" th:href="@{/product-layout.html}"> Product Layout </a> </li> 
-                 <li> <a href="google-map.html" target="_self" th:href="@{/google-map.html}"> Google map </a> </li> 
-                 <li> <a href="iconbox.html" target="_self" th:href="@{/iconbox.html}"> Icon Box </a> </li> 
-                 <li> <a href="team.html" target="_self" th:href="@{/team.html}"> Team </a> </li> 
+                 <li> <a href="../client.html" target="_self" th:href="@{/templates/client.html}"> Client </a> </li>
+                 <li> <a href="../product-layout.html" target="_self" th:href="@{/templates/product-layout.html}"> Product Layout </a> </li>
+                 <li> <a href="../google-map.html" target="_self" th:href="@{/templates/google-map.html}"> Google map </a> </li>
+                 <li> <a href="../iconbox.html" target="_self" th:href="@{/templates/iconbox.html}"> Icon Box </a> </li>
+                 <li> <a href="../team.html" target="_self" th:href="@{/templates/team.html}"> Team </a> </li>
                 </ul> 
                </div> 
               </div> 
@@ -307,16 +307,16 @@
                <div class="listitem-inner"> 
                 <h4 class="title"> Element 3 </h4> 
                 <ul class="listitem-list"> 
-                 <li> <a href="instagram-feed.html" target="_self" th:href="@{/instagram-feed.html}"> Instagram Feed </a> </li> 
-                 <li> <a href="newsletter.html" target="_self" th:href="@{/newsletter.html}"> Newsletter </a> </li> 
-                 <li> <a href="testimonials.html" target="_self" th:href="@{/testimonials.html}"> Testimonials </a> </li> 
+                 <li> <a href="../instagram-feed.html" target="_self" th:href="@{/templates/instagram-feed.html}"> Instagram Feed </a> </li>
+                 <li> <a href="../newsletter.html" target="_self" th:href="@{/templates/newsletter.html}"> Newsletter </a> </li>
+                 <li> <a href="../testimonials.html" target="_self" th:href="@{/templates/testimonials.html}"> Testimonials </a> </li>
                 </ul> 
                </div> 
               </div> 
              </div> 
             </div> 
            </div> </li> 
-          <li id="menu-item-996" class="menu-item menu-item-type-post_type menu-item-object-megamenu menu-item-996 parent parent-megamenu item-megamenu menu-item-has-children"> <a class="kobolg-menu-item-title" title="Blog" href="blog.html" th:href="@{/blog.html}">Blog</a> <span class="toggle-submenu"></span> 
+          <li id="menu-item-996" class="menu-item menu-item-type-post_type menu-item-object-megamenu menu-item-996 parent parent-megamenu item-megamenu menu-item-has-children"> <a class="kobolg-menu-item-title" title="Blog" href="../blog.html" th:href="@{/templates/blog.html}">Blog</a> <span class="toggle-submenu"></span>
            <div class="submenu megamenu megamenu-blog"> 
             <div class="row"> 
              <div class="col-md-4"> 
@@ -324,11 +324,11 @@
                <div class="listitem-inner"> 
                 <h4 class="title"> Blog Layout </h4> 
                 <ul class="listitem-list"> 
-                 <li> <a href="blog.html" target="_self" th:href="@{/blog.html}">No Sidebar </a> </li> 
-                 <li> <a href="blog-leftsidebar.html" target="_self" th:href="@{/blog-leftsidebar.html}">Left Sidebar </a> </li> 
-                 <li> <a href="blog-rightsidebar.html" target="_self" th:href="@{/blog-rightsidebar.html}">Right Sidebar </a> </li> 
-                 <li> <a href="blog.html" target="_self" th:href="@{/blog.html}">Blog Standard </a> </li> 
-                 <li> <a href="blog-grid.html" target="_self" th:href="@{/blog-grid.html}">Blog Grid </a> </li> 
+                 <li> <a href="../blog.html" target="_self" th:href="@{/templates/blog.html}">No Sidebar </a> </li>
+                 <li> <a href="../blog-leftsidebar.html" target="_self" th:href="@{/templates/blog-leftsidebar.html}">Left Sidebar </a> </li>
+                 <li> <a href="../blog-rightsidebar.html" target="_self" th:href="@{/templates/blog-rightsidebar.html}">Right Sidebar </a> </li>
+                 <li> <a href="../blog.html" target="_self" th:href="@{/templates/blog.html}">Blog Standard </a> </li>
+                 <li> <a href="../blog-grid.html" target="_self" th:href="@{/templates/blog-grid.html}">Blog Grid </a> </li>
                 </ul> 
                </div> 
               </div> 
@@ -338,11 +338,11 @@
                <div class="listitem-inner"> 
                 <h4 class="title"> Post Layout </h4> 
                 <ul class="listitem-list"> 
-                 <li> <a href="single-post.html" target="_self" th:href="@{/single-post.html}">No Sidebar </a> </li> 
-                 <li> <a href="single-post-leftsidebar.html" target="_self" th:href="@{/single-post-leftsidebar.html}">Left Sidebar </a> </li> 
-                 <li> <a href="single-post-rightsidebar.html" target="_self" th:href="@{/single-post-rightsidebar.html}">Right Sidebar </a> </li> 
-                 <li> <a href="single-post-instagram.html" target="_self" th:href="@{/single-post-instagram.html}"> <span class="image"> <img src="assets/images/label-hot.jpg" class="attachment-full size-full" alt="img" th:src="@{/assets/images/label-hot.jpg}"> </span> Instagram In Post </a> </li> 
-                 <li> <a href="single-post-product.html" target="_self" th:href="@{/single-post-product.html}"> <span class="image"> <img src="assets/images/label-new.jpg" class="attachment-full size-full" alt="img" th:src="@{/assets/images/label-new.jpg}"> </span> Product In Post </a> </li> 
+                 <li> <a href="../single-post.html" target="_self" th:href="@{/templates/single-post.html}">No Sidebar </a> </li>
+                 <li> <a href="../single-post-leftsidebar.html" target="_self" th:href="@{/templates/single-post-leftsidebar.html}">Left Sidebar </a> </li>
+                 <li> <a href="../single-post-rightsidebar.html" target="_self" th:href="@{/templates/single-post-rightsidebar.html}">Right Sidebar </a> </li>
+                 <li> <a href="../single-post-instagram.html" target="_self" th:href="@{/templates/single-post-instagram.html}"> <span class="image"> <img src="../assets/images/label-hot.jpg" class="attachment-full size-full" alt="img" th:src="@{/templates/assets/images/label-hot.jpg}"> </span> Instagram In Post </a> </li>
+                 <li> <a href="../single-post-product.html" target="_self" th:href="@{/templates/single-post-product.html}"> <span class="image"> <img src="../assets/images/label-new.jpg" class="attachment-full size-full" alt="img" th:src="@{/templates/assets/images/label-new.jpg}"> </span> Product In Post </a> </li>
                 </ul> 
                </div> 
               </div> 
@@ -350,9 +350,9 @@
                <div class="listitem-inner"> 
                 <h4 class="title"> Post Format </h4> 
                 <ul class="listitem-list"> 
-                 <li> <a href="single-post.html" target="_self" th:href="@{/single-post.html}">Standard </a> </li> 
-                 <li> <a href="single-post-gallery.html" target="_self" th:href="@{/single-post-gallery.html}">Gallery </a> </li> 
-                 <li> <a href="single-post-video.html" target="_self" th:href="@{/single-post-video.html}"> <span class="image"> <img src="assets/images/label-hot.jpg" class="attachment-full size-full" alt="img" th:src="@{/assets/images/label-hot.jpg}"> </span> Video </a> </li> 
+                 <li> <a href="../single-post.html" target="_self" th:href="@{/templates/single-post.html}">Standard </a> </li>
+                 <li> <a href="../single-post-gallery.html" target="_self" th:href="@{/templates/single-post-gallery.html}">Gallery </a> </li>
+                 <li> <a href="../single-post-video.html" target="_self" th:href="@{/templates/single-post-video.html}"> <span class="image"> <img src="../assets/images/label-hot.jpg" class="attachment-full size-full" alt="img" th:src="@{/templates/assets/images/label-hot.jpg}"> </span> Video </a> </li>
                 </ul> 
                </div> 
               </div> 
@@ -361,9 +361,9 @@
            </div> </li> 
           <li id="menu-item-237" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-237 parent"> <a class="kobolg-menu-item-title" title="Pages" href="#">Pages</a> <span class="toggle-submenu"></span> 
            <ul role="menu" class="submenu"> 
-            <li id="menu-item-987" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-987"> <a class="kobolg-menu-item-title" title="About" href="about.html" th:href="@{/about.html}">About</a></li> 
-            <li id="menu-item-988" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-988"> <a class="kobolg-menu-item-title" title="Contact" href="contact.html" th:href="@{/contact.html}">Contact</a></li> 
-            <li id="menu-item-990" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-990"> <a class="kobolg-menu-item-title" title="Page 404" href="404.html" th:href="@{/404.html}">Page 404</a></li> 
+            <li id="menu-item-987" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-987"> <a class="kobolg-menu-item-title" title="About" href="../about.html" th:href="@{/templates/about.html}">About</a></li>
+            <li id="menu-item-988" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-988"> <a class="kobolg-menu-item-title" title="Contact" href="../contact.html" th:href="@{/templates/contact.html}">Contact</a></li>
+            <li id="menu-item-990" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-990"> <a class="kobolg-menu-item-title" title="Page 404" href="404.html" th:href="@{/templates/error/404.html}">Page 404</a></li>
            </ul> </li> 
           <li id="menu-item-238" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-238"> <a class="kobolg-menu-item-title" title="Free Shipping on Orders $100" href="#">Free Shipping on Orders $100</a> </li> 
          </ul> 
@@ -400,14 +400,14 @@
       </div> 
      </div> 
      <ul class="wpml-menu"> 
-      <li class="menu-item kobolg-dropdown block-language"> <a href="#" data-kobolg="kobolg-dropdown"> <img src="assets/images/en.png" alt="en" width="18" height="12" th:src="@{/assets/images/en.png}"> English </a> <span class="toggle-submenu"></span> 
+      <li class="menu-item kobolg-dropdown block-language"> <a href="#" data-kobolg="kobolg-dropdown"> <img src="../../static/assets/images/en.png" alt="en" width="18" height="12" th:src="@{/static/assets/images/en.png}"> English </a> <span class="toggle-submenu"></span>
        <ul class="sub-menu"> 
-        <li class="menu-item"> <a href="#"> <img src="assets/images/it.png" alt="it" width="18" height="12" th:src="@{/assets/images/it.png}"> Italiano </a> </li> 
+        <li class="menu-item"> <a href="#"> <img src="../../static/assets/images/it.png" alt="it" width="18" height="12" th:src="@{/static/assets/images/it.png}"> Italiano </a> </li>
        </ul> </li> 
       <li class="menu-item"> 
        <div class="wcml-dropdown product wcml_currency_switcher"> 
         <ul> 
-         <li class="wcml-cs-active-currency"> <a class="wcml-cs-item-toggle" th:href="@{/}">USD</a> 
+         <li class="wcml-cs-active-currency"> <a class="wcml-cs-item-toggle" th:href="@{/templates}">USD</a>
           <ul class="wcml-cs-submenu"> 
            <li> <a th:href="@{/}">EUR</a> </li> 
           </ul> </li> 
@@ -417,14 +417,14 @@
     </div> 
     <div class="header-mobile-mid"> 
      <div class="header-logo"> 
-      <a href="index.html" th:href="@{/index.html}"><img alt="Kobolg" src="assets/images/logo.png" class="logo" th:src="@{/assets/images/logo.png}"></a>
+      <a href="../index.html" th:href="@{/templates/index.html}"><img alt="Kobolg" src="../../static/assets/images/logo.png" class="logo" th:src="@{/static/assets/images/logo.png}"></a>
      </div> 
     </div> 
     <div class="header-mobile-right"> 
      <div class="header-control-inner"> 
       <div class="meta-dreaming"> 
        <div class="menu-item block-user block-dreaming kobolg-dropdown"> 
-        <a class="block-link" href="my-account.html" th:href="@{/my-account.html}"> <span class="flaticon-profile"></span> </a> 
+        <a class="block-link" href="../my-account.html" th:href="@{/templates/my-account.html}"> <span class="flaticon-profile"></span> </a>
         <ul class="sub-menu"> 
          <li class="menu-item kobolg-MyAccount-navigation-link kobolg-MyAccount-navigation-link--dashboard is-active"> <a href="#">Dashboard</a> </li> 
          <li class="menu-item kobolg-MyAccount-navigation-link kobolg-MyAccount-navigation-link--orders"> <a href="#">Orders</a> </li> 
@@ -436,18 +436,18 @@
        </div> 
        <div class="block-minicart block-dreaming kobolg-mini-cart kobolg-dropdown"> 
         <div class="shopcart-dropdown block-cart-link" data-kobolg="kobolg-dropdown"> 
-         <a class="block-link link-dropdown" href="cart.html" th:href="@{/cart.html}"> <span class="flaticon-online-shopping-cart"></span> <span class="count">3</span> </a> 
+         <a class="block-link link-dropdown" href="../cart.html" th:href="@{/templates/cart.html}"> <span class="flaticon-online-shopping-cart"></span> <span class="count">3</span> </a>
         </div> 
         <div class="widget kobolg widget_shopping_cart"> 
          <div class="widget_shopping_cart_content"> 
           <h3 class="minicart-title">Your Cart<span class="minicart-number-items">3</span></h3> 
           <ul class="kobolg-mini-cart cart_list product_list_widget"> 
-           <li class="kobolg-mini-cart-item mini_cart_item"> <a href="#" class="remove remove_from_cart_button">×</a> <a href="#"> <img src="assets/images/apro134-1-600x778.jpg" class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img" width="600" height="778" th:src="@{/assets/images/apro134-1-600x778.jpg}">T-shirt with skirt – Pink&nbsp; </a> <span class="quantity">1 × <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>150.00</span></span> </li> 
-           <li class="kobolg-mini-cart-item mini_cart_item"> <a href="#" class="remove remove_from_cart_button">×</a> <a href="#"> <img src="assets/images/apro1113-600x778.jpg" class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img" width="600" height="778" th:src="@{/assets/images/apro1113-600x778.jpg}">Red Consoles&nbsp; </a> <span class="quantity">1 × <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>129.00</span></span> </li> 
-           <li class="kobolg-mini-cart-item mini_cart_item"> <a href="#" class="remove remove_from_cart_button">×</a> <a href="#"> <img src="assets/images/apro201-1-600x778.jpg" class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img" width="600" height="778" th:src="@{/assets/images/apro201-1-600x778.jpg}">Smart Monitor&nbsp; </a> <span class="quantity">1 × <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>139.00</span></span> </li> 
+           <li class="kobolg-mini-cart-item mini_cart_item"> <a href="#" class="remove remove_from_cart_button">×</a> <a href="#"> <img src="../../static/assets/images/apro134-1-600x778.jpg" class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img" width="600" height="778" th:src="@{/static/assets/images/apro134-1-600x778.jpg}">T-shirt with skirt – Pink&nbsp; </a> <span class="quantity">1 × <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>150.00</span></span> </li>
+           <li class="kobolg-mini-cart-item mini_cart_item"> <a href="#" class="remove remove_from_cart_button">×</a> <a href="#"> <img src="../assets/images/apro1113-600x778.jpg" class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img" width="600" height="778" th:src="@{/templates/assets/images/apro1113-600x778.jpg}">Red Consoles&nbsp; </a> <span class="quantity">1 × <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>129.00</span></span> </li>
+           <li class="kobolg-mini-cart-item mini_cart_item"> <a href="#" class="remove remove_from_cart_button">×</a> <a href="#"> <img src="../assets/images/apro201-1-600x778.jpg" class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img" width="600" height="778" th:src="@{/templates/assets/images/apro201-1-600x778.jpg}">Smart Monitor&nbsp; </a> <span class="quantity">1 × <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>139.00</span></span> </li>
           </ul> 
           <p class="kobolg-mini-cart__total total"><strong>Subtotal:</strong> <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>418.00</span> </p> 
-          <p class="kobolg-mini-cart__buttons buttons"> <a href="cart.html" class="button kobolg-forward" th:href="@{/cart.html}">Viewcart</a> <a href="checkout.html" class="button checkout kobolg-forward" th:href="@{/checkout.html}">Checkout</a> </p> 
+          <p class="kobolg-mini-cart__buttons buttons"> <a href="../cart.html" class="button kobolg-forward" th:href="@{/templates/cart.html}">Viewcart</a> <a href="../checkout.html" class="button checkout kobolg-forward" th:href="@{/templates/checkout.html}">Checkout</a> </p>
          </div> 
         </div> 
        </div> 
@@ -462,7 +462,7 @@
     <h1 class="title">Opps! This page Could Not Be Found!</h1> 
     <p class="subtitle">Sorry bit the page you are looking for does not exist, have been removed or name changed</p> 
     <!-- .page-content --> 
-    <a href="index.html" class="button" th:href="@{/index.html}">Back to hompage</a> 
+    <a href="../index.html" class="button" th:href="@{/templates/index.html}">Back to hompage</a>
    </div> 
   </div> 
   <footer id="footer" class="footer style-01"> 
@@ -512,33 +512,33 @@
   <div class="footer-device-mobile"> 
    <div class="wapper"> 
     <div class="footer-device-mobile-item device-home"> 
-     <a href="index.html" th:href="@{/index.html}"> <span class="icon"> <i class="fa fa-home" aria-hidden="true"></i> </span> Home </a> 
+     <a href="../index.html" th:href="@{/templates/index.html}"> <span class="icon"> <i class="fa fa-home" aria-hidden="true"></i> </span> Home </a>
     </div> 
     <div class="footer-device-mobile-item device-home device-wishlist"> 
-     <a href="wishlist.html" th:href="@{/wishlist.html}"> <span class="icon"> <i class="fa fa-heart" aria-hidden="true"></i> </span> Wishlist </a> 
+     <a href="../wishlist.html" th:href="@{/templates/wishlist.html}"> <span class="icon"> <i class="fa fa-heart" aria-hidden="true"></i> </span> Wishlist </a>
     </div> 
     <div class="footer-device-mobile-item device-home device-cart"> 
-     <a href="cart.html" th:href="@{/cart.html}"> <span class="icon"> <i class="fa fa-shopping-basket" aria-hidden="true"></i> <span class="count-icon"> 0 </span> </span> <span class="text">Cart</span> </a> 
+     <a href="../cart.html" th:href="@{/templates/cart.html}"> <span class="icon"> <i class="fa fa-shopping-basket" aria-hidden="true"></i> <span class="count-icon"> 0 </span> </span> <span class="text">Cart</span> </a>
     </div> 
     <div class="footer-device-mobile-item device-home device-user"> 
-     <a href="my-account.html" th:href="@{/my-account.html}"> <span class="icon"> <i class="fa fa-user" aria-hidden="true"></i> </span> Account </a> 
+     <a href="../my-account.html" th:href="@{/templates/my-account.html}"> <span class="icon"> <i class="fa fa-user" aria-hidden="true"></i> </span> Account </a>
     </div> 
    </div> 
   </div> 
   <a href="#" class="backtotop active"> <i class="fa fa-angle-up"></i> </a> 
-  <script src="assets/js/jquery-1.12.4.min.js" th:src="@{/assets/js/jquery-1.12.4.min.js}"></script> 
-  <script src="assets/js/bootstrap.min.js" th:src="@{/assets/js/bootstrap.min.js}"></script> 
-  <script src="assets/js/chosen.min.js" th:src="@{/assets/js/chosen.min.js}"></script> 
-  <script src="assets/js/countdown.min.js" th:src="@{/assets/js/countdown.min.js}"></script> 
-  <script src="assets/js/jquery.scrollbar.min.js" th:src="@{/assets/js/jquery.scrollbar.min.js}"></script> 
-  <script src="assets/js/lightbox.min.js" th:src="@{/assets/js/lightbox.min.js}"></script> 
-  <script src="assets/js/magnific-popup.min.js" th:src="@{/assets/js/magnific-popup.min.js}"></script> 
-  <script src="assets/js/slick.js" th:src="@{/assets/js/slick.js}"></script> 
-  <script src="assets/js/jquery.zoom.min.js" th:src="@{/assets/js/jquery.zoom.min.js}"></script> 
-  <script src="assets/js/threesixty.min.js" th:src="@{/assets/js/threesixty.min.js}"></script> 
-  <script src="assets/js/jquery-ui.min.js" th:src="@{/assets/js/jquery-ui.min.js}"></script> 
-  <script src="assets/js/mobilemenu.js" th:src="@{/assets/js/mobilemenu.js}"></script> 
+  <script src="../../static/assets/js/jquery-1.12.4.min.js" th:src="@{/static/assets/js/jquery-1.12.4.min.js}"></script>
+  <script src="../assets/js/bootstrap.min.js" th:src="@{/templates/assets/js/bootstrap.min.js}"></script>
+  <script src="../../static/assets/js/chosen.min.js" th:src="@{/static/assets/js/chosen.min.js}"></script>
+  <script src="../../static/assets/js/countdown.min.js" th:src="@{/static/assets/js/countdown.min.js}"></script>
+  <script src="../assets/js/jquery.scrollbar.min.js" th:src="@{/templates/assets/js/jquery.scrollbar.min.js}"></script>
+  <script src="../../static/assets/js/lightbox.min.js" th:src="@{/static/assets/js/lightbox.min.js}"></script>
+  <script src="../assets/js/magnific-popup.min.js" th:src="@{/templates/assets/js/magnific-popup.min.js}"></script>
+  <script src="../assets/js/slick.js" th:src="@{/templates/assets/js/slick.js}"></script>
+  <script src="../../static/assets/js/jquery.zoom.min.js" th:src="@{/static/assets/js/jquery.zoom.min.js}"></script>
+  <script src="../../static/assets/js/threesixty.min.js" th:src="@{/static/assets/js/threesixty.min.js}"></script>
+  <script src="../assets/js/jquery-ui.min.js" th:src="@{/templates/assets/js/jquery-ui.min.js}"></script>
+  <script src="../../static/assets/js/mobilemenu.js" th:src="@{/static/assets/js/mobilemenu.js}"></script>
   <script src="http://www.google.cn/maps/api/js?key=AIzaSyC3nDHy1dARR-Pa_2jjPCjvsOR4bcILYsM"></script> 
-  <script src="assets/js/functions.js" th:src="@{/assets/js/functions.js}"></script>  
+  <script src="../assets/js/functions.js" th:src="@{/templates/assets/js/functions.js}"></script>
  </body>
 </html>

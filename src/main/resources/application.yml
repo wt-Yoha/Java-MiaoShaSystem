@@ -18,7 +18,7 @@ spring:
     cache: false
 
   resources:
-    static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/, classpath:/templates/, classpath:/static/assets/
+    static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/, classpath:/templates/, classpath:/static/assets/, classpath:/templates/assets/
 
 
 # redis

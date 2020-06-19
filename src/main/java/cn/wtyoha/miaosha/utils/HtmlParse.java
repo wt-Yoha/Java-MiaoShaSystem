@@ -126,9 +126,17 @@ public class HtmlParse {
         String modify = analysAndModify(document, targetTag);
 
         // 后处理，加上<!DOCTYPE html> 并去除多余空行
-        int indexBody = modify.indexOf("<body>");
-        int first = indexBody + 6, second = modify.indexOf("<header");
-        modify = modify.substring(0, first) + "\n" + modify.substring(second);
+        int indexBody = modify.indexOf("<body");
+        int first = -1, second = modify.indexOf("<header");
+        for (int i = indexBody; i < modify.length(); i++) {
+            if (modify.charAt(i) == '>') {
+                first = i + 1;
+                break;
+            }
+        }
+        if (first != -1) {
+            modify = modify.substring(0, first) + "\n" + modify.substring(second);
+        }
         modify = "<!DOCTYPE html>\n" + modify;
 
         // 保存结果
@@ -176,9 +184,16 @@ public class HtmlParse {
             return;
         }
 
-//        String rePath = "D:\\D\\DeskTop\\Java\\Bootstrap模板\\index.html", outPath = "D:\\D\\JavaWorks\\MiaoShaSystem\\src\\main\\resources\\templates\\shopr.html";
+//        String rePath = "D:\\D\\MyDeskTop\\Java学习\\Kobolg\\Kobolg\\goodsDetail.html", outPath = "D:\\D\\MyDeskTop\\Java学习\\Kobolg\\Kobolg\\single-product1.html";
 //        processSinglePage(rePath, outPath);
-        processingBatchPage(new File("D:\\D\\DeskTop\\Java\\Bootstrap模板"), new File("D:\\D\\DeskTop\\Java\\MiaoShaSystem动态模板"));
+        processingBatchPage(new File("D:\\D\\MyDeskTop\\Java学习\\Kobolg\\Kobolg"), new File("D:\\D\\MyDeskTop\\Java学习\\Kobolg\\dynamic"));
+
+//        FileChannel fileChannel = new FileInputStream(rePath).getChannel();
+//        ByteBuffer byteBuffer = ByteBuffer.allocate((int) fileChannel.size());
+//        fileChannel.read(byteBuffer);
+//        Document document = parseHtml(new String(byteBuffer.array()));
+//        FileOutputStream outputStream = new FileOutputStream(outPath);
+//        outputStream.write(document.toString().getBytes());
 
         System.out.println("程序结束");
     }

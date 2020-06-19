@@ -223,7 +223,7 @@
                <div class="listitem-inner">
                 <h4 class="title">Product Layouts </h4>
                 <ul class="listitem-list">
-                 <li> <a href="single-product.html" target="_self" th:href="@{/single-product.html}">Vertical Thumbnails </a> </li>
+                 <li> <a href="goodsDetail.html" target="_self" th:href="@{/templates/goodsDetail.html}">Vertical Thumbnails </a> </li>
                  <li> <a href="single-product-policy.html" target="_self" th:href="@{/single-product-policy.html}"> <span class="image"> <img src="assets/images/label-new.jpg" class="attachment-full size-full" alt="img" th:src="@{/assets/images/label-new.jpg}"> </span> Extra Sidebar </a> </li>
                  <li> <a href="single-product-rightsidebar.html" target="_self" th:href="@{/single-product-rightsidebar.html}"> Right Sidebar </a> </li>
                  <li> <a href="single-product-leftsidebar.html" target="_self" th:href="@{/single-product-leftsidebar.html}"> Left Sidebar </a> </li>
@@ -261,7 +261,7 @@
                 <h4 class="title"> Product Types </h4>
                 <ul class="listitem-list">
                  <li> <a href="single-product-simple.html" target="_self" th:href="@{/single-product-simple.html}"> Simple </a> </li>
-                 <li> <a href="single-product.html" target="_self" th:href="@{/single-product.html}"> <span class="image"><img src="assets/images/label-hot.jpg" class="attachment-full size-full" alt="img" th:src="@{/assets/images/label-hot.jpg}"></span> Variable </a> </li>
+                 <li> <a href="goodsDetail.html" target="_self" th:href="@{/templates/goodsDetail.html}"> <span class="image"><img src="assets/images/label-hot.jpg" class="attachment-full size-full" alt="img" th:src="@{/assets/images/label-hot.jpg}"></span> Variable </a> </li>
                  <li> <a href="single-product-external.html" target="_self" th:href="@{/single-product-external.html}"> External / Affiliate </a> </li>
                  <li> <a href="single-product-group.html" target="_self" th:href="@{/single-product-group.html}"> Grouped </a> </li>
                  <li> <a href="single-product-outofstock.html" target="_self" th:href="@{/single-product-outofstock.html}"> Out Of Stock </a> </li>
@@ -363,7 +363,7 @@
            <ul role="menu" class="submenu">
             <li id="menu-item-987" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-987"> <a class="kobolg-menu-item-title" title="About" href="about.html" th:href="@{/about.html}">About</a></li>
             <li id="menu-item-988" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-988"> <a class="kobolg-menu-item-title" title="Contact" href="contact.html" th:href="@{/contact.html}">Contact</a></li>
-            <li id="menu-item-990" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-990"> <a class="kobolg-menu-item-title" title="Page 404" href="404.html" th:href="@{/404.html}">Page 404</a></li>
+            <li id="menu-item-990" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-990"> <a class="kobolg-menu-item-title" title="Page 404" href="error/404.html" th:href="@{/templates/error/404.html}">Page 404</a></li>
            </ul> </li>
           <li id="menu-item-238" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-238"> <a class="kobolg-menu-item-title" title="Free Shipping on Orders $100" href="#">Free Shipping on Orders $100</a> </li>
          </ul>
@@ -487,12 +487,15 @@
        </form>
       </div>
       <div class="auto-clear equal-container better-height kobolg-products">
+
+
+
 <!--       商品列表-->
        <ul class="row products columns-3" th:each=" i : ${#numbers.sequence(0, goodsList.size()/4 - 1)}">
         <li class="product-item wow fadeInUp product-item rows-space-30 col-bg-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-ts-6 style-01 post-24 product type-product status-publish has-post-thumbnail product_cat-chair product_cat-table product_cat-new-arrivals product_tag-light product_tag-hat product_tag-sock first instock featured shipping-taxable purchasable product-type-variable has-default-attributes" data-wow-duration="1s" data-wow-delay="0ms" data-wow="fadeInUp">
          <div class="product-inner tooltip-left">
           <div class="product-thumb">
-           <a class="thumb-link" href="#"> <img class="img-responsive" src="assets/images/apro161-1-600x778.jpg" alt="Gaming Mouse" width="600" height="778" th:src="@{'/assets/images/'+${goodsList.get(i*4).largeImg}}"> </a>
+           <a class="thumb-link" href="#" th:href="@{'/goods/detail'+${goodsList.get(i*4).id}}"> <img class="img-responsive" src="assets/images/apro161-1-600x778.jpg" alt="Gaming Mouse" width="600" height="778" th:src="@{'/assets/images/'+${goodsList.get(i*4).largeImg}}"> </a>
            <div class="flash">
             <span class="onnew"><span class="text">New</span></span>
            </div>
@@ -651,8 +654,11 @@
           </div>
          </div> </li>
        </ul>
-
       </div>
+
+
+
+
       <div class="shop-control shop-after-control">
        <nav class="kobolg-pagination">
         <span class="page-numbers current">1</span>

@@ -590,20 +590,15 @@
   <script src="http://www.google.cn/maps/api/js?key=AIzaSyC3nDHy1dARR-Pa_2jjPCjvsOR4bcILYsM"></script> 
   <script src="assets/js/functions.js" th:src="@{/assets/js/functions.js}"></script>
   <script src="assets/js/md5.min.js" th:src="@{/assets/js/md5.min.js}"></script>
+  <script src="/assets/js/alertError.js" th:src="@{/assets/js/alertError.js}"></script>
 <span th:if="${codeMsg !=null}">
-<span id="codeMsg" th:value="${codeMsg.msg}" th:text="${codeMsg.code}">0</span>
+   <span id="codeMsg" th:value="${codeMsg.msg}" th:text="${codeMsg.code}">0</span>
 </span>
 <script>
  $(function(){
-  alertLoginMsg();
+     alertErrorMsg();
  })
 
- function alertLoginMsg() {
-  var code = parseInt($("#codeMsg").text());
-  if (!isNaN(code) && code !== 0) {
-   alert($("#codeMsg").attr("value"));
-  }
- }
  function encryptionAndSubmit(btn) {
   var form = btn.parentNode.parentNode;
   var subNodes = form.getElementsByTagName("input");

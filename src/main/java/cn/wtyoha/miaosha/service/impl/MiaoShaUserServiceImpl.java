@@ -21,7 +21,8 @@ import java.util.UUID;
 @Transactional
 public class MiaoShaUserServiceImpl implements MiaoShaUserService {
 
-    private static int TOKEN_TIMEOUT = 36000 * 2;
+    // redis 和 cookei 的保存时间 秒
+    private static int TOKEN_TIMEOUT = 60 * 30;
     private static String TOKEN_NAME = "token";
 
     @Autowired

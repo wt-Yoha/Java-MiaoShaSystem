@@ -23,12 +23,20 @@ public class TestGoodsDao {
 
     @Test
     public void testUnionQuery(){
-        System.out.println(goodsDao.selectById(1));
+        System.out.println(goodsDao.selectById(1L));
     }
 
     @Test
     public void testUnionQuerySelectAll() {
         System.out.println(goodsDao.selectAll());
+    }
+
+    @Test
+    public void testSubStock(){
+        Long goodsId = 1L;
+        Goods goods = goodsDao.selectById(goodsId);
+        int affectLine = goodsDao.subStock(goodsId, 1, 99);
+        System.out.println(affectLine);
     }
 
 }

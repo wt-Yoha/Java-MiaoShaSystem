@@ -6,7 +6,7 @@ spring:
   datasource:
     username: root
     password: 996895
-    url: jdbc:mysql://www.wtyoha.cn:3306/miaosha_system?serverTimezone=UTC
+    url: jdbc:mysql://www.wtyoha.cn:3306/miaosha_system
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
 

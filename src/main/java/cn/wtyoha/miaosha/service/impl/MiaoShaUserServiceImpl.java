@@ -61,13 +61,14 @@ public class MiaoShaUserServiceImpl implements MiaoShaUserService {
     @Override
     public boolean login(MiaoShaUser loginUser) {
         String password = loginUser.getPassword();
-        loginUser.setPassword(null);
-        loginUser.setNickname(null);
-        MiaoShaUser user = userDao.selectOne(loginUser);
+        MiaoShaUser user = userDao.selectByPrimaryKey(loginUser.getId());
+        if (user == null) {
+            throw new GlobalException(CodeMsg.UNREGISTER_USER);
+        }
         String salt = user.getSalt();
         String dbPass = MD5Utils.inputPassToDBPass(password, salt);
         if (dbPass.equals(user.getPassword())) {
-            if (!isLogin(user)) {
+            if (!isLogin()) {
                 String token = UUID.randomUUID().toString().replace("-", "");
                 addUserTORedisAndSetCookie(token, user);
             }
@@ -80,27 +81,40 @@ public class MiaoShaUserServiceImpl implements MiaoShaUserService {
     /**
      * 检查redis是否已经保存了登录信息,可用于避免多次向redis存入
      *
-     * @param user
      * @return
      */
-    public boolean isLogin(MiaoShaUser user) {
+    @Override
+    public boolean isLogin() {
+        MiaoShaUser loginUser = getLoginUser();
+        if (loginUser != null) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * 获得已登陆用户的信息
+     * @return
+     */
+    @Override
+    public MiaoShaUser getLoginUser() {
+        MiaoShaUser miaoShaUser = null;
         // 从request域中获取cookie
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
             for (Cookie cookie : cookies) {
                 if (TOKEN_NAME.equals(cookie.getName())) {
                     String token = cookie.getValue();
-                    boolean infoExist = redisUtils.exist(UserKey.TOKEN.getFullkey(token));
+                    miaoShaUser = redisUtils.get(UserKey.TOKEN.getFullkey(token), MiaoShaUser.class);
                     // 登录信息已经存在 更新过期时间
-                    if (infoExist) {
-                        addUserTORedisAndSetCookie(token, user);
-                        return true;
+                    if (miaoShaUser != null) {
+                        addUserTORedisAndSetCookie(token, miaoShaUser);
                     }
                     break;
                 }
             }
         }
-        return false;
+        return miaoShaUser;
     }
 
     private void addUserTORedisAndSetCookie(String token, MiaoShaUser user) {

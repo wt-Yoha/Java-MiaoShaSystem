@@ -6,11 +6,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Data
-@Table(name = "")
+@Table(name = "miaosha_order")
 public class MiaoShaOrder {
     @Id
     Long id;
     Long userId;
-    Long oderId;
+    Long orderId;
     Long goodsId;
 }

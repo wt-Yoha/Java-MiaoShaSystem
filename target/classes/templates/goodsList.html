@@ -81,38 +81,10 @@
        </div>
       </div>
       <div class="header-control">
-       <div class="header-control-inner">
-        <div class="meta-dreaming">
-         <div class="menu-item block-user block-dreaming kobolg-dropdown">
-          <a class="block-link" href="my-account.html" th:href="@{/my-account.html}"> <span class="flaticon-profile"></span> </a>
-          <ul class="sub-menu">
-           <li class="menu-item kobolg-MyAccount-navigation-link kobolg-MyAccount-navigation-link--dashboard is-active"> <a href="#">Dashboard</a> </li>
-           <li class="menu-item kobolg-MyAccount-navigation-link kobolg-MyAccount-navigation-link--orders"> <a href="#">Orders</a> </li>
-           <li class="menu-item kobolg-MyAccount-navigation-link kobolg-MyAccount-navigation-link--downloads"> <a href="#">Downloads</a> </li>
-           <li class="menu-item kobolg-MyAccount-navigation-link kobolg-MyAccount-navigation-link--edit-addresses"> <a href="#">Addresses</a> </li>
-           <li class="menu-item kobolg-MyAccount-navigation-link kobolg-MyAccount-navigation-link--edit-account"> <a href="#">Account details</a> </li>
-           <li class="menu-item kobolg-MyAccount-navigation-link kobolg-MyAccount-navigation-link--customer-logout"> <a href="#">Logout</a> </li>
-          </ul>
-         </div>
-         <div class="block-minicart block-dreaming kobolg-mini-cart kobolg-dropdown">
-          <div class="shopcart-dropdown block-cart-link" data-kobolg="kobolg-dropdown">
-           <a class="block-link link-dropdown" href="cart.html" th:href="@{/cart.html}"> <span class="flaticon-online-shopping-cart"></span> <span class="count">3</span> </a>
-          </div>
-          <div class="widget kobolg widget_shopping_cart">
-           <div class="widget_shopping_cart_content">
-            <h3 class="minicart-title">Your Cart<span class="minicart-number-items">3</span> </h3>
-            <ul class="kobolg-mini-cart cart_list product_list_widget">
-             <li class="kobolg-mini-cart-item mini_cart_item"> <a href="#" class="remove remove_from_cart_button">×</a> <a href="#"> <img src="assets/images/apro134-1-600x778.jpg" class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img" width="600" height="778" th:src="@{/assets/images/apro134-1-600x778.jpg}">T-shirt with skirt – Pink&nbsp; </a> <span class="quantity">1 × <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>150.00</span></span> </li>
-             <li class="kobolg-mini-cart-item mini_cart_item"> <a href="#" class="remove remove_from_cart_button">×</a> <a href="#"> <img src="assets/images/apro1113-600x778.jpg" class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img" width="600" height="778" th:src="@{/assets/images/apro1113-600x778.jpg}">Red Consoles&nbsp; </a> <span class="quantity">1 × <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>129.00</span></span> </li>
-             <li class="kobolg-mini-cart-item mini_cart_item"> <a href="#" class="remove remove_from_cart_button">×</a> <a href="#"> <img src="assets/images/apro201-1-600x778.jpg" class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img" width="600" height="778" th:src="@{/assets/images/apro201-1-600x778.jpg}">Smart Monitor&nbsp; </a> <span class="quantity">1 × <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>139.00</span></span> </li>
-            </ul>
-            <p class="kobolg-mini-cart__total total"><strong>Subtotal:</strong> <span class="kobolg-Price-amount amount"><span class="kobolg-Price-currencySymbol">$</span>418.00</span> </p>
-            <p class="kobolg-mini-cart__buttons buttons"> <a href="cart.html" class="button kobolg-forward" th:href="@{/cart.html}">Viewcart</a> <a href="checkout.html" class="button checkout kobolg-forward" th:href="@{/checkout.html}">Checkout</a> </p>
-           </div>
-          </div>
-         </div>
-        </div>
-       </div>
+          <span th:if="${user!=null}" >
+           <span th:text="${'欢迎回来,'+user.nickname}"></span>
+          </span>
+          <span th:if="${user == null}" th:text="您还未登录"></span>
       </div>
      </div>
     </div>
@@ -488,31 +460,15 @@
       </div>
       <div class="auto-clear equal-container better-height kobolg-products">
 
-
-
 <!--       商品列表-->
        <ul class="row products columns-3" th:each=" i : ${#numbers.sequence(0, goodsList.size()/4 - 1)}">
         <li class="product-item wow fadeInUp product-item rows-space-30 col-bg-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-ts-6 style-01 post-24 product type-product status-publish has-post-thumbnail product_cat-chair product_cat-table product_cat-new-arrivals product_tag-light product_tag-hat product_tag-sock first instock featured shipping-taxable purchasable product-type-variable has-default-attributes" data-wow-duration="1s" data-wow-delay="0ms" data-wow="fadeInUp">
          <div class="product-inner tooltip-left">
           <div class="product-thumb">
-           <a class="thumb-link" href="#" th:href="@{'/goods/detail'+${goodsList.get(i*4).id}}"> <img class="img-responsive" src="assets/images/apro161-1-600x778.jpg" alt="Gaming Mouse" width="600" height="778" th:src="@{'/assets/images/'+${goodsList.get(i*4).largeImg}}"> </a>
+           <a class="thumb-link" href="#" th:href="@{'/goods/detail/'+${goodsList.get(i*4).id}}"><img class="img-responsive" src="assets/images/apro161-1-600x778.jpg" alt="Gaming Mouse" width="600" height="778" th:src="@{'/assets/images/'+${goodsList.get(i*4).largeImg}}"> </a>
            <div class="flash">
             <span class="onnew"><span class="text">New</span></span>
            </div>
-           <form class="variations_form cart">
-            <table class="variations">
-             <tbody>
-              <tr>
-               <td class="value"> <select title="box_style" data-attributetype="box_style" data-id="pa_color" class="attribute-select " name="attribute_pa_color" data-attribute_name="attribute_pa_color" data-show_option_none="yes"> <option data-type="" data-pa_color="" value="">Choose an option </option> <option data-width="30" data-height="30" data-type="color" data-pa_color="#3155e2" value="blue" class="attached enabled">Blue </option> <option data-width="30" data-height="30" data-type="color" data-pa_color="#49aa51" value="green" class="attached enabled">Green </option> <option data-width="30" data-height="30" data-type="color" data-pa_color="#ff63cb" value="pink" class="attached enabled">Pink </option> </select>
-                <div class="data-val attribute-pa_color" data-attributetype="box_style">
-                 <a class="change-value color" href="#" style="background: #3155e2;" data-value="blue"></a>
-                 <a class="change-value color" href="#" style="background: #49aa51;" data-value="green"></a>
-                 <a class="change-value color" href="#" style="background: #ff63cb;" data-value="pink"></a>
-                </div> <a class="reset_variations" href="#" style="visibility: hidden;">Clear</a> </td>
-              </tr>
-             </tbody>
-            </table>
-           </form>
            <div class="group-button">
             <div class="yith-wcwl-add-to-wishlist">
              <div class="yith-wcwl-add-button show">
@@ -529,7 +485,7 @@
            </div>
           </div>
           <div class="product-info equal-elem">
-           <h3 class="product-name product_title"> <a href="#" th:text="${goodsList.get(i*4).name}">Gaming Mouse</a> </h3>
+           <h3 class="product-name product_title"> <span style="color: red" th:if="${goodsList.get(i*4).miaoShaGoods!=null}">-限时秒杀- &nbsp;&nbsp; </span><a href="#" th:text="${goodsList.get(i*4).name}">Gaming Mouse</a> </h3>
            <div class="rating-wapper nostar">
             <div class="star-rating">
              <span style="width:0%">Rated <strong class="rating">0</strong> out of 5</span>
@@ -548,7 +504,7 @@
         <li class="product-item wow fadeInUp product-item rows-space-30 col-bg-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-ts-6 style-01 post-28 product type-product status-publish has-post-thumbnail product_cat-light product_cat-chair product_cat-sofas product_tag-light product_tag-sock  instock sale featured shipping-taxable purchasable product-type-simple" data-wow-duration="1s" data-wow-delay="0ms" data-wow="fadeInUp">
          <div class="product-inner tooltip-left">
           <div class="product-thumb">
-           <a class="thumb-link" href="#"> <img class="img-responsive" src="assets/images/apro1211-2-600x778.jpg" alt="Modern Watches" width="600" height="778" th:src="@{'/assets/images/' + ${goodsList.get(i*4+1).largeImg}}"> </a>
+           <a class="thumb-link" href="#" th:href="@{'/goods/detail/'+${goodsList.get(i*4+1).id}}"> <img class="img-responsive" src="assets/images/apro1211-2-600x778.jpg" alt="Modern Watches" width="600" height="778" th:src="@{'/assets/images/' + ${goodsList.get(i*4+1).largeImg}}"> </a>
            <div class="flash">
             <span class="onsale"><span class="number">-14%</span></span>
             <span class="onnew"><span class="text">New</span></span>
@@ -569,7 +525,7 @@
            </div>
           </div>
           <div class="product-info equal-elem">
-           <h3 class="product-name product_title"> <a href="#" th:text="${goodsList.get(i*4+1).name}">Modern Watches</a> </h3>
+           <h3 class="product-name product_title"> <span style="color: red" th:if="${goodsList.get(i*4+1).miaoShaGoods!=null}">-限时秒杀- &nbsp;&nbsp; </span><a href="#" th:text="${goodsList.get(i*4+1).name}">Modern Watches</a> </h3>
            <div class="rating-wapper ">
             <div class="star-rating">
              <span style="width:100%">Rated <strong class="rating">5.00</strong> out of 5</span>
@@ -590,7 +546,7 @@
         <li class="product-item wow fadeInUp product-item rows-space-30 col-bg-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-ts-6 style-01 post-30 product type-product status-publish has-post-thumbnail product_cat-light product_cat-bed product_cat-specials product_tag-light product_tag-table product_tag-sock last instock featured downloadable shipping-taxable purchasable product-type-simple" data-wow-duration="1s" data-wow-delay="0ms" data-wow="fadeInUp">
          <div class="product-inner tooltip-left">
           <div class="product-thumb">
-           <a class="thumb-link" href="#"> <img class="img-responsive" src="assets/images/apro101-1-600x778.jpg" alt="Mac 27 Inch" width="600" height="778" th:src="@{'/assets/images/'+${goodsList.get(i*4+2).largeImg}}"> </a>
+           <a class="thumb-link" href="#" th:href="@{'/goods/detail/'+${goodsList.get(i*4+2).id}}"> <img class="img-responsive" src="assets/images/apro101-1-600x778.jpg" alt="Mac 27 Inch" width="600" height="778" th:src="@{'/assets/images/'+${goodsList.get(i*4+2).largeImg}}"> </a>
            <div class="flash">
             <span class="onnew"><span class="text">New</span></span>
            </div>
@@ -610,7 +566,7 @@
            </div>
           </div>
           <div class="product-info equal-elem">
-           <h3 class="product-name product_title"> <a href="#" th:text="${goodsList.get(i*4+2).name}">Mac 27 Inch</a> </h3>
+           <h3 class="product-name product_title"><span style="color: red" th:if="${goodsList.get(i*4+2).miaoShaGoods!=null}">-限时秒杀- &nbsp;&nbsp; </span> <a href="#" th:text="${goodsList.get(i*4+2).name}">Mac 27 Inch</a> </h3>
            <div class="rating-wapper nostar">
             <div class="star-rating">
              <span style="width:0%">Rated <strong class="rating">0</strong> out of 5</span>
@@ -628,7 +584,7 @@
         <li class="product-item wow fadeInUp product-item rows-space-30 col-bg-3 col-xl-3 col-lg-4 col-md-6 col-sm-6 col-ts-6 style-01 post-23 product type-product status-publish has-post-thumbnail product_cat-chair product_cat-lamp product_cat-sofas product_tag-hat first instock shipping-taxable purchasable product-type-variable has-default-attributes" data-wow-duration="1s" data-wow-delay="0ms" data-wow="fadeInUp">
          <div class="product-inner tooltip-left">
           <div class="product-thumb">
-           <a class="thumb-link" href="#"> <img class="img-responsive" src="assets/images/apro171-1-600x778.jpg" alt="Photo Camera" width="600" height="778" th:src="@{'/assets/images/'+${goodsList.get(i*4+3).largeImg}}"> </a>
+           <a class="thumb-link" href="#" th:href="@{'/goods/detail/'+${goodsList.get(i*4+3).id}}"> <img class="img-responsive" src="assets/images/apro171-1-600x778.jpg" alt="Photo Camera" width="600" height="778" th:src="@{'/assets/images/'+${goodsList.get(i*4+3).largeImg}}"> </a>
            <div class="flash">
             <span class="onnew"><span class="text">New</span></span>
            </div>
@@ -662,7 +618,7 @@
            </div>
           </div>
           <div class="product-info equal-elem">
-           <h3 class="product-name product_title"> <a href="#" th:text="${goodsList.get(i*4+3).name}">Photo Camera</a> </h3>
+           <h3 class="product-name product_title"> <span style="color: red" th:if="${goodsList.get(i*4+3).miaoShaGoods!=null}">-限时秒杀- &nbsp;&nbsp; </span><a href="#" th:text="${goodsList.get(i*4+3).name}">Photo Camera</a> </h3>
            <div class="rating-wapper nostar">
             <div class="star-rating">
              <span style="width:0%">Rated <strong class="rating">0</strong> out of 5</span>

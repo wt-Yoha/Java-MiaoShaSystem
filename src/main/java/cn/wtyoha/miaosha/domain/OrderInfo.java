@@ -19,6 +19,7 @@ public class OrderInfo {
     Integer goodsCount;
     BigDecimal goodsPrice;
     Integer orderChannel;
+    Integer status;
     Date createDate;
     Date payDate;
 }

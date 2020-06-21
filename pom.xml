@@ -104,12 +104,14 @@
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
 
+<!--        springboot 集成单元测试-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
 
+<!--        项目热部署-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>

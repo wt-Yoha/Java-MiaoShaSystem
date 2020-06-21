@@ -471,7 +471,7 @@
       <div class="page-main-content">
        <div class="kobolg">
         <div class="kobolg-notices-wrapper"></div>
-        <form class="kobolg-cart-form">
+        <form class="kobolg-cart-form" action="/order/pay" th:action="@{/order/pay}" method="post">
          <table class="shop_table shop_table_responsive cart kobolg-cart-form__contents" cellspacing="0">
           <thead>
            <tr>
@@ -484,8 +484,8 @@
           </thead>
           <tbody>
            <tr class="kobolg-cart-form__cart-item cart_item">
-            <td class="product-thumbnail"> <a href="#"><img src="assets/images/apro134-1-600x778.jpg" class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img" width="600" height="778" th:src="@{'/assets/images/'+${goodsItem.middleImg}}"></a></td>
-            <td class="product-name" data-title="Product"> <a href="#" th:text="${goodsItem.name}">T-shirt with skirt – Pink</a></td>
+            <td class="product-thumbnail"> <a href="#" th:href="@{'/goods/detail/'+${goodsItem.id}}"><img src="assets/images/apro134-1-600x778.jpg" class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img" width="600" height="778" th:src="@{'/assets/images/'+${goodsItem.middleImg}}"></a></td>
+            <td class="product-name" data-title="Product"> <a href="#" th:href="@{'/goods/detail/'+${goodsItem.id}}" th:text="${goodsItem.name}">T-shirt with skirt – Pink</a></td>
             <td class="product-price" data-title="Price">
              <span class="kobolg-Price-amount amount">
               <span class="kobolg-Price-currencySymbol">$</span>
@@ -510,7 +510,8 @@
             </td>
            </tr> 
            <tr>
-            <td colspan="6" class="actions"> 
+            <td colspan="6" class="actions">
+             <input hidden="hidden" name="orderInfoId" value="-1" th:value="${orderInfo.id}">
               <button type="submit" class="button" name="update_cart" value="Update cart" > 付款 </button> <input type="hidden" id="kobolg-cart-nonce" name="kobolg-cart-nonce" value="f41b5bf554"><input type="hidden" name="_wp_http_referer" value="/kobolg/cart/">
             </td>
            </tr> 

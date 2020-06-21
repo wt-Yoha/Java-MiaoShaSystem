@@ -18,11 +18,12 @@ public class CodeMsg {
     public static CodeMsg WRONG_PASSWORD = new CodeMsg(500400, "密码错误", "login");
     public static CodeMsg SERVER_ERROR = new CodeMsg(500500, "服务器异常");
     public static CodeMsg UNREGISTER_USER = new CodeMsg(500600, "用户未注册", "login");
-    public static CodeMsg USER_UNLOGIN = new CodeMsg(500600, "用户登陆", "login");
+    public static CodeMsg USER_UNLOGIN = new CodeMsg(500600, "用户未登陆", "login");
 
 
     public static CodeMsg PRODUCT_LACK_OF_STOCK = new CodeMsg(400100, "商品已售罄");
     public static CodeMsg TOO_LARGE_QUANTITY = new CodeMsg(400200, "秒杀商品限拍一件");
+    public static CodeMsg ERROR_PAYMENT =new CodeMsg(400200, "支付失败", "redirect:/order/myOrders");
 
     CodeMsg(int code, String msg) {
         this.code = code;

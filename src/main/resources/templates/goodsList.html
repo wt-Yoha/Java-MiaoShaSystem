@@ -82,9 +82,11 @@
       </div>
       <div class="header-control">
           <span th:if="${user!=null}" >
-           <span th:text="${'欢迎回来,'+user.nickname}"></span>
+<!--           <span th:text="${'欢迎回来,'+user.nickname}"></span>-->
+       <a class="kobolg-menu-item-title" th:text="${'欢迎回来，'+user.nickname}" th:href="@{/order/myOrders}" title="查看我的订单" href="#"></a>
           </span>
-          <span th:if="${user == null}" th:text="您还未登录"></span>
+       <a class="kobolg-menu-item-title" th:if="${user==null}" th:title="前往登陆" th:href="@{/user/loginPage}" href="#">您还未登录</a>
+<!--          <span th:if="${user == null}" th:text="您还未登录"></span>-->
       </div>
      </div>
     </div>
@@ -337,7 +339,9 @@
             <li id="menu-item-988" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-988"> <a class="kobolg-menu-item-title" title="Contact" href="contact.html" th:href="@{/contact.html}">Contact</a></li>
             <li id="menu-item-990" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-990"> <a class="kobolg-menu-item-title" title="Page 404" href="error/404.html" th:href="@{/templates/error/404.html}">Page 404</a></li>
            </ul> </li>
-          <li id="menu-item-238" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-238"> <a class="kobolg-menu-item-title" title="Free Shipping on Orders $100" href="#">Free Shipping on Orders $100</a> </li>
+          <li id="menu-item-238" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-238">
+           <a class="kobolg-menu-item-title" title="Free Shipping on Orders $100" href="#">Free Shipping on Orders $100</a>
+          </li>
          </ul>
         </div>
        </div>

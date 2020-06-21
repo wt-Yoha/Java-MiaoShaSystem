@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -103,6 +104,20 @@ public class OderInfoServiceImpl implements OrderInfoService {
         return order;
     }
 
+    @Override
+    public List<OrderInfo> getUserAllOrders(MiaoShaUser user) {
+        return orderInfoDao.selectByUserId(user.getId());
+    }
+
+    @Override
+    public boolean pay(Long orderId) {
+        if (orderInfoDao.selectByPrimaryKey(orderId).getStatus() == 0) {
+            return orderInfoDao.setStatus(orderId, 1);
+        }
+        return true;
+    }
+
+    @Override
     public OrderInfo createOrder(MiaoShaUser user, Goods goods, int num) {
         OrderInfo order = new OrderInfo();
         order.setUserId(user.getId());

@@ -2,6 +2,7 @@ package cn.wtyoha.miaosha.domain;
 
 import lombok.Data;
 
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -12,6 +13,7 @@ import java.math.BigDecimal;
 @Table(name = "goods")
 public class Goods {
     @Id
+    @GeneratedValue(generator = "JDBC")
     private Long id;
     private String name;
     private String title;

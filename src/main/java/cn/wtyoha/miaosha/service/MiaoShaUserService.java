@@ -4,8 +4,7 @@ import cn.wtyoha.miaosha.domain.MiaoShaUser;
 
 public interface MiaoShaUserService {
     boolean register(MiaoShaUser user);
-
-    boolean login(MiaoShaUser user);
+    MiaoShaUser login(MiaoShaUser user);
     boolean isLogin();
     MiaoShaUser getLoginUser();
 }

@@ -3,20 +3,23 @@ package cn.wtyoha.miaosha.controller;
 import cn.wtyoha.miaosha.dao.GoodsDao;
 import cn.wtyoha.miaosha.domain.Goods;
 import cn.wtyoha.miaosha.domain.MiaoShaGoods;
-import cn.wtyoha.miaosha.domain.MiaoShaUser;
+import cn.wtyoha.miaosha.domain.result.Result;
 import cn.wtyoha.miaosha.service.GoodsService;
 import cn.wtyoha.miaosha.service.MiaoShaUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/goods")
+@ResponseBody
 public class GoodsController {
     @Autowired
     GoodsService goodsService;
@@ -28,19 +31,16 @@ public class GoodsController {
     MiaoShaUserService miaoShaUserService;
 
     @RequestMapping("/list")
-    public String goodsList(Model model) {
+    public Result<List<Goods>> goodsList() {
         List<Goods> goods = goodsService.goodList();
         while (goods.size() > 12) {
             goods.remove(goods.size() - 1);
         }
-        MiaoShaUser loginUser = miaoShaUserService.getLoginUser();
-        model.addAttribute("user", loginUser);
-        model.addAttribute("goodsList", goods);
-        return "goodsList";
+        return Result.success(goods);
     }
 
     @RequestMapping("/detail/{id}")
-    public String goodsDetail(@PathVariable("id") Long id, Model model) {
+    public Result<Map<String, Object>> goodsDetail(@PathVariable("id") Long id) {
         Goods goods = goodsDao.selectById(id);
         boolean isMiaoShaGoods = false;
         long start = -1, end = -1, now = new Date().getTime(), remainTime = -1, continueTime = -1;
@@ -64,12 +64,12 @@ public class GoodsController {
                 status = -1;
             }
         }
-        model.addAttribute("goodsItem", goods);
-        model.addAttribute("isMiaoShaGoods", isMiaoShaGoods);
-        model.addAttribute("status", status);
-        model.addAttribute("remainTime", remainTime);
-        model.addAttribute("continueTime", continueTime);
-        return "goodsDetail";
+        Map<String, Object> pack = new HashMap<>();
+        pack.put("status", status);
+        pack.put("goods", goods);
+        pack.put("remainTime", remainTime);
+        pack.put("continueTime", continueTime);
+        return Result.success(pack);
     }
 
 }

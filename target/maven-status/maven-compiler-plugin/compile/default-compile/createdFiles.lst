@@ -25,7 +25,6 @@ cn\wtyoha\miaosha\utils\DBdataUtil.class
 cn\wtyoha\miaosha\domain\result\CodeMsg.class
 cn\wtyoha\miaosha\domain\result\Result.class
 cn\wtyoha\miaosha\dao\MiaoShaUserDao.class
-cn\wtyoha\miaosha\dao\OderInfoDao.class
 cn\wtyoha\miaosha\validator\annotations\IsMobile.class
 cn\wtyoha\miaosha\utils\MD5Utils.class
 cn\wtyoha\miaosha\dao\MiaoShaGoodsDao.class

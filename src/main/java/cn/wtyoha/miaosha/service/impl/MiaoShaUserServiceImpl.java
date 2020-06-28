@@ -60,7 +60,7 @@ public class MiaoShaUserServiceImpl implements MiaoShaUserService {
      * @return
      */
     @Override
-    public boolean login(MiaoShaUser loginUser) {
+    public MiaoShaUser login(MiaoShaUser loginUser) {
         String password = loginUser.getPassword();
         MiaoShaUser user = userDao.selectByPrimaryKey(loginUser.getId());
         if (user == null) {
@@ -73,7 +73,7 @@ public class MiaoShaUserServiceImpl implements MiaoShaUserService {
                 String token = UUID.randomUUID().toString().replace("-", "");
                 addUserTORedisAndSetCookie(token, user);
             }
-            return true;
+            return user;
         } else {
             throw new GlobalException(CodeMsg.WRONG_PASSWORD);
         }

@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/chosen.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.scrollbar.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/lightbox.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/fonts/flaticon.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/megamenu.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/dreaming-attribute.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+    <title>Kobolg - HTML Template </title>
+</head>
+<body>
+<div id="myHeader"></div>
+<div id="myContainer">
+    <div class="banner-wrapper has_background">
+        <img src="assets/images/banner-for-all2.jpg" class="img-responsive attachment-1920x447 size-1920x447" alt="img">
+        <div class="banner-wrapper-inner">
+            <h1 class="page-title container">订单</h1>
+            <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs container">
+            </div>
+        </div>
+    </div>
+    <main class="site-main main-container no-sidebar">
+        <div class="container">
+            <div class="row">
+                <div class="main-content col-md-12">
+                    <div class="page-main-content">
+                        <div class="kobolg">
+                            <div class="kobolg-notices-wrapper"></div>
+                            <form class="kobolg-cart-form" action="/order/pay" method="post">
+                                <table class="shop_table shop_table_responsive cart kobolg-cart-form__contents" cellspacing="0">
+                                    <thead>
+                                    <tr>
+                                        <th class="product-thumbnail">&nbsp;</th>
+                                        <th class="product-name">商品</th>
+                                        <th class="product-price">价格</th>
+                                        <th class="product-quantity">数量</th>
+                                        <th class="product-subtotal">合计</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr class="kobolg-cart-form__cart-item cart_item">
+                                        <td class="product-thumbnail"> <a href="#"><img src="assets/images/apro134-1-600x778.jpg" class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img" width="600" height="778"></a></td>
+                                        <td class="product-name" data-title="Product"> <a href="#">T-shirt with skirt – Pink</a></td>
+                                        <td class="product-price" data-title="Price">
+             <span class="kobolg-Price-amount amount">
+                 <span class="kobolg-Price-currencySymbol">$</span>
+                 <span id="productPrice">150.00</span>
+            </span>
+                                        </td>
+                                        <td class="product-quantity" data-title="Quantity">
+                                            <div class="quantity">
+                                                <span class="qty-label">Quantiy:</span>
+                                                <div class="control">
+                                                    <input type="text" disabled="disabled" value="1" title="Qty" class="input-qty input-text qty text">
+                                                </div>
+                                            </div> </td>
+                                        <td class="product-subtotal" data-title="Total">
+             <span class="kobolg-Price-amount amount">
+              <span class="kobolg-Price-currencySymbol">$</span>
+             <span id="amount"></span>
+            </span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="6" class="actions">
+                                            <button type="button" class="button" id="payBtn" > 付款 </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<div id="myFooter"></div>
+<div class="footer-device-mobile">
+    <div class="wapper">
+        <div class="footer-device-mobile-item device-home">
+            <a href="index.html">
+					<span class="icon">
+						<i class="fa fa-home" aria-hidden="true"></i>
+					</span>
+                Home
+            </a>
+        </div>
+        <div class="footer-device-mobile-item device-home device-wishlist">
+            <a href="wishlist.html">
+					<span class="icon">
+						<i class="fa fa-heart" aria-hidden="true"></i>
+					</span>
+                Wishlist
+            </a>
+        </div>
+        <div class="footer-device-mobile-item device-home device-cart">
+            <a href="cart.html">
+					<span class="icon">
+						<i class="fa fa-shopping-basket" aria-hidden="true"></i>
+						<span class="count-icon">
+							0
+						</span>
+					</span>
+                <span class="text">Cart</span>
+            </a>
+        </div>
+        <div class="footer-device-mobile-item device-home device-user">
+            <a href="my-account.html">
+					<span class="icon">
+						<i class="fa fa-user" aria-hidden="true"></i>
+					</span>
+                Account
+            </a>
+        </div>
+    </div>
+</div>
+<a href="#" class="backtotop active">
+    <i class="fa fa-angle-up"></i>
+</a>
+<script src="assets/js/jquery-1.12.4.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/chosen.min.js"></script>
+<script src="assets/js/countdown.min.js"></script>
+<script src="assets/js/jquery.scrollbar.min.js"></script>
+<script src="assets/js/lightbox.min.js"></script>
+<script src="assets/js/magnific-popup.min.js"></script>
+<script src="assets/js/slick.js"></script>
+<script src="assets/js/jquery.zoom.min.js"></script>
+<script src="assets/js/threesixty.min.js"></script>
+<script src="assets/js/jquery-ui.min.js"></script>
+<script src="assets/js/mobilemenu.js"></script>
+<script src='http://www.google.cn/maps/api/js?key=AIzaSyC3nDHy1dARR-Pa_2jjPCjvsOR4bcILYsM'></script>
+<script src="assets/js/functions.js"></script>
+<script src="assets/js/PageUtils.js"></script>
+<script>
+    $(function () {
+        loadHeaderAndFooter();
+        renderPage();
+    });
+
+    function renderPage() {
+        const orderId = getUrlParam("orderId");
+        $.ajax({
+            url: contentUrl("/order/query"),
+            data: {orderId: orderId},
+            type: "GET",
+            success: (result) => {
+                resultProcessing(
+                    result,
+                    function (result) {
+                        // 加载图片
+                        const order = result.data.order;
+                        const goods = result.data.goods;
+                        $(".attachment-kobolg_thumbnail.size-kobolg_thumbnail").attr("src", contentUrl("/assets/images/" + goods.middleImg));
+                        const namenode = $(".product-name a");
+                        // 名称
+                        namenode.text(goods.name);
+                        namenode.attr("href", contentUrl("/goods/detail/" + goods.id));
+                        // price and amount
+                        if (goods.miaoShaGoods === null) {
+                            $("#productPrice").text(goods.price);
+                            $("#amount").text(goods.price * order.goodsCount);
+                        } else {
+                            $("#productPrice").text(goods.miaoShaGoods.miaoshaPrice);
+                            $("#amount").text(goods.miaoShaGoods.miaoshaPrice * order.goodsCount);
+                        }
+                        // quantity
+                        $("input.input-qty.input-text.qty.text").val(order.goodsCount);
+                        // 付款动作
+                        var payBtn = $("#payBtn");
+                        payBtn.val(order.id);
+                        payBtn.attr("onclick", "pay(this)");
+                        if (parseInt(order.status) === 1) {
+                            payBtn.attr("disabled", true);
+                            payBtn.text("已支付");
+                        }
+                    }
+                );
+            }
+        })
+    }
+
+    function pay(btn) {
+        const orderId = $(btn).val();
+        $.ajax({
+            url: contentUrl("/order/pay"),
+            data: {orderInfoId: orderId},
+            type: "POST",
+            success: (result) => {
+                resultProcessing(
+                    result,
+                    (result) => {
+                        location.href = contentUrl("/orderList.html");
+                    }
+                );
+            }
+        })
+    }
+</script>
+</body>
+</html>

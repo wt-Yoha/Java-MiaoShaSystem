@@ -1,11 +1,13 @@
 package cn.wtyoha.miaosha.globalexception;
 
 import cn.wtyoha.miaosha.domain.result.CodeMsg;
+import cn.wtyoha.miaosha.domain.result.Result;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -16,23 +18,22 @@ import java.util.List;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = {GlobalException.class, BindException.class})
-    public String myDefineExceptionHandler(Exception e, Model model) {
+    @ResponseBody
+    public Result<CodeMsg> myDefineExceptionHandler(Exception e) {
         e.printStackTrace();
+        CodeMsg codeMsg = null;
         if (e instanceof GlobalException) {
-            CodeMsg codeMsg = ((GlobalException) e).getCodeMsg();
-            model.addAttribute("codeMsg", codeMsg);
-            return codeMsg.getView();
+            codeMsg = ((GlobalException) e).getCodeMsg();
         } else if (e instanceof BindException) {
             BindException ex = (BindException) e;
             List<ObjectError> errors = ex.getAllErrors();
             ObjectError error = errors.get(0);
             String msg = error.getDefaultMessage();
-            CodeMsg codeMsg = CodeMsg.BIND_ERROR.fillArgs(msg);
-            model.addAttribute("codeMsg", codeMsg);
-            return codeMsg.getView();
+            codeMsg = CodeMsg.BIND_ERROR.fillArgs(msg);
         } else {
             throw new RuntimeException("错误的异常捕获");
         }
+        return Result.error(codeMsg);
     }
 
     @ExceptionHandler(value = Exception.class)

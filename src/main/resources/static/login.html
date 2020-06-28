@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/chosen.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/jquery.scrollbar.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/lightbox.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/magnific-popup.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/fonts/flaticon.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/megamenu.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/dreaming-attribute.css"/>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css"/>
+    <title>Kobolg - HTML Template </title>
+</head>
+<body>
+<div id="myHeader"></div>
+
+<div id="myContainer">
+<div class="banner-wrapper has_background">
+    <img src="assets/images/banner-for-all2.jpg"
+         class="img-responsive attachment-1920x447 size-1920x447" alt="img">
+    <div class="banner-wrapper-inner">
+        <h1 class="page-title container">My Account</h1>
+        <div role="navigation" aria-label="Breadcrumbs" class="breadcrumb-trail breadcrumbs container">
+            <ul class="trail-items breadcrumb">
+                <li class="trail-item trail-begin"><a href="index.html"><span>Home</span></a></li>
+                <li class="trail-item trail-end active"><span>My Account</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<main class="site-main  main-container no-sidebar">
+    <div class="container">
+        <div class="row">
+            <div class="main-content col-md-12">
+                <div class="page-main-content">
+                    <div class="kobolg">
+                        <div class="kobolg-notices-wrapper"></div>
+                        <div class="u-columns col2-set" id="customer_login">
+                            <div class="u-column1 col-1">
+                                <h2>Login</h2>
+                                <form class="kobolg-form kobolg-form-login login" method="post" action="/user/login">
+                                    <input hidden="hidden" name="nickname" value="xxx123456">
+                                    <p class="kobolg-form-row kobolg-form-row--wide form-row form-row-wide">
+                                        <label for="username">账号(电话号码)&nbsp;<span
+                                                class="required">*</span></label>
+                                        <input type="text" class="kobolg-Input kobolg-Input--text input-text"
+                                               name="id" id="username" autocomplete="username" value=""></p>
+                                    <p class="kobolg-form-row kobolg-form-row--wide form-row form-row-wide">
+                                        <label for="password">密码&nbsp;<span class="required">*</span></label>
+                                        <input class="kobolg-Input kobolg-Input--text input-text lpassword"
+                                               type="password" name="password" id="password"
+                                               autocomplete="current-password">
+                                    </p>
+                                    <p class="form-row">
+                                        <button id="loginBtn" type="button" class="kobolg-Button button" name="login"
+                                                value="Log in">登陆
+                                        </button>
+                                </form>
+                            </div>
+                            <div class="u-column2 col-2">
+                                <h2>Register</h2>
+                                <form method="post" class="kobolg-form kobolg-form-register register" action="/user/register">
+                                    <p class="kobolg-form-row kobolg-form-row--wide form-row form-row-wide">
+                                        <label for="reg_email">电话号码&nbsp;<span
+                                                class="required">*</span></label>
+                                        <input type="text" class="kobolg-Input kobolg-Input--text input-text"
+                                               name="id" id="reg_email" autocomplete="email" value="">
+                                    </p>
+                                    <p class="kobolg-form-row kobolg-form-row--wide form-row form-row-wide">
+                                        <label for="reg_email">账户昵称&nbsp;<span
+                                                class="required">*</span></label>
+                                        <input type="text" class="kobolg-Input kobolg-Input--text input-text"
+                                               name="nickname" autocomplete="email" value="">
+                                    </p>
+                                    <p class="kobolg-form-row kobolg-form-row--wide form-row form-row-wide">
+                                        <label for="reg_email">密码&nbsp;<span
+                                                class="required">*</span></label>
+                                        <input type="password" class="kobolg-Input kobolg-Input--text input-text rpassword"
+                                               name="password" autocomplete="email" value="">
+                                    </p>
+                                    <p class="kobolg-FormRow form-row">
+                                        <button id="registerBtn" type="button" class="kobolg-Button button" name="register"
+                                                value="Register"> 注册
+                                        </button>
+                                    </p>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</div>
+<div id="myFooter"></div>
+<div class="footer-device-mobile">
+    <div class="wapper">
+        <div class="footer-device-mobile-item device-home">
+            <a href="index.html">
+					<span class="icon">
+						<i class="fa fa-home" aria-hidden="true"></i>
+					</span>
+                Home
+            </a>
+        </div>
+        <div class="footer-device-mobile-item device-home device-wishlist">
+            <a href="wishlist.html">
+					<span class="icon">
+						<i class="fa fa-heart" aria-hidden="true"></i>
+					</span>
+                Wishlist
+            </a>
+        </div>
+        <div class="footer-device-mobile-item device-home device-cart">
+            <a href="cart.html">
+					<span class="icon">
+						<i class="fa fa-shopping-basket" aria-hidden="true"></i>
+						<span class="count-icon">
+							0
+						</span>
+					</span>
+                <span class="text">Cart</span>
+            </a>
+        </div>
+        <div class="footer-device-mobile-item device-home device-user">
+            <a href="my-account.html">
+					<span class="icon">
+						<i class="fa fa-user" aria-hidden="true"></i>
+					</span>
+                Account
+            </a>
+        </div>
+    </div>
+</div>
+<a href="#" class="backtotop active">
+    <i class="fa fa-angle-up"></i>
+</a>
+<script src="assets/js/jquery-1.12.4.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/chosen.min.js"></script>
+<script src="assets/js/countdown.min.js"></script>
+<script src="assets/js/jquery.scrollbar.min.js"></script>
+<script src="assets/js/lightbox.min.js"></script>
+<script src="assets/js/magnific-popup.min.js"></script>
+<script src="assets/js/slick.js"></script>
+<script src="assets/js/jquery.zoom.min.js"></script>
+<script src="assets/js/threesixty.min.js"></script>
+<script src="assets/js/jquery-ui.min.js"></script>
+<script src="assets/js/mobilemenu.js"></script>
+<script src='http://www.google.cn/maps/api/js?key=AIzaSyC3nDHy1dARR-Pa_2jjPCjvsOR4bcILYsM'></script>
+<script src="assets/js/functions.js"></script>
+<script src="assets/js/PageUtils.js"></script>
+<script src="assets/js/md5.min.js"></script>
+<script>
+    $(function () {
+        loadHeaderAndFooter();
+        renderPage();
+    });
+
+    function renderPage() {
+        $("#loginBtn").attr("onclick", "goLogin()");
+        $("#registerBtn").attr("onclick", "goRegister()");
+    }
+
+    function goLogin() {
+        let lpass = $(".lpassword");
+        let salt = "123jkldsfs";
+        let strWithSalt = salt.charAt(2) + salt.charAt(3) + salt.charAt(5) + lpass.val() + salt.charAt(0) + salt.charAt(4);
+        let password = md5(strWithSalt);
+        lpass.val(password);
+        $.ajax({
+            url: contentUrl("/user/login"),
+            data: $(".login").serialize(),
+            type: "POST",
+            success: (result) => {
+                resultProcessing(
+                    result,
+                    (resutl) => {
+                        location.href = contentUrl("/shop.html");
+                    }
+                );
+            }
+        });
+    }
+
+    function goRegister() {
+        let rpass = $(".rpassword");
+        let salt = "123jkldsfs";
+        let strWithSalt = salt.charAt(2) + salt.charAt(3) + salt.charAt(5) + rpass.val() + salt.charAt(0) + salt.charAt(4);
+        let password = md5(strWithSalt);
+        rpass.val(password);
+        $.ajax({
+            url: contentUrl("/user/register"),
+            data: $(".register").serialize(),
+            type: "POST",
+            success: (result) => {
+                resultProcessing(
+                    result,
+                    (resutl) => {
+                        location.href = contentUrl("/shop.html");
+                    }
+                );
+            }
+        })
+    }
+</script>
+</body>
+</html>

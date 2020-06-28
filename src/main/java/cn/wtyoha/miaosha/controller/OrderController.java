@@ -6,6 +6,7 @@ import cn.wtyoha.miaosha.domain.Goods;
 import cn.wtyoha.miaosha.domain.MiaoShaUser;
 import cn.wtyoha.miaosha.domain.OrderInfo;
 import cn.wtyoha.miaosha.domain.result.CodeMsg;
+import cn.wtyoha.miaosha.domain.result.Result;
 import cn.wtyoha.miaosha.globalexception.GlobalException;
 import cn.wtyoha.miaosha.service.MiaoShaUserService;
 import cn.wtyoha.miaosha.service.OrderInfoService;
@@ -14,12 +15,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/order")
+@ResponseBody
 public class OrderController {
     @Autowired
     GoodsDao goodsDao;
@@ -33,15 +38,41 @@ public class OrderController {
     @Autowired
     OrderInfoService orderInfoService;
 
+    /**
+     * 根据orderid查询order信息
+     * @param id
+     * @return
+     */
+    @RequestMapping("/query")
+    public Result<Object> queryOrder(@RequestParam("orderId") Long id) {
+        OrderInfo orderInfo = orderInfoDao.selectByPrimaryKey(id);
+        Goods goods = null;
+        if (orderInfo != null) {
+            goods = goodsDao.selectById(orderInfo.getGoodsId());
+            Map<String, Object> pack = new HashMap<>();
+            pack.put("order", orderInfo);
+            pack.put("goods", goods);
+            return Result.success(pack);
+        }
+        throw new GlobalException(CodeMsg.SERVER_ERROR);
+    }
+
+    /**
+     * 下单api
+     * @param id
+     * @param quantity
+     * @param model
+     * @return
+     */
     @RequestMapping("/take")
-    public String takeOrder(@RequestParam("id") Long id, @RequestParam("quantity[25]") int quantity, Model model) {
+    public Result<Map<String, Object>> takeOrder(@RequestParam("id") Long id, @RequestParam("quantity") int quantity, Model model) {
         // 检查登陆
         MiaoShaUser loginUser = miaoShaUserService.getLoginUser();
         if (loginUser == null) {
             // 返回登陆页面，requestLogin字段为true表示页面提示登陆
             throw new GlobalException(CodeMsg.USER_UNLOGIN);
         }
-        Object orderInfo = null;
+        OrderInfo orderInfo = null;
         // 检查是否是秒杀商品
         Goods goods = goodsDao.selectById(id);
         if (goods == null) {
@@ -55,16 +86,23 @@ public class OrderController {
 
         if (orderInfo == null) {
             // 下单失败，返回商品详情页
-            return "forwad:/goods/detail/" + id;
+            return Result.error(CodeMsg.SERVER_ERROR);
         }
 
-        model.addAttribute("orderInfo", orderInfo);
-        model.addAttribute("goodsItem", goods);
-        return "order";
+        Map<String, Object> pack = new HashMap<>();
+        pack.put("order", orderInfo);
+        pack.put("goods", goods);
+        return Result.success(pack);
     }
 
+    /**
+     * 查看用户所有订单
+     * @param model
+     * @return
+     */
+    @ResponseBody
     @RequestMapping("/myOrders")
-    public String myOrders(Model model) {
+    public Result<Object> myOrders(Model model) {
         MiaoShaUser loginUser = miaoShaUserService.getLoginUser();
         if (loginUser == null) {
             throw new GlobalException(CodeMsg.USER_UNLOGIN);
@@ -78,14 +116,24 @@ public class OrderController {
         }
         model.addAttribute("orderList", orders);
         model.addAttribute("goodsList", goodsList);
-        return "myOrders";
+
+        Map<String, Object> pack = new HashMap<>();
+        pack.put("orders", orders);
+        pack.put("goods", goodsList);
+        return Result.success(pack);
     }
 
+    /**
+     * 支付api
+     * @param orderId
+     * @return
+     */
+    @ResponseBody
     @RequestMapping("/pay")
-    public String payOrder(@RequestParam("orderInfoId") Long orderId) {
+    public Result<Object> payOrder(@RequestParam("orderInfoId") Long orderId) {
         if (!orderInfoService.pay(orderId)){
             throw new GlobalException(CodeMsg.ERROR_PAYMENT);
         }
-        return "redirect:/order/myOrders";
+        return Result.success(null);
     }
 }

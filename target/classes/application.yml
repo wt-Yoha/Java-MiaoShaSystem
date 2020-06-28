@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8081
   servlet:
     context-path: /bazewind
 spring:
@@ -9,31 +9,42 @@ spring:
     url: jdbc:mysql://www.wtyoha.cn:3306/miaosha_system
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
+  rabbitmq:
+    addresses: www.wtyoha.cn
+    port: 5672
+    username: wtyoha
+    password: 996895
+    virtual-host: /
 
-  thymeleaf:
-    prefix: classpath:/templates/
-    suffix: .html
-    mode: HTML
-    encoding: UTF-8
-    cache: false
-
+# 静态资源配置
   resources:
-    static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/, classpath:/templates/, classpath:/static/assets/, classpath:/templates/assets/
+    static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/
+    add-mappings: true
+    cache:
+      period: 1
+    chain:
+      cache: true
+      enabled: true
+      html-application-cache: true
+
 
 # redis
 redis:
   host: www.wtyoha.cn
   port: 6379
-  timeout: 3
+  timeout: 10
   password: 996895
-  poolMaxTotal: 10
-  poolMaxIdle: 10
-  poolMaxWait: 3
+  poolMaxTotal: 5000
+  poolMaxIdle: 1000
+  poolMaxWait: 30
 
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
 
+# 日志
 logging:
   level:
     root: info
+
+

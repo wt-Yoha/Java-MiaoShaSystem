@@ -42,9 +42,20 @@ public class MiaoShaUserController {
         return Result.success(null);
     }
 
-
+    /**
+     * 获取登陆用户的信息
+     *
+     * @return
+     */
     @RequestMapping("/loginMsg")
     public Result<MiaoShaUser> loginUser() {
         return Result.success(userService.getLoginUser());
     }
+
+    @RequestMapping("/logout")
+    public Result<Object> logout() {
+        userService.logout();
+        return Result.success(null);
+    }
+
 }

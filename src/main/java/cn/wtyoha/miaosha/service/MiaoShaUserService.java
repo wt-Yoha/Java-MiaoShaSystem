@@ -7,4 +7,5 @@ public interface MiaoShaUserService {
     MiaoShaUser login(MiaoShaUser user);
     boolean isLogin();
     MiaoShaUser getLoginUser();
+    void logout();
 }

@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class RedisUtils {
     public final static int THIRTY_SECONDS = 30;
-    public final static int THIRTY_MINITE = 30;
+    public final static int THIRTY_MINUTE = 30 * 60;
     @Autowired
     JedisPool jedisPool;
 
@@ -154,6 +154,21 @@ public class RedisUtils {
     private void close(Jedis jedis) {
         if (jedis != null) {
             jedis.close();
+        }
+    }
+
+    public void deleteKey(String key) {
+        if (key == null || key.length() == 0) {
+            return;
+        }
+        Jedis jedis = null;
+        try {
+            if (jedisPool != null) {
+                jedis = jedisPool.getResource();
+                jedis.del(key);
+            }
+        }finally {
+            close(jedis);
         }
     }
 }

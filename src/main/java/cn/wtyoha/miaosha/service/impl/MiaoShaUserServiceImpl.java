@@ -22,7 +22,6 @@ import java.util.UUID;
 public class MiaoShaUserServiceImpl implements MiaoShaUserService {
 
     // redis 和 cookei 的保存时间 秒
-    private static int TOKEN_TIMEOUT = 60 * 30;
     private static String TOKEN_NAME = "token";
 
     @Autowired
@@ -61,22 +60,41 @@ public class MiaoShaUserServiceImpl implements MiaoShaUserService {
      */
     @Override
     public MiaoShaUser login(MiaoShaUser loginUser) {
+        MiaoShaUser user = null;
+        // 根据cookie检查是否已经登陆
+        if ((user = getLoginUser()) != null) {
+            return user;
+        }
+        if (redisUtils.get(UserKey.ID.getFullKey(String.valueOf(loginUser.getId())), Boolean.class) != null) {
+            // 用户已经登陆
+            throw new GlobalException(CodeMsg.REPEAT_LOGIN);
+        }
         String password = loginUser.getPassword();
-        MiaoShaUser user = userDao.selectByPrimaryKey(loginUser.getId());
+        // 从数据库获取用户信息
+        user = userDao.selectByPrimaryKey(loginUser.getId());
         if (user == null) {
             throw new GlobalException(CodeMsg.UNREGISTER_USER);
         }
         String salt = user.getSalt();
         String dbPass = MD5Utils.inputPassToDBPass(password, salt);
         if (dbPass.equals(user.getPassword())) {
-            if (!isLogin()) {
-                String token = UUID.randomUUID().toString().replace("-", "");
-                addUserTORedisAndSetCookie(token, user);
-            }
+            // 设置cookie
+            String token = UUID.randomUUID().toString().replace("-", "");
+            addUserToRedisAndSetCookie(token, user);
+            setUserLoginStatus(user);
             return user;
         } else {
             throw new GlobalException(CodeMsg.WRONG_PASSWORD);
         }
+    }
+
+    /**
+     * 设置用户登陆状态
+     *
+     * @param user
+     */
+    private void setUserLoginStatus(MiaoShaUser user) {
+        redisUtils.set(UserKey.ID.getFullKey(String.valueOf(user.getId())), true, RedisUtils.THIRTY_MINUTE);
     }
 
     /**
@@ -95,36 +113,55 @@ public class MiaoShaUserServiceImpl implements MiaoShaUserService {
 
     /**
      * 获得已登陆用户的信息
+     *
      * @return
      */
     @Override
     public MiaoShaUser getLoginUser() {
         MiaoShaUser miaoShaUser = null;
         // 从request域中获取cookie
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null) {
-            for (Cookie cookie : cookies) {
-                if (TOKEN_NAME.equals(cookie.getName())) {
-                    String token = cookie.getValue();
-                    miaoShaUser = redisUtils.get(UserKey.TOKEN.getFullKey(token), MiaoShaUser.class);
-                    // 登录信息已经存在 更新过期时间
-                    if (miaoShaUser != null) {
-                        addUserTORedisAndSetCookie(token, miaoShaUser);
-                    }
-                    break;
-                }
-            }
+        String token = getCookie(TOKEN_NAME);
+        miaoShaUser = redisUtils.get(UserKey.TOKEN.getFullKey(token), MiaoShaUser.class);
+        // 登录信息已经存在 更新过期时间
+        if (miaoShaUser != null) {
+            addUserToRedisAndSetCookie(token, miaoShaUser);
+            setUserLoginStatus(miaoShaUser);
         }
         return miaoShaUser;
     }
 
-    private void addUserTORedisAndSetCookie(String token, MiaoShaUser user) {
+    @Override
+    public void logout() {
+        // 用户登出
+        // 删除cookie中thoken对应的user信息
+        String token = getCookie(TOKEN_NAME);
+        MiaoShaUser user = redisUtils.get(UserKey.TOKEN.getFullKey(token), MiaoShaUser.class);
+        redisUtils.deleteKey(UserKey.TOKEN.getFullKey(token));
+        // 删除user的登陆状态
+        redisUtils.deleteKey(UserKey.ID.getFullKey(String.valueOf(user.getId())));
+    }
+
+    private void addUserToRedisAndSetCookie(String token, MiaoShaUser user) {
         // 将User存入redis
-        redisUtils.set(UserKey.TOKEN.getFullKey(token), user, TOKEN_TIMEOUT);
+        redisUtils.set(UserKey.TOKEN.getFullKey(token), user, RedisUtils.THIRTY_MINUTE);
         // 将token加入cookie
         Cookie cookie = new Cookie(TOKEN_NAME, token);
-        cookie.setMaxAge(TOKEN_TIMEOUT);
+        cookie.setMaxAge(RedisUtils.THIRTY_MINUTE);
         cookie.setPath("/");
         response.addCookie(cookie);
+    }
+
+    private String getCookie(String key) {
+        String value = null;
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            for (Cookie cookie : cookies) {
+                if (TOKEN_NAME.equals(cookie.getName())) {
+                    value = cookie.getValue();
+                    return value;
+                }
+            }
+        }
+        return value;
     }
 }

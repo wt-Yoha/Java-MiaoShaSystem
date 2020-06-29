@@ -1,6 +1,5 @@
 package cn.wtyoha.miaosha.controller;
 
-import cn.wtyoha.miaosha.dao.GoodsDao;
 import cn.wtyoha.miaosha.domain.Goods;
 import cn.wtyoha.miaosha.domain.MiaoShaGoods;
 import cn.wtyoha.miaosha.domain.result.Result;
@@ -25,9 +24,6 @@ public class GoodsController {
     GoodsService goodsService;
 
     @Autowired
-    GoodsDao goodsDao;
-
-    @Autowired
     MiaoShaUserService miaoShaUserService;
 
     @RequestMapping("/list")
@@ -41,7 +37,7 @@ public class GoodsController {
 
     @RequestMapping("/detail/{id}")
     public Result<Map<String, Object>> goodsDetail(@PathVariable("id") Long id) {
-        Goods goods = goodsDao.selectById(id);
+        Goods goods = goodsService.getGoodsById(id);
         boolean isMiaoShaGoods = false;
         long start = -1, end = -1, now = new Date().getTime(), remainTime = -1, continueTime = -1;
         int status = -1;
@@ -71,5 +67,4 @@ public class GoodsController {
         pack.put("continueTime", continueTime);
         return Result.success(pack);
     }
-
 }

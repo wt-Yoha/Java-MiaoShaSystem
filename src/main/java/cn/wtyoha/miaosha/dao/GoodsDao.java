@@ -23,4 +23,7 @@ public interface GoodsDao extends tk.mybatis.mapper.common.Mapper<Goods> {
 
     @Update("update goods set stock = stock - #{num} where id = #{id} and stock = #{originStock}")
     int subStock(@Param("id") Long id, @Param("num") int num, @Param("originStock") Integer originStock);
+
+    @Select("select max(id) from goods")
+    Long maxValidId();
 }

@@ -68,6 +68,8 @@ public class RedisUtils {
                 String sValue = jedis.get(key);
                 return JSON.parseArray(sValue, clazz);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             close(jedis);
         }
@@ -93,6 +95,8 @@ public class RedisUtils {
                 String sValue = jedis.get(key);
                 return JSON.parseObject(sValue, clazz);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             close(jedis);
         }

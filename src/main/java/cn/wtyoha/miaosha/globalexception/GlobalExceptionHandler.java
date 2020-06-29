@@ -15,10 +15,10 @@ import java.util.List;
  * 定义一个全局的异常处理器
  */
 @ControllerAdvice
+@ResponseBody
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = {GlobalException.class, BindException.class})
-    @ResponseBody
     public Result<CodeMsg> myDefineExceptionHandler(Exception e) {
         e.printStackTrace();
         CodeMsg codeMsg = null;
@@ -37,10 +37,10 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(value = Exception.class)
-    public String normalExceptionHandler(Exception e, Model model) {
+    public Result<Object> normalExceptionHandler(Exception e, Model model) {
         e.printStackTrace();
         model.addAttribute("errorMsg", e.getMessage());
-        return "ErrorPage";
+        return Result.error(CodeMsg.SERVER_ERROR);
     }
 
 }

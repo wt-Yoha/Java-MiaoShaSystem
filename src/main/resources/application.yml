@@ -16,6 +16,12 @@ spring:
     password: 996895
     virtual-host: /
 
+  http:
+    encoding:
+      force: true #是否将编码强制到HTTP请求和响应上配置的字符集。默认为false
+      enabled: true #是否启用http编码支持。默认为false
+      charset: UTF-8 #HTTP请求和响应的字符集。如果没有明确设置,就将该字符集添加到Content-Type中
+
 # 静态资源配置
   resources:
     static-locations: classpath:/META-INF/resources/, classpath:/resources/, classpath:/static/, classpath:/public/

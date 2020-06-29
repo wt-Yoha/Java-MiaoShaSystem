@@ -21,9 +21,9 @@ public class CodeMsg {
     public static CodeMsg USER_UNLOGIN = new CodeMsg(500600, "用户未登陆", "login");
 
 
-    public static CodeMsg PRODUCT_LACK_OF_STOCK = new CodeMsg(400100, "商品已售罄");
-    public static CodeMsg TOO_LARGE_QUANTITY = new CodeMsg(400200, "秒杀商品限拍一件");
-    public static CodeMsg ERROR_PAYMENT =new CodeMsg(400200, "支付失败", "redirect:/order/myOrders");
+    public static CodeMsg PRODUCT_LACK_OF_STOCK = new CodeMsg(600100, "商品已售罄");
+    public static CodeMsg TOO_LARGE_QUANTITY = new CodeMsg(600200, "秒杀商品限拍一件");
+    public static CodeMsg ERROR_PAYMENT =new CodeMsg(600200, "支付失败", "redirect:/order/myOrders");
 
     CodeMsg(int code, String msg) {
         this.code = code;

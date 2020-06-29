@@ -289,10 +289,17 @@
             url: contentUrl("/order/take"),
             data: {id: goodsId, quantity: quantity},
             type: "POST",
-            success: (result) => {
-                // 下单成功，跳转页面
-                location.href = contentUrl("/order.html?orderId=" + result.data.order.id);
-            }
+            success:
+                (result) => {
+                    resultProcessing(
+                        result,
+                        (result) => {
+                            // 下单成功，跳转页面
+                            location.href = contentUrl("/order.html?orderId=" + result.data.order.id);
+                        },
+                        alertErrorMsg
+                    )
+                }
         });
     }
 

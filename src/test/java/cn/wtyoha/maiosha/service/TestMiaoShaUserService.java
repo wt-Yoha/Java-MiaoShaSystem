@@ -38,7 +38,7 @@ public class TestMiaoShaUserService {
         for (int i = 0; i < 1000; i++) {
             String token = UUID.randomUUID().toString().replace("-", "");
             outputStream.write((token+"\n").getBytes());
-            redisUtils.set(UserKey.TOKEN.getFullkey(token), user, 60*60*24);
+            redisUtils.set(UserKey.TOKEN.getFullKey(token), user, 60*60*24);
         }
         outputStream.close();
     }

@@ -106,7 +106,7 @@ public class MiaoShaUserServiceImpl implements MiaoShaUserService {
             for (Cookie cookie : cookies) {
                 if (TOKEN_NAME.equals(cookie.getName())) {
                     String token = cookie.getValue();
-                    miaoShaUser = redisUtils.get(UserKey.TOKEN.getFullkey(token), MiaoShaUser.class);
+                    miaoShaUser = redisUtils.get(UserKey.TOKEN.getFullKey(token), MiaoShaUser.class);
                     // 登录信息已经存在 更新过期时间
                     if (miaoShaUser != null) {
                         addUserTORedisAndSetCookie(token, miaoShaUser);
@@ -120,7 +120,7 @@ public class MiaoShaUserServiceImpl implements MiaoShaUserService {
 
     private void addUserTORedisAndSetCookie(String token, MiaoShaUser user) {
         // 将User存入redis
-        redisUtils.set(UserKey.TOKEN.getFullkey(token), user, TOKEN_TIMEOUT);
+        redisUtils.set(UserKey.TOKEN.getFullKey(token), user, TOKEN_TIMEOUT);
         // 将token加入cookie
         Cookie cookie = new Cookie(TOKEN_NAME, token);
         cookie.setMaxAge(TOKEN_TIMEOUT);

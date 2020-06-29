@@ -89,6 +89,7 @@ public class OrderController {
             return Result.error(CodeMsg.SERVER_ERROR);
         }
 
+        model.addAttribute("goodsItem", goods);
         Map<String, Object> pack = new HashMap<>();
         pack.put("order", orderInfo);
         pack.put("goods", goods);

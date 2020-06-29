@@ -1,16 +1,16 @@
 package cn.wtyoha.miaosha.redis.commonkey.base;
 
 public class BasePrefix implements KeyPrefix {
-    int expireSecons;
+    int expireSeconds;
     String prefix;
 
     public BasePrefix(String prefix) {
-        expireSecons = 0;
+        expireSeconds = 0;
         this.prefix = prefix;
     }
 
     public BasePrefix(int timeout, String prefix) {
-        expireSecons = timeout;
+        expireSeconds = timeout;
         this.prefix = prefix;
     }
 
@@ -22,10 +22,14 @@ public class BasePrefix implements KeyPrefix {
 
     @Override
     public String getPrefix() {
-        return this.getClass().getSimpleName() + ":" + prefix;
+        return this.getClass().getSimpleName() + "." + prefix;
     }
 
-    public String getFullkey(String key) {
-        return getPrefix() + "_" + key;
+    public String getFullKey() {
+        return getPrefix() + "";
+    }
+
+    public String getFullKey(String key) {
+        return getPrefix() + "." + key;
     }
 }

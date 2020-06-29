@@ -6,22 +6,28 @@ import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+import java.util.List;
+
 @Component
 public class RedisUtils {
+    public final static int THIRTY_SECONDS = 30;
+    public final static int THIRTY_MINITE = 30;
     @Autowired
     JedisPool jedisPool;
 
     /**
      * 在Redis中存入key-value
+     *
      * @param key
      * @param value
      * @param <T>
      * @return bool
      */
-    public <T> boolean set(String key, T value){
+    public <T> boolean set(String key, T value) {
         return set(key, value, -1);
     }
-    public <T> boolean set(String key, T value, int timeout){
+
+    public <T> boolean set(String key, T value, int timeout) {
         if (key == null || key.length() == 0 || value == null) {
             return false;
         }
@@ -37,20 +43,46 @@ public class RedisUtils {
                 }
                 return true;
             }
-        }finally {
+        } finally {
             close(jedis);
         }
         return false;
     }
 
     /**
+     * 从redis中获取T类型对象的List集合
+     *
+     * @param key
+     * @param clazz
+     * @param <T>
+     * @return
+     */
+    public <T> List<T> getList(String key, Class<T> clazz) {
+        if (key == null || key.length() == 0 || clazz == null) {
+            return null;
+        }
+        Jedis jedis = null;
+        try {
+            if (jedisPool != null) {
+                jedis = jedisPool.getResource();
+                String sValue = jedis.get(key);
+                return JSON.parseArray(sValue, clazz);
+            }
+        } finally {
+            close(jedis);
+        }
+        return null;
+    }
+
+    /**
      * 从redis中取出value
+     *
      * @param key
      * @param clazz
      * @param <T>
      * @return value
      */
-    public <T> T get(String key, Class<T> clazz){
+    public <T> T get(String key, Class<T> clazz) {
         if (key == null || key.length() == 0 || clazz == null) {
             return null;
         }
@@ -61,7 +93,7 @@ public class RedisUtils {
                 String sValue = jedis.get(key);
                 return JSON.parseObject(sValue, clazz);
             }
-        }finally {
+        } finally {
             close(jedis);
         }
         return null;
@@ -77,7 +109,7 @@ public class RedisUtils {
                 jedis = jedisPool.getResource();
                 return jedis.exists(key);
             }
-        } finally{
+        } finally {
             close(jedis);
         }
         return false;
@@ -93,7 +125,7 @@ public class RedisUtils {
                 jedis = jedisPool.getResource();
                 return jedis.incr(key);
             }
-        } finally{
+        } finally {
             close(jedis);
         }
         return null;
@@ -109,7 +141,7 @@ public class RedisUtils {
                 jedis = jedisPool.getResource();
                 return jedis.decr(key);
             }
-        } finally{
+        } finally {
             close(jedis);
         }
         return null;

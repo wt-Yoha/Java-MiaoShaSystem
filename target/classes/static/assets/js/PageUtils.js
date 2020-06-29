@@ -31,13 +31,13 @@ function getLoginUser() {
             } else {
                 tag.text("您还未登录");
                 tag.attr("title", "前往登陆");
-                tag.attr("href", contentUrl("/user/loginPage"));
+                tag.attr("href", contentUrl("/login.html"));
             }
         },
         error: function () {
             tag.text("您还未登录");
             tag.attr("title", "前往登陆");
-            tag.attr("href", contentUrl("/user/loginPage"));
+            tag.attr("href", contentUrl("/login.html"));
         }
     });
 }
@@ -75,6 +75,11 @@ function showErrorPage(error) {
         $("#errorCode").text(error.code);
         $("#errorMsg").text(error.msg);
     });
+}
+
+// alert错误信息
+function alertErrorMsg(error) {
+    alert(error.msg);
 }
 
 // alert 页面错误提示

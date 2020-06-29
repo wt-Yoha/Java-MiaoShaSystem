@@ -21,7 +21,4 @@ public class UserKey extends BasePrefix {
         super(timeout, prefix);
     }
 
-    public static void main(String[] args) {
-        System.out.println(UserKey.ID.getFullkey("1000"));// UserKey:id_1000
-    }
 }

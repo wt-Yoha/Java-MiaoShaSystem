@@ -29,7 +29,7 @@ public class BasePrefix implements KeyPrefix {
         return getPrefix() + "";
     }
 
-    public String getFullKey(String key) {
+    public String getFullKey(Object key) {
         return getPrefix() + "." + key;
     }
 }

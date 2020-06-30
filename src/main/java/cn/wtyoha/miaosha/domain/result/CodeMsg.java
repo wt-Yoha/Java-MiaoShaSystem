@@ -24,7 +24,8 @@ public class CodeMsg {
 
     public static CodeMsg PRODUCT_LACK_OF_STOCK = new CodeMsg(600100, "商品已售罄");
     public static CodeMsg TOO_LARGE_QUANTITY = new CodeMsg(600200, "秒杀商品限拍一件");
-    public static CodeMsg ERROR_PAYMENT =new CodeMsg(600200, "支付失败", "redirect:/order/myOrders");
+    public static CodeMsg OUT_OF_STOCK = new CodeMsg(600300, "商品库存不足");
+    public static CodeMsg ERROR_PAYMENT =new CodeMsg(600400, "支付失败", "redirect:/order/myOrders");
 
     CodeMsg(int code, String msg) {
         this.code = code;

@@ -35,9 +35,9 @@ public class GoodsServiceImpl implements GoodsService {
     public Goods getGoodsById(Long id) {
         Goods goods = null;
         // 先验证id的有效性，防止恶意的缓存穿透
-        if (isValidId(id) && (goods = redisUtils.get(GoodsKey.GOODS_ITEM.getFullKey(String.valueOf(id)), Goods.class)) == null) {
+        if (isValidId(id) && (goods = redisUtils.get(GoodsKey.GOODS_ITEM.getFullKey(id), Goods.class)) == null) {
             goods = goodsDao.selectById(id);
-            redisUtils.set(GoodsKey.GOODS_ITEM.getFullKey(String.valueOf(id)), Goods.class, RedisUtils.THIRTY_SECONDS);
+            redisUtils.set(GoodsKey.GOODS_ITEM.getFullKey(id), goods, RedisUtils.THIRTY_SECONDS);
         }
         if (goods == null) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);

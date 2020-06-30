@@ -35,7 +35,7 @@ public class TestGoodsDao {
     public void testSubStock(){
         Long goodsId = 1L;
         Goods goods = goodsDao.selectById(goodsId);
-        int affectLine = goodsDao.subStock(goodsId, 1, 99);
+        int affectLine = goodsDao.subStock(goodsId, 1);
         System.out.println(affectLine);
     }
 

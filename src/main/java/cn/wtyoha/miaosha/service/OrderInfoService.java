@@ -16,4 +16,6 @@ public interface OrderInfoService {
     boolean pay(Long orderId);
 
     OrderInfo createOrder(MiaoShaUser user, Goods goods, int num);
+
+    OrderInfo selectById(Long id);
 }

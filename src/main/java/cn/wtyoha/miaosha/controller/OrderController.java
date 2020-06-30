@@ -1,13 +1,12 @@
 package cn.wtyoha.miaosha.controller;
 
-import cn.wtyoha.miaosha.dao.GoodsDao;
-import cn.wtyoha.miaosha.dao.OrderInfoDao;
 import cn.wtyoha.miaosha.domain.Goods;
 import cn.wtyoha.miaosha.domain.MiaoShaUser;
 import cn.wtyoha.miaosha.domain.OrderInfo;
 import cn.wtyoha.miaosha.domain.result.CodeMsg;
 import cn.wtyoha.miaosha.domain.result.Result;
 import cn.wtyoha.miaosha.globalexception.GlobalException;
+import cn.wtyoha.miaosha.service.GoodsService;
 import cn.wtyoha.miaosha.service.MiaoShaUserService;
 import cn.wtyoha.miaosha.service.OrderInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +26,10 @@ import java.util.Map;
 @ResponseBody
 public class OrderController {
     @Autowired
-    GoodsDao goodsDao;
-
-    @Autowired
     MiaoShaUserService miaoShaUserService;
 
     @Autowired
-    OrderInfoDao orderInfoDao;
+    GoodsService goodsService;
 
     @Autowired
     OrderInfoService orderInfoService;
@@ -45,10 +41,10 @@ public class OrderController {
      */
     @RequestMapping("/query")
     public Result<Object> queryOrder(@RequestParam("orderId") Long id) {
-        OrderInfo orderInfo = orderInfoDao.selectByPrimaryKey(id);
+        OrderInfo orderInfo = orderInfoService.selectById(id);
         Goods goods = null;
         if (orderInfo != null) {
-            goods = goodsDao.selectById(orderInfo.getGoodsId());
+            goods = goodsService.getGoodsById(orderInfo.getGoodsId());
             Map<String, Object> pack = new HashMap<>();
             pack.put("order", orderInfo);
             pack.put("goods", goods);
@@ -74,7 +70,7 @@ public class OrderController {
         }
         OrderInfo orderInfo = null;
         // 检查是否是秒杀商品
-        Goods goods = goodsDao.selectById(id);
+        Goods goods = goodsService.getGoodsById(id);
         if (goods == null) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
@@ -112,7 +108,7 @@ public class OrderController {
         List<Goods> goodsList = new ArrayList<>(orders.size());
 
         for (int i = 0; i < orders.size(); i++) {
-            Goods goods = goodsDao.selectById(orders.get(i).getGoodsId());
+            Goods goods = goodsService.getGoodsById(orders.get(i).getGoodsId());
             goodsList.add(goods);
         }
         model.addAttribute("orderList", orders);

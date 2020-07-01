@@ -104,9 +104,7 @@ public class OrderController {
      * @param model
      * @return
      */
-    @ResponseBody
     @RequestMapping("/myOrders")
-
     public Result<Object> myOrders(Model model) {
         MiaoShaUser loginUser = miaoShaUserService.getLoginUser();
         if (loginUser == null) {
@@ -134,7 +132,6 @@ public class OrderController {
      * @param orderId
      * @return
      */
-    @ResponseBody
     @RequestMapping("/pay")
     public Result<Object> payOrder(@RequestParam("orderInfoId") Long orderId) {
         if (!orderInfoService.pay(orderId)) {

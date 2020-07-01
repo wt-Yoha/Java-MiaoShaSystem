@@ -8,7 +8,10 @@ import cn.wtyoha.miaosha.domain.result.CodeMsg;
 import cn.wtyoha.miaosha.globalexception.GlobalException;
 import cn.wtyoha.miaosha.rabbitmq.config.RabbitMQConfig;
 import cn.wtyoha.miaosha.rabbitmq.msgdomain.TakeOrder;
+import cn.wtyoha.miaosha.rabbitmq.service.sender.ClearCacheSender;
 import cn.wtyoha.miaosha.redis.RedisUtils;
+import cn.wtyoha.miaosha.redis.commonkey.GoodsKey;
+import cn.wtyoha.miaosha.redis.commonkey.OrderKey;
 import cn.wtyoha.miaosha.service.OrderInfoService;
 import com.alibaba.fastjson.JSON;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -26,8 +29,17 @@ public class TakeOrderReceiver {
     @Autowired
     RedisUtils redisUtils;
 
+    @Autowired
+    ClearCacheSender clearCacheSender;
+
+    /**
+     * 从消息队列中获取下单请求
+     * @param msg
+     * @throws InterruptedException
+     */
     @RabbitListener(queues = RabbitMQConfig.TAKE_ORDER_QUEUE)
     public void takeOrder(String msg) throws InterruptedException {
+        // 模拟后台处理
         Thread.sleep(5000);
         TakeOrder takeOrder = JSON.parseObject(msg, TakeOrder.class);
         MiaoShaUser user = takeOrder.getUser();
@@ -42,6 +54,9 @@ public class TakeOrderReceiver {
         }
         // 创建订单
         OrderInfo order = orderInfoService.createOrder(user, goods, num);
+        // 发出清缓存的消息
+        clearCacheSender.sendClearCache(GoodsKey.GOODS_ITEM.getFullKey(goods.getId()));
+        clearCacheSender.sendClearCache(OrderKey.USER_ORDERS.getFullKey(user.getId()));
         takeOrder.setOrderInfo(order);
         takeOrder.setStatus(1, redisUtils);
     }

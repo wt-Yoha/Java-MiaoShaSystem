@@ -9,9 +9,15 @@ public class RabbitMQConfig {
     public static final String FanoutExchange = "FanoutExchange";
     public static final String HelloMQ = "HelloMQ";
     public static final String TAKE_ORDER_QUEUE = "TAKE_ORDER_QUEUE";
+    public static final String CLEAR_CACHE = "CLEAR_CACHE";
 
     @Bean
-    public Queue TakeOrderQueue() {
+    public Queue clearCache() {
+        return new Queue(CLEAR_CACHE);
+    }
+
+    @Bean
+    public Queue takeOrderQueue() {
         return new Queue(TAKE_ORDER_QUEUE);
     }
 
@@ -39,6 +45,8 @@ public class RabbitMQConfig {
     public Binding bindHello(Queue helloQueue, FanoutExchange exchange) {
         return BindingBuilder.bind(helloQueue).to(exchange);
     }
+
+
 
     @Bean
     public Binding bind1(Queue autoDeleteQueue1, FanoutExchange exchange) {

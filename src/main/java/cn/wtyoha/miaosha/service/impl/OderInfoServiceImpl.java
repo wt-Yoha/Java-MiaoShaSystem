@@ -8,6 +8,7 @@ import cn.wtyoha.miaosha.domain.*;
 import cn.wtyoha.miaosha.domain.result.CodeMsg;
 import cn.wtyoha.miaosha.globalexception.GlobalException;
 import cn.wtyoha.miaosha.rabbitmq.msgdomain.TakeOrder;
+import cn.wtyoha.miaosha.rabbitmq.service.sender.ClearCacheSender;
 import cn.wtyoha.miaosha.rabbitmq.service.sender.TakeOrderSender;
 import cn.wtyoha.miaosha.redis.RedisUtils;
 import cn.wtyoha.miaosha.redis.commonkey.OrderKey;
@@ -41,6 +42,9 @@ public class OderInfoServiceImpl implements OrderInfoService {
 
     @Autowired
     TakeOrderSender takeOrderSender;
+
+    @Autowired
+    ClearCacheSender clearCacheSender;
 
     // 操作库存时的尝试次数
     final int attempts = 10;
@@ -135,9 +139,11 @@ public class OderInfoServiceImpl implements OrderInfoService {
      */
     @Override
     public boolean pay(Long orderId) {
-        if (orderInfoDao.selectByPrimaryKey(orderId).getStatus() == 0) {
-            return orderInfoDao.setStatus(orderId, 1);
+        OrderInfo orderInfo = orderInfoDao.selectByPrimaryKey(orderId);
+        if (orderInfo.getStatus() == 0) {
+            orderInfoDao.setStatus(orderId, 1);
         }
+        clearCacheSender.sendClearCache(new String[]{OrderKey.ORDER_ITEM.getFullKey(orderId), OrderKey.USER_ORDERS.getFullKey(orderInfo.getUserId())});
         return true;
     }
 

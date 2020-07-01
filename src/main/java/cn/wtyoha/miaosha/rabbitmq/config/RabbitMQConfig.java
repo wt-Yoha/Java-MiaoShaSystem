@@ -8,6 +8,12 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMQConfig {
     public static final String FanoutExchange = "FanoutExchange";
     public static final String HelloMQ = "HelloMQ";
+    public static final String TAKE_ORDER_QUEUE = "TAKE_ORDER_QUEUE";
+
+    @Bean
+    public Queue TakeOrderQueue() {
+        return new Queue(TAKE_ORDER_QUEUE);
+    }
 
     @Bean
     public Queue helloQueue() {

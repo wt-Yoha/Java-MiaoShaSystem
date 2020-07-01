@@ -6,6 +6,7 @@ public class OrderKey extends BasePrefix {
 
     public final static OrderKey ORDER_ITEM = new OrderKey("ITEM");
     public final static OrderKey USER_ORDERS = new OrderKey("USER_ORDERS");
+    public final static OrderKey ORDER_STATUS = new OrderKey("ORDER_STATUS");
 
     public OrderKey(String prefix) {
         super(prefix);

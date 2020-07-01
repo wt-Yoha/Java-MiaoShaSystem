@@ -7,6 +7,8 @@ import cn.wtyoha.miaosha.dao.OrderInfoDao;
 import cn.wtyoha.miaosha.domain.*;
 import cn.wtyoha.miaosha.domain.result.CodeMsg;
 import cn.wtyoha.miaosha.globalexception.GlobalException;
+import cn.wtyoha.miaosha.rabbitmq.msgdomain.TakeOrder;
+import cn.wtyoha.miaosha.rabbitmq.service.sender.TakeOrderSender;
 import cn.wtyoha.miaosha.redis.RedisUtils;
 import cn.wtyoha.miaosha.redis.commonkey.OrderKey;
 import cn.wtyoha.miaosha.service.OrderInfoService;
@@ -37,32 +39,31 @@ public class OderInfoServiceImpl implements OrderInfoService {
     @Autowired
     RedisUtils redisUtils;
 
+    @Autowired
+    TakeOrderSender takeOrderSender;
+
     // 操作库存时的尝试次数
     final int attempts = 10;
 
     /**
      * 普通商品下订单
-     *
-     * @param user
+     *  @param user
      * @param goods
      * @param num   下单购买数量
+     * @return
      */
     @Override
-    public OrderInfo takeNormalOder(MiaoShaUser user, Goods goods, int num) {
+    public TakeOrder takeNormalOder(MiaoShaUser user, Goods goods, int num) {
         OrderInfo order = null;
-        // 普通商品,检查库存 redis 预减库存
+        // 普通商品,检查库存
         if (goods.getStock() <= 0 || goods.getStock() < num) {
             throw new GlobalException(CodeMsg.PRODUCT_LACK_OF_STOCK);
         }
-        // 减库存
-        int affectLine = goodsDao.subStock(goods.getId(), num);
-        if (affectLine == 0) {
-            // 库存不足抛出异常
-            throw new GlobalException(CodeMsg.OUT_OF_STOCK);
-        }
-        // 创建订单
-        order = createOrder(user, goods, num);
-        return order;
+        // 发送消息
+        // 构建消息，同时将消息状态存入redis
+        TakeOrder takeOrderMsg = TakeOrder.getInstance(redisUtils, user, goods, num);
+        takeOrderSender.sendTakeOrderMsg(takeOrderMsg);
+        return takeOrderMsg;
     }
 
     /**
@@ -181,5 +182,19 @@ public class OderInfoServiceImpl implements OrderInfoService {
             redisUtils.set(OrderKey.ORDER_ITEM.getFullKey(id), orderInfo, RedisUtils.THIRTY_SECONDS);
         }
         return orderInfo;
+    }
+
+    @Override
+    public TakeOrder queryTakeOrderStatus(String id) {
+        String key = OrderKey.ORDER_STATUS.getFullKey(id);
+        TakeOrder takeOrder = redisUtils.get(key, TakeOrder.class);
+        if (takeOrder == null) {
+            throw new GlobalException(CodeMsg.ACCESS_TIME_OUT);
+        }
+        int status = takeOrder.getStatus();
+        if (status == 1 || status == -1) {
+            redisUtils.deleteKey(key);
+        }
+        return takeOrder;
     }
 }

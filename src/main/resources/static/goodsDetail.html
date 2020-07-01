@@ -291,16 +291,42 @@
             type: "POST",
             success:
                 (result) => {
-                    resultProcessing(
-                        result,
-                        (result) => {
-                            // 下单成功，跳转页面
-                            location.href = contentUrl("/order.html?orderId=" + result.data.order.id);
-                        },
-                        alertErrorMsg
-                    )
+                    $("#myContainer").load("takeOrderSegment.html", function () {
+                        resultProcessing(
+                            result,
+                            queryTakerOrder,
+                            alertErrorMsg
+                        )
+                    });
                 }
         });
+    }
+
+    // 查询当前下单流程的状态
+    function queryTakerOrder(result){
+        let takeOrderStatus = result.data.status;
+        let takeOrderId = result.data.id;
+        $.ajax({
+            url: contentUrl("/order/queryTakeOrderStatus"),
+            data: {id: takeOrderId},
+            method: "POST",
+            success: function (res) {
+                takeOrderStatus = res.data.status;
+                takeOrderId = res.data.id;
+                if (takeOrderStatus === 0) {
+                    // 订单排队中
+                    let t = $("#time");
+                    t.text(parseInt(t.text()) - 1);
+                    setTimeout(function () {
+                        queryTakerOrder(res);
+                    }, 1000);
+                } else if (takeOrderStatus === 1) {
+                    location.href = contentUrl("/order.html?orderId=" + res.data.orderInfo.id);
+                } else {
+                    alertErrorMsg("错误的订单状态");
+                }
+            }
+        })
     }
 
     // 使用单元素数组是为了可以在函数中修改参数的值

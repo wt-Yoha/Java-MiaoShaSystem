@@ -7,6 +7,8 @@ public class GoodsKey extends BasePrefix {
     public final static GoodsKey GOODS_LIST = new GoodsKey("GOODS_LIST");
     public final static GoodsKey GOODS_ITEM = new GoodsKey("ITEM");
     public final static GoodsKey VALID_MAX_ID = new GoodsKey("VALID_MAX_ID");
+    public final static GoodsKey GOODS_STOCK = new GoodsKey("GOODS_STOCK");
+
 
     public GoodsKey(String prefix) {
         super(prefix);

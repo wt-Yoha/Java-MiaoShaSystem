@@ -12,6 +12,8 @@ import java.util.List;
 public class RedisUtils {
     public final static int THIRTY_SECONDS = 30;
     public final static int THIRTY_MINUTE = 30 * 60;
+    public final static int TWO_MINUTE = 2 * 60;
+
     @Autowired
     JedisPool jedisPool;
 
@@ -33,20 +35,17 @@ public class RedisUtils {
         }
         Jedis jedis = null;
         try {
-            if (jedisPool != null) {
-                jedis = jedisPool.getResource();
-                String sValue = JSON.toJSONString(value);
-                if (timeout == -1) {
-                    jedis.set(key, sValue);
-                } else {
-                    jedis.setex(key, timeout, sValue);
-                }
-                return true;
+            jedis = jedisPool.getResource();
+            String sValue = JSON.toJSONString(value);
+            if (timeout == -1) {
+                jedis.set(key, sValue);
+            } else {
+                jedis.setex(key, timeout, sValue);
             }
+            return true;
         } finally {
             close(jedis);
         }
-        return false;
     }
 
     /**
@@ -63,17 +62,12 @@ public class RedisUtils {
         }
         Jedis jedis = null;
         try {
-            if (jedisPool != null) {
-                jedis = jedisPool.getResource();
-                String sValue = jedis.get(key);
-                return JSON.parseArray(sValue, clazz);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+            jedis = jedisPool.getResource();
+            String sValue = jedis.get(key);
+            return JSON.parseArray(sValue, clazz);
         } finally {
             close(jedis);
         }
-        return null;
     }
 
     /**
@@ -167,7 +161,7 @@ public class RedisUtils {
                 jedis = jedisPool.getResource();
                 jedis.del(key);
             }
-        }finally {
+        } finally {
             close(jedis);
         }
     }

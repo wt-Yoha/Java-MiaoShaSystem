@@ -6,6 +6,7 @@ import cn.wtyoha.miaosha.domain.OrderInfo;
 import cn.wtyoha.miaosha.domain.result.CodeMsg;
 import cn.wtyoha.miaosha.domain.result.Result;
 import cn.wtyoha.miaosha.globalexception.GlobalException;
+import cn.wtyoha.miaosha.rabbitmq.msgdomain.TakeOrder;
 import cn.wtyoha.miaosha.service.GoodsService;
 import cn.wtyoha.miaosha.service.MiaoShaUserService;
 import cn.wtyoha.miaosha.service.OrderInfoService;
@@ -36,6 +37,7 @@ public class OrderController {
 
     /**
      * 根据orderid查询order信息
+     *
      * @param id
      * @return
      */
@@ -55,41 +57,46 @@ public class OrderController {
 
     /**
      * 下单api
+     *
      * @param id
      * @param quantity
      * @param model
      * @return
      */
     @RequestMapping("/take")
-    public Result<Map<String, Object>> takeOrder(@RequestParam("id") Long id, @RequestParam("quantity") int quantity, Model model) {
+    public Result<Object> takeOrder(@RequestParam("id") Long id, @RequestParam("quantity") int quantity, Model model) {
         // 检查登陆
         MiaoShaUser loginUser = miaoShaUserService.getLoginUser();
         if (loginUser == null) {
             // 返回登陆页面，requestLogin字段为true表示页面提示登陆
             throw new GlobalException(CodeMsg.USER_UNLOGIN);
         }
-        OrderInfo orderInfo = null;
+        TakeOrder takeOrderMsg = null;
         // 检查是否是秒杀商品
         Goods goods = goodsService.getGoodsById(id);
         if (goods == null) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
         if (goods.getMiaoShaGoods() == null) {
-            orderInfo = orderInfoService.takeNormalOder(loginUser, goods, quantity);
+            takeOrderMsg = orderInfoService.takeNormalOder(loginUser, goods, quantity);
         } else {
-            orderInfo = orderInfoService.takeMiaoShaOrder(loginUser, goods, quantity);
+            orderInfoService.takeMiaoShaOrder(loginUser, goods, quantity);
         }
+        return Result.success(takeOrderMsg);
+    }
 
-        if (orderInfo == null) {
-            // 下单失败，返回商品详情页
-            return Result.error(CodeMsg.SERVER_ERROR);
+    @RequestMapping("/queryTakeOrderStatus")
+    public Result<Object> queryTakeOrderStatus(@RequestParam("id") String id) {
+        TakeOrder takeOrderMsg = orderInfoService.queryTakeOrderStatus(id);
+        switch (takeOrderMsg.getStatus()) {
+            // 正在排队处理、下单成功
+            case 0:
+            case 1:
+                return Result.success(takeOrderMsg);
+            // 下单失败
+            default:
+                return Result.error(CodeMsg.PRODUCT_LACK_OF_STOCK);
         }
-
-        model.addAttribute("goodsItem", goods);
-        Map<String, Object> pack = new HashMap<>();
-        pack.put("order", orderInfo);
-        pack.put("goods", goods);
-        return Result.success(pack);
     }
 
     /**
@@ -99,6 +106,7 @@ public class OrderController {
      */
     @ResponseBody
     @RequestMapping("/myOrders")
+
     public Result<Object> myOrders(Model model) {
         MiaoShaUser loginUser = miaoShaUserService.getLoginUser();
         if (loginUser == null) {
@@ -122,13 +130,14 @@ public class OrderController {
 
     /**
      * 支付api
+     *
      * @param orderId
      * @return
      */
     @ResponseBody
     @RequestMapping("/pay")
     public Result<Object> payOrder(@RequestParam("orderInfoId") Long orderId) {
-        if (!orderInfoService.pay(orderId)){
+        if (!orderInfoService.pay(orderId)) {
             throw new GlobalException(CodeMsg.ERROR_PAYMENT);
         }
         return Result.success(null);

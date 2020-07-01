@@ -3,11 +3,12 @@ package cn.wtyoha.miaosha.service;
 import cn.wtyoha.miaosha.domain.Goods;
 import cn.wtyoha.miaosha.domain.MiaoShaUser;
 import cn.wtyoha.miaosha.domain.OrderInfo;
+import cn.wtyoha.miaosha.rabbitmq.msgdomain.TakeOrder;
 
 import java.util.List;
 
 public interface OrderInfoService {
-    OrderInfo takeNormalOder(MiaoShaUser user, Goods goods, int num);
+    TakeOrder takeNormalOder(MiaoShaUser user, Goods goods, int num);
 
     OrderInfo takeMiaoShaOrder(MiaoShaUser user, Goods goods, int num);
 
@@ -18,4 +19,6 @@ public interface OrderInfoService {
     OrderInfo createOrder(MiaoShaUser user, Goods goods, int num);
 
     OrderInfo selectById(Long id);
+
+    TakeOrder queryTakeOrderStatus(String id);
 }

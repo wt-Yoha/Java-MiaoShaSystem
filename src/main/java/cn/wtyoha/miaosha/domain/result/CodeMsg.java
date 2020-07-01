@@ -20,6 +20,7 @@ public class CodeMsg {
     public static CodeMsg UNREGISTER_USER = new CodeMsg(500600, "用户未注册", "login");
     public static CodeMsg USER_UNLOGIN = new CodeMsg(500600, "用户未登陆", "login");
     public static CodeMsg REPEAT_LOGIN= new CodeMsg(500700, "该用户已登陆，请先退出" );
+    public static CodeMsg ACCESS_TIME_OUT = new CodeMsg(500800, "访问超时" );
 
 
     public static CodeMsg PRODUCT_LACK_OF_STOCK = new CodeMsg(600100, "商品已售罄");

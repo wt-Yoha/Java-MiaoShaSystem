@@ -1,15 +1,21 @@
 package cn.wtyoha.miaosha.controller;
 
 import cn.wtyoha.miaosha.domain.Goods;
+import cn.wtyoha.miaosha.domain.MiaoShaGoods;
 import cn.wtyoha.miaosha.domain.MiaoShaUser;
 import cn.wtyoha.miaosha.domain.OrderInfo;
 import cn.wtyoha.miaosha.domain.result.CodeMsg;
 import cn.wtyoha.miaosha.domain.result.Result;
 import cn.wtyoha.miaosha.globalexception.GlobalException;
 import cn.wtyoha.miaosha.rabbitmq.msgdomain.TakeOrder;
+import cn.wtyoha.miaosha.rabbitmq.service.sender.ClearCacheSender;
+import cn.wtyoha.miaosha.redis.RedisUtils;
+import cn.wtyoha.miaosha.redis.commonkey.GoodsKey;
 import cn.wtyoha.miaosha.service.GoodsService;
+import cn.wtyoha.miaosha.service.MiaoShaGoodsService;
 import cn.wtyoha.miaosha.service.MiaoShaUserService;
 import cn.wtyoha.miaosha.service.OrderInfoService;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +31,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/order")
 @ResponseBody
-public class OrderController {
+public class OrderController implements InitializingBean {
     @Autowired
     MiaoShaUserService miaoShaUserService;
 
@@ -34,6 +40,27 @@ public class OrderController {
 
     @Autowired
     OrderInfoService orderInfoService;
+
+    @Autowired
+    MiaoShaGoodsService miaoShaGoodsService;
+
+    @Autowired
+    RedisUtils redisUtils;
+
+    @Autowired
+    ClearCacheSender clearCacheSender;
+
+    /**
+     * 初始化，载入秒杀商品库存
+     * @throws Exception
+     */
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        List<MiaoShaGoods> miaoShaGoodsList = miaoShaGoodsService.getAllMiaoShaGoodsFromDB();
+        for (MiaoShaGoods goods : miaoShaGoodsList) {
+            redisUtils.set(GoodsKey.MIAO_SHA_GOODS_STOCK.getFullKey(goods.getGoodsId()), goods.getStockCount());
+        }
+    }
 
     /**
      * 根据orderid查询order信息
@@ -80,7 +107,7 @@ public class OrderController {
         if (goods.getMiaoShaGoods() == null) {
             takeOrderMsg = orderInfoService.takeNormalOder(loginUser, goods, quantity);
         } else {
-            orderInfoService.takeMiaoShaOrder(loginUser, goods, quantity);
+            takeOrderMsg = orderInfoService.takeMiaoShaOrder(loginUser, goods, quantity);
         }
         return Result.success(takeOrderMsg);
     }
@@ -95,12 +122,15 @@ public class OrderController {
                 return Result.success(takeOrderMsg);
             // 下单失败
             default:
-                return Result.error(CodeMsg.PRODUCT_LACK_OF_STOCK);
+                // 如果是秒杀商品下单失败，需要更新redis内的库存
+                clearCacheSender.sendClearCache(GoodsKey.MIAO_SHA_GOODS_STOCK.getFullKey(takeOrderMsg.getGoods().getId()));
+                return Result.error(takeOrderMsg.getErrorMsg());
         }
     }
 
     /**
      * 查看用户所有订单
+     *
      * @param model
      * @return
      */

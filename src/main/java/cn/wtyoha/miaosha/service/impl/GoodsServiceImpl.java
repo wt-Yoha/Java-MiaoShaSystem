@@ -26,7 +26,7 @@ public class GoodsServiceImpl implements GoodsService {
         // 先尝试从缓存中取数据
         if ((goodsList = redisUtils.getList(GoodsKey.GOODS_LIST.getFullKey(), Goods.class)) == null) {
             goodsList = goodsDao.selectAll();
-            redisUtils.set(GoodsKey.GOODS_LIST.getFullKey(), goodsList);
+            redisUtils.set(GoodsKey.GOODS_LIST.getFullKey(), goodsList, RedisUtils.THIRTY_MINUTE);
         }
         return goodsList;
     }

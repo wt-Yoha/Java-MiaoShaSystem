@@ -10,7 +10,7 @@ import java.util.List;
 public interface OrderInfoService {
     TakeOrder takeNormalOder(MiaoShaUser user, Goods goods, int num);
 
-    OrderInfo takeMiaoShaOrder(MiaoShaUser user, Goods goods, int num);
+    TakeOrder takeMiaoShaOrder(MiaoShaUser user, Goods goods, int num);
 
     List<OrderInfo> getUserAllOrders(MiaoShaUser user);
 

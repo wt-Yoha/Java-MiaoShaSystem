@@ -12,7 +12,11 @@ public class TakeOrderSender {
     @Autowired
     AmqpTemplate amqpTemplate;
 
-    public void sendTakeOrderMsg(TakeOrder msg) {
-        amqpTemplate.convertAndSend(RabbitMQConfig.TAKE_ORDER_QUEUE,JSON.toJSONString(msg));
+    public void sendNormalTakeOrderMsg(TakeOrder msg) {
+        amqpTemplate.convertAndSend(RabbitMQConfig.TAKE_NORMAL_ORDER_QUEUE,JSON.toJSONString(msg));
+    }
+
+    public void sendMiaoShaTakeOrderMsg(TakeOrder msg) {
+        amqpTemplate.convertAndSend(RabbitMQConfig.TAKE_MIAO_SHA_ORDER_QUEUE, JSON.toJSONString(msg));
     }
 }

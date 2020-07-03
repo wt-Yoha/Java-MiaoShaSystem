@@ -13,6 +13,6 @@ public interface MiaoShaGoodsDao extends tk.mybatis.mapper.common.Mapper <MiaoSh
     @Select("select * from miaosha_goods where goods_id = #{goodsId}")
     MiaoShaGoods getByGoodsId(Integer goodsId);
 
-    @Update("update miaosha_goods set stock_count = stock_count - 1 where id = #{id} and stock_count = #{originStock}")
-    int subStock(@Param("id")Long id, @Param("originStock") Integer originStock);
+    @Update("update miaosha_goods set stock_count = stock_count - 1 where id = #{id} and stock_count > 0")
+    int subStock(@Param("id")Long id);
 }

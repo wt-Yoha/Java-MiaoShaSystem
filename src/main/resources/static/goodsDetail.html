@@ -291,19 +291,24 @@
             type: "POST",
             success:
                 (result) => {
-                    $("#myContainer").load("takeOrderSegment.html", function () {
-                        resultProcessing(
-                            result,
-                            queryTakerOrder,
-                            alertErrorMsg
-                        )
-                    });
+                    resultProcessing(
+                        result,
+                        function (result) {
+                            $("#myContainer").load("takeOrderSegment.html", function () {
+                                queryTakerOrder(result)
+                            })
+                        },
+                        alertErrorMsg
+                    )
                 }
         });
     }
 
     // 查询当前下单流程的状态
     function queryTakerOrder(result){
+        if (result.code !== 0) {
+            showErrorPage(result);
+        }
         let takeOrderStatus = result.data.status;
         let takeOrderId = result.data.id;
         $.ajax({
@@ -311,11 +316,21 @@
             data: {id: takeOrderId},
             method: "POST",
             success: function (res) {
+                if (res.code !== 0) {
+                    showErrorPage(res);
+                    return;
+                }
                 takeOrderStatus = res.data.status;
                 takeOrderId = res.data.id;
                 if (takeOrderStatus === 0) {
                     // 订单排队中
                     let t = $("#time");
+                    if (parseInt(t.text()) === 0) {
+                        alert("请求超时,当前服务器拥挤，请稍后再试");
+                        window.location.href = document.referrer;
+                        window.history.back(-1);
+                        return;
+                    }
                     t.text(parseInt(t.text()) - 1);
                     setTimeout(function () {
                         queryTakerOrder(res);

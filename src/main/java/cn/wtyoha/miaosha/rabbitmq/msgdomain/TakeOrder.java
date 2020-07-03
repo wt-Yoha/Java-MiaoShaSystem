@@ -3,6 +3,7 @@ package cn.wtyoha.miaosha.rabbitmq.msgdomain;
 import cn.wtyoha.miaosha.domain.Goods;
 import cn.wtyoha.miaosha.domain.MiaoShaUser;
 import cn.wtyoha.miaosha.domain.OrderInfo;
+import cn.wtyoha.miaosha.domain.result.CodeMsg;
 import cn.wtyoha.miaosha.redis.RedisUtils;
 import cn.wtyoha.miaosha.redis.commonkey.OrderKey;
 import lombok.Data;
@@ -18,9 +19,10 @@ public class TakeOrder {
     OrderInfo orderInfo;
     Integer num;
     Integer status = 0; // 表明处理中的订单状态 0 排队处理中、1 下单成功、-1 下单失败
+    CodeMsg errorMsg;
 
 
-    private TakeOrder() {
+    public TakeOrder() {
     }
 
     public static TakeOrder getInstance(RedisUtils redisUtils, MiaoShaUser user, Goods goods, Integer num) {
@@ -37,5 +39,10 @@ public class TakeOrder {
     public void setStatus(Integer i, RedisUtils redisUtils) {
         this.status = i;
         redisUtils.set(OrderKey.ORDER_STATUS.getFullKey(id), this, RedisUtils.TWO_MINUTE);
+    }
+
+    public void setErrorMsg(CodeMsg codeMsg, RedisUtils redisUtils) {
+        this.errorMsg = codeMsg;
+        this.setStatus(-1, redisUtils);
     }
 }

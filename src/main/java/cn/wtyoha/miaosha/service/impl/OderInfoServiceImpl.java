@@ -11,6 +11,7 @@ import cn.wtyoha.miaosha.rabbitmq.msgdomain.TakeOrder;
 import cn.wtyoha.miaosha.rabbitmq.service.sender.ClearCacheSender;
 import cn.wtyoha.miaosha.rabbitmq.service.sender.TakeOrderSender;
 import cn.wtyoha.miaosha.redis.RedisUtils;
+import cn.wtyoha.miaosha.redis.commonkey.GoodsKey;
 import cn.wtyoha.miaosha.redis.commonkey.OrderKey;
 import cn.wtyoha.miaosha.service.OrderInfoService;
 import lombok.extern.slf4j.Slf4j;
@@ -46,12 +47,10 @@ public class OderInfoServiceImpl implements OrderInfoService {
     @Autowired
     ClearCacheSender clearCacheSender;
 
-    // 操作库存时的尝试次数
-    final int attempts = 10;
-
     /**
      * 普通商品下订单
-     *  @param user
+     *
+     * @param user
      * @param goods
      * @param num   下单购买数量
      * @return
@@ -66,7 +65,7 @@ public class OderInfoServiceImpl implements OrderInfoService {
         // 发送消息
         // 构建消息，同时将消息状态存入redis
         TakeOrder takeOrderMsg = TakeOrder.getInstance(redisUtils, user, goods, num);
-        takeOrderSender.sendTakeOrderMsg(takeOrderMsg);
+        takeOrderSender.sendNormalTakeOrderMsg(takeOrderMsg);
         return takeOrderMsg;
     }
 
@@ -79,40 +78,22 @@ public class OderInfoServiceImpl implements OrderInfoService {
      * @return
      */
     @Override
-    public OrderInfo takeMiaoShaOrder(MiaoShaUser user, Goods goods, int num) {
-        OrderInfo order = null;
+    public TakeOrder takeMiaoShaOrder(MiaoShaUser user, Goods goods, int num) {
         MiaoShaGoods miaoShaGoods = goods.getMiaoShaGoods();
-        for (int i = 0; i < attempts; i++) {
-            // 查该用户是否已经秒杀过
-            MiaoShaOrder miaoShaOrder = miaoShaOrderDao.selectByUserGoodsId(user.getId(), goods.getId());
-            if (miaoShaOrder != null) {
-                throw new GlobalException(CodeMsg.TOO_LARGE_QUANTITY);
-            }
-            // 查库存
-            if (miaoShaGoods.getStockCount() <= 0 || num > 1) {
-                throw new GlobalException(CodeMsg.TOO_LARGE_QUANTITY);
-            }
-            // cas方式减库存
-            int affectLine = miaoShaGoodsDao.subStock(miaoShaGoods.getId(), miaoShaGoods.getStockCount());
-            if (affectLine == 0) {
-                // 减库存失败，重试
-                miaoShaGoods = miaoShaGoodsDao.selectByPrimaryKey(miaoShaGoods.getId());
-                log.info("秒杀商品减库存失败：第" + i + "次尝试 " + goods.getId() + " " + goods.getName());
-                continue;
-            }
 
-            // 加订单
-            order = createOrder(user, goods, 1);
-
-            // 加秒杀订单
-            miaoShaOrder = new MiaoShaOrder();
-            miaoShaOrder.setOrderId(order.getId());
-            miaoShaOrder.setUserId(user.getId());
-            miaoShaOrder.setGoodsId(goods.getId());
-            miaoShaOrderDao.insert(miaoShaOrder);
-            return order;
+        //Redis 预减库存
+        if (redisUtils.get(GoodsKey.MIAO_SHA_GOODS_STOCK.getFullKey(miaoShaGoods.getGoodsId()), Long.class) == null) {
+            MiaoShaGoods queryMiaoShaGoods = miaoShaGoodsDao.selectByPrimaryKey(miaoShaGoods.getId());
+            redisUtils.set(GoodsKey.MIAO_SHA_GOODS_STOCK.getFullKey(miaoShaGoods.getGoodsId()),queryMiaoShaGoods.getStockCount());
         }
-        return order;
+        Long res = redisUtils.decr(GoodsKey.MIAO_SHA_GOODS_STOCK.getFullKey(miaoShaGoods.getGoodsId()));
+        if (res < 0) {
+            throw new GlobalException(CodeMsg.PRODUCT_LACK_OF_STOCK);
+        }
+
+        TakeOrder takeOrderMsg = TakeOrder.getInstance(redisUtils, user, goods, num);
+        takeOrderSender.sendMiaoShaTakeOrderMsg(takeOrderMsg);
+        return takeOrderMsg;
     }
 
     /**
@@ -203,4 +184,5 @@ public class OderInfoServiceImpl implements OrderInfoService {
         }
         return takeOrder;
     }
+
 }

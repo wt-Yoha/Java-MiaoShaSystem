@@ -11,22 +11,22 @@ import cn.wtyoha.miaosha.rabbitmq.msgdomain.TakeOrder;
 import cn.wtyoha.miaosha.rabbitmq.service.sender.ClearCacheSender;
 import cn.wtyoha.miaosha.redis.RedisUtils;
 import cn.wtyoha.miaosha.redis.commonkey.GoodsKey;
+import cn.wtyoha.miaosha.redis.commonkey.OrderKey;
 import cn.wtyoha.miaosha.service.GoodsService;
 import cn.wtyoha.miaosha.service.MiaoShaGoodsService;
 import cn.wtyoha.miaosha.service.MiaoShaUserService;
 import cn.wtyoha.miaosha.service.OrderInfoService;
+import cn.wtyoha.miaosha.utils.MD5Utils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/order")
@@ -52,6 +52,7 @@ public class OrderController implements InitializingBean {
 
     /**
      * 初始化，载入秒杀商品库存
+     *
      * @throws Exception
      */
     @Override
@@ -87,11 +88,11 @@ public class OrderController implements InitializingBean {
      *
      * @param id
      * @param quantity
-     * @param model
      * @return
      */
-    @RequestMapping("/take")
-    public Result<Object> takeOrder(@RequestParam("id") Long id, @RequestParam("quantity") int quantity, Model model) {
+    @RequestMapping("/{path}/take")
+    public Result<Object> takeOrder(@RequestParam("id") Long id, @RequestParam("quantity") int quantity,
+                                    @PathVariable("path") String path) {
         // 检查登陆
         MiaoShaUser loginUser = miaoShaUserService.getLoginUser();
         if (loginUser == null) {
@@ -104,14 +105,55 @@ public class OrderController implements InitializingBean {
         if (goods == null) {
             throw new GlobalException(CodeMsg.SERVER_ERROR);
         }
+        // 检查path
+        String redisStoredPath = redisUtils.get(OrderKey.ORDER_PATH.getFullKey(loginUser.getNickname() + goods.getId()), String.class);
+        if (!path.equals(redisStoredPath)) {
+            throw new GlobalException(CodeMsg.ERROR_PATH);
+        }
         if (goods.getMiaoShaGoods() == null) {
             takeOrderMsg = orderInfoService.takeNormalOder(loginUser, goods, quantity);
         } else {
-            takeOrderMsg = orderInfoService.takeMiaoShaOrder(loginUser, goods, quantity);
+            // 秒杀商品检查是否在秒杀时间段内
+            long startTime = goods.getMiaoShaGoods().getStartDate().getTime();
+            long endTime = goods.getMiaoShaGoods().getEndDate().getTime();
+            long currentTimeMillis = System.currentTimeMillis();
+            if (currentTimeMillis > startTime && currentTimeMillis < endTime) {
+                takeOrderMsg = orderInfoService.takeMiaoShaOrder(loginUser, goods, quantity);
+            } else {
+                throw new GlobalException(CodeMsg.CLOSED_ACTIVITY);
+            }
         }
         return Result.success(takeOrderMsg);
     }
 
+    /**
+     * 保护秒杀地址
+     * @param goodsId
+     * @return
+     */
+    @RequestMapping("/getOrderPath")
+    public Result<Object> getOrderPath(Long goodsId, String verifyCode) {
+        MiaoShaUser loginUser = miaoShaUserService.getLoginUser();
+        if (loginUser == null) {
+            throw new GlobalException(CodeMsg.USER_UNLOGIN);
+        }
+
+        // 检查验证码是否正确
+        if (!goodsService.checkVerifyCode(loginUser, goodsId, verifyCode)) {
+            throw new GlobalException(CodeMsg.WRONG_VERIFY_CODE);
+        }
+
+        String miaoShaPath = UUID.randomUUID().toString().replace("-", "");
+        miaoShaPath = MD5Utils.md5("sdfka12" + miaoShaPath + "asdflja");
+        redisUtils.set(OrderKey.ORDER_PATH.getFullKey(loginUser.getNickname() + goodsId), miaoShaPath, 1);
+        return Result.success(miaoShaPath);
+    }
+
+    /**
+     * 客户端轮询订单状态
+     * @param id
+     * @return
+     */
     @RequestMapping("/queryTakeOrderStatus")
     public Result<Object> queryTakeOrderStatus(@RequestParam("id") String id) {
         TakeOrder takeOrderMsg = orderInfoService.queryTakeOrderStatus(id);

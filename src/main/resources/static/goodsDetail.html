@@ -99,6 +99,11 @@
                                                         <a class="btn-number qtyplus quantity-plus" href="#">+</a>
                                                     </div>
                                                 </div>
+                                                <div style="margin-bottom: 20px">
+                                                    <img id="verifyImg" style="padding-bottom: 3px; display: none" onclick="refreshVerifyImg()"/>
+                                                    <input id="verifyCode" name="verifyCode" style="height: 30px; display:none;"/>
+                                                </div>
+
                                                 <button id="getOrderBtn" type="button"
                                                         class="single_add_to_cart_button button alt kobolg-variation-selection-needed">
                                                     下单
@@ -227,6 +232,7 @@
 <script src="assets/js/PageUtils.js"></script>
 <script>
     $(function () {
+        setAfterLogin("showVerifyCode",showVerifyCode);
         loadHeaderAndFooter();
         renderPage();
     });
@@ -270,8 +276,10 @@
                             quantity.attr("max", 1);
                         }
                         // 下单动作
-                        $("#getOrderBtn").attr("onclick", "submitOrder()");
-
+                        $("#getOrderBtn").attr("onclick", "queryPathAndTake()");
+                        // 加载验证码
+                        let vSrc = contentUrl("/goods/verifyCode?goodsId=" + goodsId);
+                        $("#verifyImg").attr("src", vSrc);
                         // 倒计时
                         countDown(remainTime, status, goods);
                     }
@@ -281,12 +289,35 @@
         })
     }
 
+    // 查询下单地址，并下单
+    function queryPathAndTake() {
+        const goodsId = getUrlParam("goodsId");
+        const verifyCode = $("#verifyCode").val();
+        $.ajax({
+            url: contentUrl("/order/getOrderPath"),
+            data:{goodsId: goodsId, verifyCode: verifyCode},
+            type: "POST",
+            success: function (result) {
+                resultProcessing(
+                    result,
+                    function (result) {
+                        let path = result.data;
+                        submitOrder(path);
+                    },
+                    alertErrorMsg
+                );
+            }
+        })
+
+    }
+
     // 下单动作
-    function submitOrder() {
+    function submitOrder(path) {
         const goodsId = getUrlParam("goodsId");
         const quantity = $(".control input").val();
+        path = "/order/" + path + "/take";
         $.ajax({
-            url: contentUrl("/order/take"),
+            url: contentUrl(path),
             data: {id: goodsId, quantity: quantity},
             type: "POST",
             success:
@@ -376,6 +407,7 @@
                 clearTimeout(timeout);
                 $("#getOrderBtn").attr("disabled", "true");
                 goodsStauts.text("活动已结束");
+                hideVerifyCode();
             } else {
                 if (goods.miaoShaGoods === null) {
                     // 普通商品
@@ -388,9 +420,25 @@
                     // 秒杀商品
                     $("#getOrderBtn").attr("disabled", "true");
                     goodsStauts.text("活动已结束");
+                    hideVerifyCode();
                 }
             }
         }
+    }
+
+    function showVerifyCode() {
+        $("#verifyCode").show();
+        $("#verifyImg").show();
+    }
+
+    function hideVerifyCode() {
+        $("#verifyCode").hide();
+        $("#verifyImg").hide();
+    }
+
+    function refreshVerifyImg() {
+        let goodsId = getUrlParam("goodsId");
+        $("#verifyImg").attr("src", contentUrl("/goods/verifyCode?goodsId=" + goodsId + "&timeStamp=" + new Date().getTime()));
     }
 
     function convertTime(time) {

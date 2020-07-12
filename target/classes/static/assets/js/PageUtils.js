@@ -1,3 +1,5 @@
+var afterLoginHocks = {};
+
 // 加载header和footer
 function loadHeaderAndFooter() {
     loadHeader();
@@ -28,6 +30,7 @@ function getLoginUser() {
             if (parseInt(result.code) === 0 && result.data !== null) {
                 tag.text("欢迎回来，" + result.data.nickname);
                 tag.attr("href", contentUrl("/orderList.html"));
+                afterLogin();
             } else {
                 tag.text("您还未登录");
                 tag.attr("title", "前往登陆");
@@ -40,6 +43,17 @@ function getLoginUser() {
             tag.attr("href", contentUrl("/login.html"));
         }
     });
+}
+
+function afterLogin() {
+    for (let key in afterLoginHocks) {
+        let func = afterLoginHocks[key];
+        func();
+    }
+}
+
+function setAfterLogin(name, hock) {
+    afterLoginHocks[name] = hock;
 }
 
 // footer 提交建议

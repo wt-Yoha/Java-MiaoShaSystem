@@ -2,7 +2,10 @@ package cn.wtyoha.miaosha.controller;
 
 import cn.wtyoha.miaosha.domain.Goods;
 import cn.wtyoha.miaosha.domain.MiaoShaGoods;
+import cn.wtyoha.miaosha.domain.MiaoShaUser;
+import cn.wtyoha.miaosha.domain.result.CodeMsg;
 import cn.wtyoha.miaosha.domain.result.Result;
+import cn.wtyoha.miaosha.globalexception.GlobalException;
 import cn.wtyoha.miaosha.service.GoodsService;
 import cn.wtyoha.miaosha.service.MiaoShaUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +14,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.imageio.ImageIO;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -66,5 +74,26 @@ public class GoodsController {
         pack.put("remainTime", remainTime);
         pack.put("continueTime", continueTime);
         return Result.success(pack);
+    }
+
+    /**
+     * 生成验证码图片
+     * @param goodsId
+     * @param response
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping("/verifyCode")
+    public Result<Object> getGoodsVerifyCode(Long goodsId, HttpServletResponse response) throws IOException {
+        MiaoShaUser loginUser = miaoShaUserService.getLoginUser();
+        if (loginUser == null) {
+            throw new GlobalException(CodeMsg.USER_UNLOGIN);
+        }
+        BufferedImage image = goodsService.createVerifyCodeImage(goodsId, loginUser);
+        ServletOutputStream outputStream = response.getOutputStream();
+        ImageIO.write(image, "JPEG", outputStream);
+        outputStream.flush();
+        outputStream.close();
+        return Result.success(null);
     }
 }

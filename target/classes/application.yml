@@ -38,11 +38,11 @@ spring:
 redis:
   host: www.wtyoha.cn
   port: 6379
-  timeout: 10
+  timeout: 1000
   password: 996895
   poolMaxTotal: 5000
   poolMaxIdle: 1000
-  poolMaxWait: 30
+  poolMaxWait: 1000
 
 mybatis:
   configuration:

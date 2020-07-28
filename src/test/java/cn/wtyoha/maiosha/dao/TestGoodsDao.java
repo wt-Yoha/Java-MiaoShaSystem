@@ -39,4 +39,9 @@ public class TestGoodsDao {
         System.out.println(affectLine);
     }
 
+    @Test
+    public void testSearchGoods() {
+        System.out.println(goodsDao.searchGoods(2, 2, true, "%手表%"));
+    }
+
 }

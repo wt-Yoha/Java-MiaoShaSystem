@@ -25,12 +25,26 @@ public class GoodsServiceImpl implements GoodsService {
     RedisUtils redisUtils;
 
     @Override
-    public List<Goods> goodList() {
+    public List<Goods> goodList(Integer currentPage, Integer pageSize, String searchKeys) {
+        boolean useSearch = false;
+        Integer startIndex = (currentPage - 1) * pageSize + 1;
+        if (!"".equals(searchKeys)) {
+            useSearch = true;
+            String[] keys = searchKeys.split(" ");
+            StringBuilder stb = new StringBuilder();
+            stb.append("%");
+            for (String key : keys) {
+                stb.append(key);
+                stb.append("%");
+            }
+            searchKeys = stb.toString();
+        }
         List<Goods> goodsList = null;
+        String redisGoodsKey = GoodsKey.GOODS_LIST.getFullKey() + "_" + currentPage + "_" + pageSize + "_" + searchKeys;
         // 先尝试从缓存中取数据
-        if ((goodsList = redisUtils.getList(GoodsKey.GOODS_LIST.getFullKey(), Goods.class)) == null) {
-            goodsList = goodsDao.selectAll();
-            redisUtils.set(GoodsKey.GOODS_LIST.getFullKey(), goodsList, RedisUtils.THIRTY_MINUTE);
+        if ((goodsList = redisUtils.getList(redisGoodsKey, Goods.class)) == null) {
+            goodsList = goodsDao.searchGoods(startIndex, pageSize, useSearch, searchKeys);
+            redisUtils.set(redisGoodsKey, goodsList, RedisUtils.THIRTY_MINUTE);
         }
         return goodsList;
     }
@@ -93,6 +107,11 @@ public class GoodsServiceImpl implements GoodsService {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public int queryGoodsCount() {
+        return goodsDao.queryGoodsCount();
     }
 
     private String generateVerifyCode(MiaoShaUser loginUser, Long goodsId) {

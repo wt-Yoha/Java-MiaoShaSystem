@@ -17,13 +17,16 @@ public interface GoodsDao extends tk.mybatis.mapper.common.Mapper<Goods> {
     })
     Goods selectById(@Param("id")Long id);
 
-    @Select("select * from goods")
+    @Select("select * from goods where not #{useSearch} or name like #{searchKeys} limit #{startIndex}, #{pageSize}")
     @ResultMap("GoodsWithMiaoShaGoodsInfo")
-    List<Goods> selectAll();
+    List<Goods> searchGoods(@Param("startIndex") int startIndex, @Param("pageSize") int pageSize, @Param("useSearch") Boolean useSearch, @Param("searchKeys") String searchKeys);
 
     @Update("update goods set stock = stock - #{num} where id = #{id} and stock > #{num}")
     int subStock(@Param("id") Long id, @Param("num") int num);
 
     @Select("select max(id) from goods")
     Long maxValidId();
+
+    @Select("select count(*) from goods")
+    int queryGoodsCount();
 }

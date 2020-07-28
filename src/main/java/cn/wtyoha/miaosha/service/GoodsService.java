@@ -7,7 +7,7 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 
 public interface GoodsService {
-    List<Goods> goodList();
+    List<Goods> goodList(Integer currentPage, Integer pageSize, String searchKeys);
 
     Goods getGoodsById(Long id);
 
@@ -15,4 +15,5 @@ public interface GoodsService {
 
     boolean checkVerifyCode(MiaoShaUser loginUser, Long goodsId, String verifyCode);
 
+    int queryGoodsCount();
 }

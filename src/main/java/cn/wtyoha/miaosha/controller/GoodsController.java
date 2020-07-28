@@ -4,6 +4,7 @@ import cn.wtyoha.miaosha.domain.Goods;
 import cn.wtyoha.miaosha.domain.MiaoShaGoods;
 import cn.wtyoha.miaosha.domain.MiaoShaUser;
 import cn.wtyoha.miaosha.domain.result.CodeMsg;
+import cn.wtyoha.miaosha.domain.result.Page;
 import cn.wtyoha.miaosha.domain.result.Result;
 import cn.wtyoha.miaosha.globalexception.GlobalException;
 import cn.wtyoha.miaosha.service.GoodsService;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.imageio.ImageIO;
@@ -35,12 +37,17 @@ public class GoodsController {
     MiaoShaUserService miaoShaUserService;
 
     @RequestMapping("/list")
-    public Result<List<Goods>> goodsList() {
-        List<Goods> goods = goodsService.goodList();
-        while (goods.size() > 12) {
-            goods.remove(goods.size() - 1);
-        }
+    public Result<List<Goods>> goodsList(@RequestParam(defaultValue = "1") Integer currentPage,@RequestParam(defaultValue = "12") Integer pageSize, @RequestParam(defaultValue = "") String searchKeys) {
+        List<Goods> goods = goodsService.goodList(currentPage, pageSize, searchKeys);
         return Result.success(goods);
+    }
+
+    @RequestMapping("/queryPages")
+    public Result<Page<List<Goods>>> queryGoodsPage(@RequestParam(defaultValue = "1") Integer currentPage, @RequestParam(defaultValue = "12") Integer pageSize, @RequestParam(defaultValue = "") String searchKeys) {
+        List<Goods> goods = goodsService.goodList(currentPage, pageSize, searchKeys);
+        int counts = goodsService.queryGoodsCount();
+        Page<List<Goods>> page = new Page<>(currentPage, pageSize, counts, goods);
+        return Result.success(page);
     }
 
     @RequestMapping("/detail/{id}")

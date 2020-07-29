@@ -45,8 +45,9 @@ public class GoodsController {
     @RequestMapping("/queryPages")
     public Result<Page<List<Goods>>> queryGoodsPage(@RequestParam(defaultValue = "1") Integer currentPage, @RequestParam(defaultValue = "12") Integer pageSize, @RequestParam(defaultValue = "") String searchKeys) {
         List<Goods> goods = goodsService.goodList(currentPage, pageSize, searchKeys);
-        int counts = goodsService.queryGoodsCount();
-        Page<List<Goods>> page = new Page<>(currentPage, pageSize, counts, goods);
+        int records = goodsService.queryGoodsCount();
+        int allPages = (int) Math.ceil(records * 1.0 / pageSize);
+        Page<List<Goods>> page = new Page<>(currentPage, pageSize, records, allPages, goods);
         return Result.success(page);
     }
 

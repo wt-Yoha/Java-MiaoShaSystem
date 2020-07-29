@@ -8,11 +8,15 @@ import cn.wtyoha.miaosha.globalexception.GlobalException;
 import cn.wtyoha.miaosha.redis.RedisUtils;
 import cn.wtyoha.miaosha.redis.commonkey.GoodsKey;
 import cn.wtyoha.miaosha.service.GoodsService;
+import org.apache.commons.lang3.CharSetUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Random;
 
@@ -27,9 +31,10 @@ public class GoodsServiceImpl implements GoodsService {
     @Override
     public List<Goods> goodList(Integer currentPage, Integer pageSize, String searchKeys) {
         boolean useSearch = false;
-        Integer startIndex = (currentPage - 1) * pageSize + 1;
+        Integer startIndex = (currentPage - 1) * pageSize;
         if (!"".equals(searchKeys)) {
             useSearch = true;
+            searchKeys = URLDecoder.decode(searchKeys, StandardCharsets.UTF_8);
             String[] keys = searchKeys.split(" ");
             StringBuilder stb = new StringBuilder();
             stb.append("%");

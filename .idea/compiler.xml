@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="MiaoShaSystem" />
         <module name="Java-MiaoShaSystem-master" />
+        <module name="Java-MiaoShaSystem" />
         <module name="Java-MiaoShaSystem-master - 1" />
       </profile>
     </annotationProcessing>

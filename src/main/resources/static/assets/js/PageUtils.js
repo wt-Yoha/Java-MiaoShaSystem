@@ -24,7 +24,7 @@ function loadFooter() {
 function getLoginUser() {
     var tag = $(document.getElementById("welcome"));
     $.ajax({
-        url:  contentUrl("/user/loginMsg"),
+        url: contentUrl("/user/loginMsg"),
         type: "GET",
         success: function (result) {
             if (parseInt(result.code) === 0 && result.data !== null) {
@@ -103,7 +103,7 @@ function alertErrorPage(error) {
 
 // 获取result后的通用处理流程
 function resultProcessing(result, successCallback, errorCallback) {
-    if (parseInt(result.code)=== 0) {
+    if (parseInt(result.code) === 0) {
         // 服务器返回了正确的结果
         if (successCallback !== undefined) {
             successCallback(result);
@@ -118,20 +118,27 @@ function resultProcessing(result, successCallback, errorCallback) {
 }
 
 // 获取地址栏参数
-function getUrlParam(key){
-    var map = parseUrlParam();
+function getUrlParam(key) {
+    let map = parseUrlParam();
+    if (map === undefined) {
+        return undefined;
+    }
     return map[key];
 }
 
 // 解析地址栏参数
 function parseUrlParam() {
-    var url = location.href;
-    var variables = url.split("?")[1];
-    var strings = variables.split("&");
-    var map = {};
-    for (let i = 0; i < strings.length; i++) {
-        var group = strings[i].split("=");
-        map[group[0]] = group[1];
+    let url = location.href;
+    let map = {};
+    try {
+        let variables = url.split("?")[1];
+        let strings = variables.split("&");
+        for (let i = 0; i < strings.length; i++) {
+            let group = strings[i].split("=");
+            map[group[0]] = group[1];
+        }
+    }catch (e) {
+        return undefined;
     }
     return map;
 }
@@ -151,4 +158,10 @@ Date.prototype.Format = function (fmt) {
     for (var k in o)
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
+}
+
+// Header 搜索框
+function searchGoods() {
+    let keys = $(".searchfield.txt-livesearch.input").val();
+    window.location.href = contentUrl("/shop-list.html?searchKeys=" + keys);
 }

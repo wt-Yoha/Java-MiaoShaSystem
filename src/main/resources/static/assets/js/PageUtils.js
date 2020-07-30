@@ -1,4 +1,6 @@
-var afterLoginHocks = {};
+let afterLoginHocks = {};
+// 用于保存地址栏状态
+let urlState="";
 
 // 加载header和footer
 function loadHeaderAndFooter() {
@@ -126,9 +128,39 @@ function getUrlParam(key) {
     return map[key];
 }
 
+// 保持地址栏状态并设置参数保存在urlState
+function setUrlParam(key, value, url) {
+    if (url === undefined) {
+        url = urlState;
+    }
+    let map = parseParam(url), resUrl="?", count = 0;
+    map = map === undefined ? {} : map;
+    map[key] = value;
+    for (let k in map) {
+        if (count === 0) {
+            resUrl += k + "=" + map[k];
+            count++;
+        } else {
+            resUrl += "&"+ k + "=" + map[k];
+        }
+    }
+    urlState = resUrl;
+    return resUrl;
+}
+
+// 获取urlState
+function getUrlState() {
+    return urlState;
+}
+
 // 解析地址栏参数
 function parseUrlParam() {
     let url = location.href;
+    return parseParam(url);
+}
+
+// 解析一个字符串url
+function parseParam(url){
     let map = {};
     try {
         let variables = url.split("?")[1];
@@ -163,5 +195,7 @@ Date.prototype.Format = function (fmt) {
 // Header 搜索框
 function searchGoods() {
     let keys = $(".searchfield.txt-livesearch.input").val();
-    window.location.href = contentUrl("/shop-list.html?searchKeys=" + keys);
+    setUrlParam("currentPage", 1);
+    let param = setUrlParam("searchKeys", keys);
+    window.location.href = contentUrl("/shop-list.html" + param);
 }

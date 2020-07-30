@@ -21,7 +21,7 @@
     <title>Kobolg - HTML Template </title>
 </head>
 <body>
-<div id="myheader"></div>
+<div id="myHeader"></div>
 <div id="myContainer">
 <div class="banner-wrapper has_background">
     <img src="assets/images/banner-for-all2.jpg"
@@ -66,24 +66,18 @@
                     </div>
                     <form class="per-page-form">
                         <label>
-                            <select class="option-perpage">
+                            <select class="option-perpage" onchange="changePageSize()">
                                 <option value="12" selected="">
                                     Show 12
                                 </option>
                                 <option value="5">
-                                    Show 05
+                                    Show 5
                                 </option>
-                                <option value="10">
-                                    Show 10
+                                <option value="3">
+                                    Show 3
                                 </option>
-                                <option value="12">
-                                    Show 12
-                                </option>
-                                <option value="15">
-                                    Show 15
-                                </option>
-                                <option value="20">
-                                    Show All
+                                <option value="2">
+                                    Show 2
                                 </option>
                             </select>
                         </label>
@@ -160,6 +154,7 @@
                         </li>
                     </ul>
                 </div>
+                <input id="currentPage" hidden value="1"/>
                 <div class="shop-control shop-after-control">
                     <nav class="kobolg-pagination">
                         <span class="page-numbers current">1</span>
@@ -173,7 +168,7 @@
     </div>
 </div>
 </div>
-<div id="myfooter"></div>
+<div id="myFooter"></div>
 <div class="footer-device-mobile">
     <div class="wapper">
         <div class="footer-device-mobile-item device-home">
@@ -238,9 +233,22 @@
     });
 
     function renderPage() {
+        // let currentPage = parseInt($("#currentPage").val());
+        // let pageSize = $(".option-perpage").val();
+        let currentPage = getUrlParam("currentPage"), pageSize = getUrlParam("pageSize"), searchKeys = getUrlParam("searchKeys");
+        currentPage = currentPage === undefined ? 1 : parseInt(currentPage);
+        pageSize = pageSize === undefined ? $(".option-perpage").val() : parseInt(pageSize);
+        searchKeys = searchKeys === undefined ? "" : searchKeys;
+
+        // 保存页面状态
+        setUrlParam("currentPage", currentPage);
+        setUrlParam("pageSize", pageSize);
+        setUrlParam("searchKeys", searchKeys);
+
         $.ajax({
             url:contentUrl("/goods/queryPages"),
             type: "GET",
+            data: {currentPage: currentPage, pageSize: pageSize, searchKeys: searchKeys},
             success: (result) =>{
                 resultProcessing(
                     result,
@@ -248,7 +256,17 @@
                         let ul = $("#goodsList"), li = $("#goodsItem");
                         ul.empty();
                         result = result.data;
-                        let currentPage = result.currentPage, pageSize = result.pageSize, allPages = result.allPages, goodsList = result.data;
+                        let pageSize = result.pageSize, allPages = result.allPages, goodsList = result.data, allRecords = result.allRecords;
+                        // 渲染pageSize
+                        let pageSizeOptions = $(".option-perpage option");
+                        for (let i = 0; i < pageSizeOptions.length; i++) {
+                            if (pageSizeOptions[i].value === pageSize+"") {
+                                pageSizeOptions[i].selected = true;
+                                break;
+                            }
+                        }
+
+                        // 渲染商品列表页面
                         for (let i = 0; i < goodsList.length; i++) {
                             let goods = goodsList[i];
                             let tmpLi = li.clone(true);
@@ -271,14 +289,48 @@
                                 priceSpan.html("&nbsp&nbsp<span class=\"kobolg-Price-currencySymbol\">$</span>" + goods.miaoShaGoods.miaoshaPrice);
                                 price.append($("<ins>" + priceSpan.html() + "</ins>"));
                             }
+                            // 填充商品简介
+                            tmpLi.find(".kobolg-product-details__short-description p").text(goods.title);
+                            // 设置超链接
+                            tmpLi.find("a.thumb-link").attr("href", contentUrl("/goodsDetail.html?goodsId=" + goods.id));
+                            tmpLi.find(".product-name.product_title a").attr("href", contentUrl("/goodsDetail.html?goodsId=" + goods.id));
                             ul.append(tmpLi);
                         }
-
+                        let btnArea = $(".shop-control.shop-after-control"), btnList = btnArea.find("nav"), pageInfo = btnArea.find("p");
+                        btnList.empty();
+                        let startPage = currentPage - 5, endPage = currentPage + 4;
+                        startPage = Math.max(1, startPage);
+                        endPage = Math.min(allPages, endPage);
+                        // 底部分页
+                        for (let i = startPage; i <= endPage; i++) {
+                            if (i !== currentPage) {
+                                btnList.append($("<a class='page-numbers' href='javascript:void()' onclick='changePage(" + i +")'>" + i + " </a>"));
+                            } else {
+                                btnList.append($("<span class='page-numbers current'>" + i + "</span>"));
+                            }
+                        }
+                        if (currentPage !== allPages) {
+                            let nextPage = currentPage + 1;
+                            btnList.append($("<a class='next page-numbers' href='javascript:void()' onclick='changePage(" + nextPage + ")'>Next</a>"));
+                        }
+                        let startGoodsInx = (currentPage - 1) * pageSize + 1, endGoodsInx = startGoodsInx + goodsList.length - 1;
+                        startGoodsInx = Math.min(startGoodsInx, endGoodsInx);
+                        pageInfo.text("Showing " + startGoodsInx + "–" + endGoodsInx + " of " + allRecords + " results");
                     }
                 )
             }
         })
-
+    }
+    function changePage(i){
+        let param = setUrlParam("currentPage", i);
+        window.location.href = contentUrl("/shop-list.html" + param);
+    }
+    function changePageSize() {
+        let pageSize = $(".option-perpage").val();
+        setUrlParam("pageSize", pageSize);
+        setUrlParam("currentPage", 1);
+        let param = getUrlState();
+        window.location.href = contentUrl("/shop-list.html" + param);
     }
 </script>
 </body>

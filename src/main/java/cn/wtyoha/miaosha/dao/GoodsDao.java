@@ -27,6 +27,6 @@ public interface GoodsDao extends tk.mybatis.mapper.common.Mapper<Goods> {
     @Select("select max(id) from goods")
     Long maxValidId();
 
-    @Select("select count(*) from goods")
-    int queryGoodsCount();
+    @Select("select count(*) from goods where name like #{searchKeys}")
+    int queryGoodsCount(@Param("searchKeys") String searchKeys);
 }

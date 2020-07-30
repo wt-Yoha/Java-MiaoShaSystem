@@ -239,6 +239,12 @@
         currentPage = currentPage === undefined ? 1 : parseInt(currentPage);
         pageSize = pageSize === undefined ? $(".option-perpage").val() : parseInt(pageSize);
         searchKeys = searchKeys === undefined ? "" : searchKeys;
+
+        // 保存页面状态
+        setUrlParam("currentPage", currentPage);
+        setUrlParam("pageSize", pageSize);
+        setUrlParam("searchKeys", searchKeys);
+
         $.ajax({
             url:contentUrl("/goods/queryPages"),
             type: "GET",
@@ -298,28 +304,33 @@
                         // 底部分页
                         for (let i = startPage; i <= endPage; i++) {
                             if (i !== currentPage) {
-                                btnList.append($("<a class='page-numbers' href='javascript:void()' onclick='changePage(" + i + "," + pageSize + ")'>" + i + " </a>"));
+                                btnList.append($("<a class='page-numbers' href='javascript:void()' onclick='changePage(" + i +")'>" + i + " </a>"));
                             } else {
                                 btnList.append($("<span class='page-numbers current'>" + i + "</span>"));
                             }
                         }
                         if (currentPage !== allPages) {
                             let nextPage = currentPage + 1;
-                            btnList.append($("<a class='next page-numbers' href='javascript:void()' onclick='changePage(" + nextPage + ", " + pageSize + ")'>Next</a>"));
+                            btnList.append($("<a class='next page-numbers' href='javascript:void()' onclick='changePage(" + nextPage + ")'>Next</a>"));
                         }
                         let startGoodsInx = (currentPage - 1) * pageSize + 1, endGoodsInx = startGoodsInx + goodsList.length - 1;
+                        startGoodsInx = Math.min(startGoodsInx, endGoodsInx);
                         pageInfo.text("Showing " + startGoodsInx + "–" + endGoodsInx + " of " + allRecords + " results");
                     }
                 )
             }
         })
     }
-    function changePage(i, pageSize){
-        window.location.href = contentUrl("/shop-list.html?currentPage=" + i + "&pageSize=" + pageSize);
+    function changePage(i){
+        let param = setUrlParam("currentPage", i);
+        window.location.href = contentUrl("/shop-list.html" + param);
     }
     function changePageSize() {
         let pageSize = $(".option-perpage").val();
-        window.location.href = contentUrl("/shop-list.html?currentPage=" + 1 + "&pageSize=" + pageSize);
+        setUrlParam("pageSize", pageSize);
+        setUrlParam("currentPage", 1);
+        let param = getUrlState();
+        window.location.href = contentUrl("/shop-list.html" + param);
     }
 </script>
 </body>

@@ -67,32 +67,15 @@
                 <div class="header-search-mid">
                     <div class="header-search">
                         <div class="block-search">
-                            <form role="search" method="get"
+                            <form role="search"
                                   class="form-search block-search-form kobolg-live-search-form">
                                 <div class="form-content search-box results-search">
                                     <div class="inner">
-                                        <input autocomplete="off" class="searchfield txt-livesearch input" name="s"
+                                        <input autocomplete="off" class="searchfield txt-livesearch input"
                                                value="" placeholder="Search here..." type="text">
                                     </div>
                                 </div>
-                                <input name="post_type" value="product" type="hidden">
-                                <input name="taxonomy" value="product_cat" type="hidden">
-                                <div class="category">
-                                    <select title="product_cat" name="product_cat" id="1771262470"
-                                            class="category-search-option" tabindex="-1" style="display: none;">
-                                        <option value="0">All Categories</option>
-                                        <option class="level-0" value="light">Camera</option>
-                                        <option class="level-0" value="chair">Accessories</option>
-                                        <option class="level-0" value="table">Game &amp; Consoles</option>
-                                        <option class="level-0" value="bed">Life style</option>
-                                        <option class="level-0" value="new-arrivals">New arrivals</option>
-                                        <option class="level-0" value="lamp">Summer Sale</option>
-                                        <option class="level-0" value="specials">Specials</option>
-                                        <option class="level-0" value="sofas">Featured</option>
-                                    </select>
-
-                                </div>
-                                <button type="submit" class="btn-submit">
+                                <button type="button" class="btn-submit" onclick="searchGoods()">
                                     <span class="flaticon-search"></span>
                                 </button>
                             </form><!-- block search -->
@@ -320,3 +303,12 @@
         </div>
     </div>
 </header>
+<script>
+    // 为搜索框绑定键盘监听事件
+    var searchfield = $(".searchfield.txt-livesearch.input");
+    searchfield.bind('keydown', function (event) {
+        if (event.keyCode === "13") {
+            searchGoods();
+        }
+    });
+</script>

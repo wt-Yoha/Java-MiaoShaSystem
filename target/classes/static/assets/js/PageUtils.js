@@ -1,4 +1,6 @@
-var afterLoginHocks = {};
+let afterLoginHocks = {};
+// 用于保存地址栏状态
+let urlState="";
 
 // 加载header和footer
 function loadHeaderAndFooter() {
@@ -24,7 +26,7 @@ function loadFooter() {
 function getLoginUser() {
     var tag = $(document.getElementById("welcome"));
     $.ajax({
-        url:  contentUrl("/user/loginMsg"),
+        url: contentUrl("/user/loginMsg"),
         type: "GET",
         success: function (result) {
             if (parseInt(result.code) === 0 && result.data !== null) {
@@ -103,7 +105,7 @@ function alertErrorPage(error) {
 
 // 获取result后的通用处理流程
 function resultProcessing(result, successCallback, errorCallback) {
-    if (parseInt(result.code)=== 0) {
+    if (parseInt(result.code) === 0) {
         // 服务器返回了正确的结果
         if (successCallback !== undefined) {
             successCallback(result);
@@ -118,20 +120,57 @@ function resultProcessing(result, successCallback, errorCallback) {
 }
 
 // 获取地址栏参数
-function getUrlParam(key){
-    var map = parseUrlParam();
+function getUrlParam(key) {
+    let map = parseUrlParam();
+    if (map === undefined) {
+        return undefined;
+    }
     return map[key];
+}
+
+// 保持地址栏状态并设置参数保存在urlState
+function setUrlParam(key, value, url) {
+    if (url === undefined) {
+        url = urlState;
+    }
+    let map = parseParam(url), resUrl="?", count = 0;
+    map = map === undefined ? {} : map;
+    map[key] = value;
+    for (let k in map) {
+        if (count === 0) {
+            resUrl += k + "=" + map[k];
+            count++;
+        } else {
+            resUrl += "&"+ k + "=" + map[k];
+        }
+    }
+    urlState = resUrl;
+    return resUrl;
+}
+
+// 获取urlState
+function getUrlState() {
+    return urlState;
 }
 
 // 解析地址栏参数
 function parseUrlParam() {
-    var url = location.href;
-    var variables = url.split("?")[1];
-    var strings = variables.split("&");
-    var map = {};
-    for (let i = 0; i < strings.length; i++) {
-        var group = strings[i].split("=");
-        map[group[0]] = group[1];
+    let url = location.href;
+    return parseParam(url);
+}
+
+// 解析一个字符串url
+function parseParam(url){
+    let map = {};
+    try {
+        let variables = url.split("?")[1];
+        let strings = variables.split("&");
+        for (let i = 0; i < strings.length; i++) {
+            let group = strings[i].split("=");
+            map[group[0]] = group[1];
+        }
+    }catch (e) {
+        return undefined;
     }
     return map;
 }
@@ -151,4 +190,12 @@ Date.prototype.Format = function (fmt) {
     for (var k in o)
         if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
+}
+
+// Header 搜索框
+function searchGoods() {
+    let keys = $(".searchfield.txt-livesearch.input").val();
+    setUrlParam("currentPage", 1);
+    let param = setUrlParam("searchKeys", keys);
+    window.location.href = contentUrl("/shop-list.html" + param);
 }

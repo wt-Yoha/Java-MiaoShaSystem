@@ -34,15 +34,7 @@ public class GoodsServiceImpl implements GoodsService {
         Integer startIndex = (currentPage - 1) * pageSize;
         if (!"".equals(searchKeys)) {
             useSearch = true;
-            searchKeys = URLDecoder.decode(searchKeys, StandardCharsets.UTF_8);
-            String[] keys = searchKeys.split(" ");
-            StringBuilder stb = new StringBuilder();
-            stb.append("%");
-            for (String key : keys) {
-                stb.append(key);
-                stb.append("%");
-            }
-            searchKeys = stb.toString();
+            searchKeys = formattingSearchKeys(searchKeys);
         }
         List<Goods> goodsList = null;
         String redisGoodsKey = GoodsKey.GOODS_LIST.getFullKey() + "_" + currentPage + "_" + pageSize + "_" + searchKeys;
@@ -115,10 +107,31 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public int queryGoodsCount() {
-        return goodsDao.queryGoodsCount();
+    public int queryGoodsCount(String searchKeys) {
+        searchKeys = formattingSearchKeys(searchKeys);
+        return goodsDao.queryGoodsCount(searchKeys);
     }
 
+    /**
+     * 将搜索关键字格式化：key1 key2 ==> %key1%kye2
+     * @param searchKeys
+     * @return
+     */
+    private String formattingSearchKeys(String searchKeys) {
+        if (!"".equals(searchKeys)) {
+            searchKeys = URLDecoder.decode(searchKeys, StandardCharsets.UTF_8);
+            searchKeys =searchKeys.replace(" ", "%");
+        }
+        searchKeys = "%" + searchKeys + "%";
+        return searchKeys;
+    }
+
+    /**
+     * 生成验证码
+     * @param loginUser
+     * @param goodsId
+     * @return
+     */
     private String generateVerifyCode(MiaoShaUser loginUser, Long goodsId) {
         String ops = "+-*/";
         int max = 20;

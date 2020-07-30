@@ -15,5 +15,5 @@ public interface GoodsService {
 
     boolean checkVerifyCode(MiaoShaUser loginUser, Long goodsId, String verifyCode);
 
-    int queryGoodsCount();
+    int queryGoodsCount(String searchKeys);
 }

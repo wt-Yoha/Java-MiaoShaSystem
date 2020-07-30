@@ -45,7 +45,7 @@ public class GoodsController {
     @RequestMapping("/queryPages")
     public Result<Page<List<Goods>>> queryGoodsPage(@RequestParam(defaultValue = "1") Integer currentPage, @RequestParam(defaultValue = "12") Integer pageSize, @RequestParam(defaultValue = "") String searchKeys) {
         List<Goods> goods = goodsService.goodList(currentPage, pageSize, searchKeys);
-        int records = goodsService.queryGoodsCount();
+        int records = goodsService.queryGoodsCount(searchKeys);
         int allPages = (int) Math.ceil(records * 1.0 / pageSize);
         Page<List<Goods>> page = new Page<>(currentPage, pageSize, records, allPages, goods);
         return Result.success(page);
@@ -54,11 +54,9 @@ public class GoodsController {
     @RequestMapping("/detail/{id}")
     public Result<Map<String, Object>> goodsDetail(@PathVariable("id") Long id) {
         Goods goods = goodsService.getGoodsById(id);
-        boolean isMiaoShaGoods = false;
         long start = -1, end = -1, now = new Date().getTime(), remainTime = -1, continueTime = -1;
         int status = -1;
         if (goods.getMiaoShaGoods() != null) {
-            isMiaoShaGoods = true;
             MiaoShaGoods miaoShaGoods = goods.getMiaoShaGoods();
             start = miaoShaGoods.getStartDate().getTime();
             end = miaoShaGoods.getEndDate().getTime();

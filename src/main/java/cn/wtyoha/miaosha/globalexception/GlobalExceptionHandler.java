@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
             List<ObjectError> errors = ex.getAllErrors();
             ObjectError error = errors.get(0);
             String msg = error.getDefaultMessage();
-            codeMsg = CodeMsg.BIND_ERROR.fillArgs(msg);
+            codeMsg = CodeMsg.BIND_ERROR;
         } else {
             throw new RuntimeException("错误的异常捕获");
         }

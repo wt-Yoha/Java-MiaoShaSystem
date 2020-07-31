@@ -14,7 +14,7 @@ public class CodeMsg {
     public static CodeMsg NULL_PARAM = new CodeMsg(500000, "输入参数为空");
     public static CodeMsg WRONG_TELEPHONE_NUMBER = new CodeMsg(500100, "手机号为空或不符合格式");
     public static CodeMsg NULL_NICK_NAME = new CodeMsg(500200, "昵称为空");
-    public static CodeMsg BIND_ERROR = new CodeMsg(500300, "参数校验异常: %s");
+    public static CodeMsg BIND_ERROR = new CodeMsg(500300, "参数校验异常");
     public static CodeMsg WRONG_PASSWORD = new CodeMsg(500400, "密码错误", "login");
     public static CodeMsg SERVER_ERROR = new CodeMsg(500500, "服务器异常");
     public static CodeMsg UNREGISTER_USER = new CodeMsg(500600, "用户未注册", "login");
@@ -27,7 +27,7 @@ public class CodeMsg {
     public static CodeMsg TOO_LARGE_QUANTITY = new CodeMsg(600200, "秒杀商品限拍一件");
     public static CodeMsg CLOSED_ACTIVITY = new CodeMsg(600500, "秒杀活动未开始");
     public static CodeMsg OUT_OF_STOCK = new CodeMsg(600300, "商品库存不足");
-    public static CodeMsg ERROR_PAYMENT =new CodeMsg(600400, "支付失败", "redirect:/order/myOrders");
+    public static CodeMsg ERROR_PAYMENT =new CodeMsg(600400, "支付失败");
     public static CodeMsg WRONG_VERIFY_CODE=new CodeMsg(600600, "验证码错误");
 
     CodeMsg() {

@@ -21,4 +21,6 @@ public interface OrderInfoService {
     OrderInfo selectById(Long id);
 
     TakeOrder queryTakeOrderStatus(String id);
+
+    boolean undoOrder(MiaoShaUser loginUser, Long orderId);
 }

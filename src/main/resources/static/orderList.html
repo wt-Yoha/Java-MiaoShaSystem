@@ -62,7 +62,8 @@
                                                 src="assets/images/apro134-1-600x778.jpg"
                                                 class="attachment-kobolg_thumbnail size-kobolg_thumbnail" alt="img"
                                                 width="600" height="778"></a></td>
-                                        <td class="product-name goodsName" data-title="Product"><a href="#">T-shirt with skirt –
+                                        <td class="product-name goodsName" data-title="Product"><a href="#">T-shirt with
+                                            skirt –
                                             Pink</a></td>
                                         <td class="product-price" data-title="Price">
              <span class="kobolg-Price-amount amount">
@@ -93,6 +94,8 @@
                                         <td class="product-name">
              <span>
              <button type="button" class="btn btn-sm payBtn" name="update_cart" value="Update cart"> 付款 </button>
+                 &nbsp;&nbsp;
+             <button type="button" class="btn btn-sm undoBtn" name="update_cart" value="Update cart"> 撤销 </button>
              </span>
                                         </td>
                                     </tr>
@@ -166,6 +169,7 @@
 <script src='http://www.google.cn/maps/api/js?key=AIzaSyC3nDHy1dARR-Pa_2jjPCjvsOR4bcILYsM'></script>
 <script src="assets/js/functions.js"></script>
 <script src="assets/js/PageUtils.js"></script>
+
 <script>
     $(function () {
         loadHeaderAndFooter();
@@ -184,10 +188,10 @@
                         const goodsList = result.data.goods;
                         const tbody = $("tbody");
                         const trTemplate = $("tbody tr");
-                        var goods, order, prcie, btn, tr, time;
+                        let goods, order, btn, tr, time, undo;
                         tbody.empty();
 
-                        for (let i = 0; i<orders.length; i++){
+                        for (let i = 0; i < orders.length; i++) {
                             goods = goodsList[i];
                             order = orders[i];
                             tr = trTemplate.clone(true);
@@ -210,13 +214,19 @@
                             // 支付状态
                             btn = tr.find(".payBtn");
                             btn.attr("value", order.id);
+                            undo = tr.find(".undoBtn");
+                            undo.attr("value", order.id);
                             if (parseInt(order.status) === 0) {
                                 tr.find(".payStatement").html("<span style='color: red'>未支付</span>");
                                 // 付款按钮
                                 btn.attr("onclick", "payOrder(this)");
+                                // 撤销按钮
+                                undo.attr("onclick", "undoOrder(this)");
                             } else {
                                 tr.find(".payStatement").html("<span>已支付</span>");
                                 btn.attr("disabled", true);
+                                // 撤销按钮
+                                undo.attr("disabled", true);
                             }
                             // 合计
                             tr.find(".totalPrice").text(price * order.goodsCount + "");
@@ -242,6 +252,25 @@
                     (result) => {
                         btn.attr("disabled", true);
                         tr.find(".payStatement").html("<span>已支付</span>");
+                    }
+                );
+            }
+        })
+    }
+
+    function undoOrder(btn) {
+        btn = $(btn);
+        const orderId = btn.attr("value");
+        $.ajax({
+            url: contentUrl("/order/undoOrder"),
+            data: {orderInfoId: orderId},
+            type: "POST",
+            success: (result) => {
+                resultProcessing(
+                    result,
+                    (result) => {
+                        alert(result.data);
+                        window.location.reload();
                     }
                 );
             }

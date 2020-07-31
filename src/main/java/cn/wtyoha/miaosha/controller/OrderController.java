@@ -128,6 +128,7 @@ public class OrderController implements InitializingBean {
 
     /**
      * 保护秒杀地址
+     *
      * @param goodsId
      * @return
      */
@@ -151,6 +152,7 @@ public class OrderController implements InitializingBean {
 
     /**
      * 客户端轮询订单状态
+     *
      * @param id
      * @return
      */
@@ -210,5 +212,15 @@ public class OrderController implements InitializingBean {
             throw new GlobalException(CodeMsg.ERROR_PAYMENT);
         }
         return Result.success(null);
+    }
+
+    @RequestMapping("/undoOrder")
+    public Result<Object> undoOrder(@RequestParam("orderInfoId") Long orderId) {
+        MiaoShaUser loginUser = miaoShaUserService.getLoginUser();
+        if (loginUser == null) {
+            throw new GlobalException(CodeMsg.USER_UNLOGIN);
+        }
+        orderInfoService.undoOrder(loginUser, orderId);
+        return Result.success("订单撤销成功！");
     }
 }

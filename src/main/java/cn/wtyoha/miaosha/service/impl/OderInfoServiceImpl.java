@@ -185,4 +185,12 @@ public class OderInfoServiceImpl implements OrderInfoService {
         return takeOrder;
     }
 
+    @Override
+    public boolean undoOrder(MiaoShaUser loginUser, Long orderId) {
+        orderInfoDao.deleteByPrimaryKey(orderId);
+        miaoShaOrderDao.deleteBindOrder(orderId);
+        clearCacheSender.sendClearCache(OrderKey.USER_ORDERS.getFullKey(loginUser.getId()));
+        return true;
+    }
+
 }

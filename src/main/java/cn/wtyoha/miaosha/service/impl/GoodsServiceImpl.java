@@ -65,7 +65,7 @@ public class GoodsServiceImpl implements GoodsService {
         if (goodsId == null || user == null) {
             return null;
         }
-        int width = 80;
+        int width = 150;
         int height = 32;
         //create the image
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);

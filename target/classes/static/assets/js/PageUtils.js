@@ -22,6 +22,23 @@ function loadFooter() {
     });
 }
 
+// logout
+function logout() {
+    $.ajax({
+        url: contentUrl("/user/logout"),
+        type: "GET",
+        success: function (result) {
+            resultProcessing(
+                result,
+                function (result) {
+                    alert(result.data);
+                    window.location.href = contentUrl("/shop.html");
+                }
+            );
+        }
+    })
+}
+
 // header 获取登陆用户信息
 function getLoginUser() {
     var tag = $(document.getElementById("welcome"));
@@ -32,6 +49,8 @@ function getLoginUser() {
             if (parseInt(result.code) === 0 && result.data !== null) {
                 tag.text("欢迎回来，" + result.data.nickname);
                 tag.attr("href", contentUrl("/orderList.html"));
+                let logout = $("#logout");
+                logout.attr("style", "visibility: visible");
                 afterLogin();
             } else {
                 tag.text("您还未登录");
@@ -62,25 +81,24 @@ function setAfterLogin(name, hock) {
 function submitAdvice() {
     var text = $("#adviceText").val();
     $.ajax({
-        url: contentUrl("/advice/submit"),
-        data: {advice: text},
+        url: contentUrl("/user/adviceSubmit"),
+        data: {msg: text},
         type: "POST",
         success: function (result) {
-            if (parseInt(result.code) === 0) {
-                alert(result.data);
-            } else {
-                alert(result.data.code + " " + result.data.msg);
-            }
-        },
-        error: function () {
-            alert("提交出错，请稍后再试");
+            resultProcessing(
+                result,
+                function (result) {
+                    alert(result.data);
+                },
+                alertErrorMsg
+            );
         }
     })
 }
 
 // 配置项目contentPath
 function contentUrl(url) {
-    var contentPath = "/bazewind"
+    var contentPath = "/breezewind"
     return contentPath + url;
 }
 

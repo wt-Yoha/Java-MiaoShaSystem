@@ -8,4 +8,6 @@ public interface MiaoShaUserService {
     boolean isLogin();
     MiaoShaUser getLoginUser();
     void logout();
+
+    void submitAdvice(String msg);
 }

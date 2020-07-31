@@ -55,7 +55,14 @@ public class MiaoShaUserController {
     @RequestMapping("/logout")
     public Result<Object> logout() {
         userService.logout();
-        return Result.success(null);
+        return Result.success("退出成功！");
+    }
+
+
+    @RequestMapping("/adviceSubmit")
+    public Result<Object> submitAdvice(String msg) {
+        userService.submitAdvice(msg);
+        return Result.success("提交成功,感谢您的建议！");
     }
 
 }

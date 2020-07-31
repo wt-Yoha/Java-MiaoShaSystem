@@ -137,8 +137,20 @@ public class MiaoShaUserServiceImpl implements MiaoShaUserService {
         String token = getCookie(TOKEN_NAME);
         MiaoShaUser user = redisUtils.get(UserKey.TOKEN.getFullKey(token), MiaoShaUser.class);
         redisUtils.deleteKey(UserKey.TOKEN.getFullKey(token));
+        if (user == null) {
+            return;
+        }
         // 删除user的登陆状态
         redisUtils.deleteKey(UserKey.ID.getFullKey(String.valueOf(user.getId())));
+    }
+
+    @Override
+    public void submitAdvice(String msg) {
+        MiaoShaUser loginUser = getLoginUser();
+        if (loginUser == null) {
+            throw new GlobalException(CodeMsg.USER_UNLOGIN);
+        }
+        userDao.insertAdvice(loginUser.getId(), msg);
     }
 
     private void addUserToRedisAndSetCookie(String token, MiaoShaUser user) {

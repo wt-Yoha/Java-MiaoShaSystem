@@ -42,4 +42,11 @@ public class TestMiaoShaUserService {
         }
         outputStream.close();
     }
+
+    @Test
+    public void setNxTest() {
+        System.out.println(redisUtils.set("abc", 1234));
+        System.out.println(redisUtils.set("abc", true, 60));
+        System.out.println(redisUtils.set("abc", 9968, 60));
+    }
 }

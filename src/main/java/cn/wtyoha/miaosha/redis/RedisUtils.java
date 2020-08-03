@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.params.SetParams;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class RedisUtils {
     public final static int THIRTY_SECONDS = 30;
     public final static int THIRTY_MINUTE = 30 * 60;
     public final static int TWO_MINUTE = 2 * 60;
+    public final static String POSITIVE_RES = "OK";
 
     @Autowired
     JedisPool jedisPool;
@@ -26,10 +28,14 @@ public class RedisUtils {
      * @return bool
      */
     public <T> boolean set(String key, T value) {
-        return set(key, value, -1);
+        return set(key, value, -1, false);
     }
 
     public <T> boolean set(String key, T value, int timeout) {
+        return set(key, value, timeout, false);
+    }
+
+    public <T> boolean set(String key, T value, int timeout, boolean nx) {
         if (key == null || key.length() == 0 || value == null) {
             return false;
         }
@@ -37,12 +43,15 @@ public class RedisUtils {
         try {
             jedis = jedisPool.getResource();
             String sValue = JSON.toJSONString(value);
-            if (timeout == -1) {
-                jedis.set(key, sValue);
-            } else {
-                jedis.setex(key, timeout, sValue);
+            SetParams params = new SetParams();
+            if (nx) {
+                params.nx();
             }
-            return true;
+            if (timeout != -1) {
+                params.ex(timeout);
+            }
+            String setResult = jedis.set(key, sValue, params);
+            return POSITIVE_RES.equals(setResult);
         } finally {
             close(jedis);
         }

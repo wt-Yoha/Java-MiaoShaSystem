@@ -65,6 +65,7 @@ public class MiaoShaUserServiceImpl implements MiaoShaUserService {
         if ((user = getLoginUser()) != null) {
             return user;
         }
+        // 由状态位判断是否重复登录
         if (redisUtils.get(UserKey.ID.getFullKey(String.valueOf(loginUser.getId())), Boolean.class) != null) {
             // 用户已经登陆
             throw new GlobalException(CodeMsg.REPEAT_LOGIN);
@@ -78,10 +79,11 @@ public class MiaoShaUserServiceImpl implements MiaoShaUserService {
         String salt = user.getSalt();
         String dbPass = MD5Utils.inputPassToDBPass(password, salt);
         if (dbPass.equals(user.getPassword())) {
-            // 设置cookie
             String token = UUID.randomUUID().toString().replace("-", "");
-            addUserToRedisAndSetCookie(token, user);
+            // 设置登陆状态
             setUserLoginStatus(user);
+            // 设置cookie
+            addUserToRedisAndSetCookie(token, user);
             return user;
         } else {
             throw new GlobalException(CodeMsg.WRONG_PASSWORD);
@@ -94,6 +96,17 @@ public class MiaoShaUserServiceImpl implements MiaoShaUserService {
      * @param user
      */
     private void setUserLoginStatus(MiaoShaUser user) {
+        // 以nx方式设置用户登录状态
+        if (!redisUtils.set(UserKey.ID.getFullKey(String.valueOf(user.getId())), true, RedisUtils.THIRTY_MINUTE, true)) {
+            throw new GlobalException(CodeMsg.REPEAT_LOGIN);
+        }
+    }
+
+    /**
+     * 更新用户登陆状态
+     * @param user
+     */
+    private void updateUserLoginStatus(MiaoShaUser user) {
         redisUtils.set(UserKey.ID.getFullKey(String.valueOf(user.getId())), true, RedisUtils.THIRTY_MINUTE);
     }
 
@@ -125,7 +138,7 @@ public class MiaoShaUserServiceImpl implements MiaoShaUserService {
         // 登录信息已经存在 更新过期时间
         if (miaoShaUser != null) {
             addUserToRedisAndSetCookie(token, miaoShaUser);
-            setUserLoginStatus(miaoShaUser);
+            updateUserLoginStatus(miaoShaUser);
         }
         return miaoShaUser;
     }
